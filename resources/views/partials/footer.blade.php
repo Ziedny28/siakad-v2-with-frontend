@@ -11,6 +11,13 @@
                         <i class="fa fa-heart"></i> by
                         <a href="https://www.facebook.com/andreew.co.id/" class="author-footer">Andre Tri Ramadana</a>
                     </span>
+                    Modified
+                    <span class="text-danger">
+                        <i class="fa fa-face-smile"></i> by
+                        <a href="#" class="author-footer">
+                            Muhamad Syaroful Anam
+                        </a>
+                    </span>
                 </p>
             </div>
         </div>
