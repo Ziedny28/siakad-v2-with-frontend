@@ -11,7 +11,7 @@
 
             <ul class="side-menu">
                 <li>
-                    <a href="/admin-dashboard" class="{{ request()->is('admin-dashboard') ? 'active' : ''}}">
+                    <a href="/admin-dashboard" class="{{ request()->is('dashboard-admin') ? 'active' : ''}}">
                         <i class="bx bxs-dashboard icon"></i> Dashboard
                     </a>
                 </li>

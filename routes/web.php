@@ -19,10 +19,7 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', function () {
-    return view('blank.blank');
-});
-
+Route::get('/',[AuthController::class, 'login'])->name('login');
 // page accessible for guest
 Route::middleware('guest')->group(function(){
     Route::get('/login',[AuthController::class, 'login'])->name('login');
