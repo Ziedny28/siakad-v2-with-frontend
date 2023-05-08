@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 @section('content')
     @include('partials.admin-topbar')
     @include('partials.admin-sidebar')
@@ -7,7 +7,7 @@
     <div class="content-start transition">
         <div class="container-fluid dashboard">
             <div class="content-header">
-                <h1>Manajemen Data Guru</h1>
+                <h1>Manajemen Data Mata Pelajaran</h1>
                 <p></p>
             </div>
 
@@ -47,7 +47,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Data Guru</h4>
+                            <h4>Data Mata Pelajaran</h4>
                             <p></p>
                             <div class="card-menu">
                                 <div class="search-bar">
@@ -59,7 +59,7 @@
                                     </form>
                                 </div>
                                 <div class="btn btn-success mt-2">
-                                    <a href="/teachers/create">Create New Guru</a>
+                                    <a href="#">Create New Mapel</a>
                                 </div>
                             </div>
                         </div>
@@ -68,31 +68,31 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>NIG</th>
-                                            <th>Nama</th>
-                                            <th class="w-25">Alamat</th>
-                                            <th>TTL</th>
-                                            <th>Mapel</th>
-                                            <th>Aksi</th>
+                                            <th>Id</th>
+                                            <th>Nama Mapel</th>
+                                            <th>Deskripsi</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($teachers as $teacher)
-                                            <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $teacher->ni }}</td>
-                                                <td>{{ $teacher->name }}</td>
-                                                <td>{{ $teacher->address }}</td>
-                                                <td>{{ $teacher->pob }}</td>
-                                                <td>{{ $teacher->subject->name }}</td>
-                                                <td><a href="/teachers/{{ $teacher->id }}/edit"
-                                                        class="btn btn-primary">edit</a>
-                                                    <a href="/teachers/{{ $teacher->id }}/delete"
-                                                        class="btn btn-danger">hapus</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Matematika</td>
+                                            <td>Mapel wajib semua jurusan</td>
+                                            <td>
+                                                <button class="btn btn-primary">Update</button>
+                                                <button class="btn btn-danger">Delete</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Biologi</td>
+                                            <td>Mapel khusus jurusan Mipa</td>
+                                            <td>
+                                                <button class="btn btn-primary">Update</button>
+                                                <button class="btn btn-danger">Delete</button>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

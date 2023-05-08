@@ -30,10 +30,10 @@
                         <i class="bx bx-chevron-right icon-right"></i>
                     </a>
                     <ul class="side-dropdown">
-                        <li><a href="/students-control">MIPA</a></li>
-                        <li><a href="/students-control">Bahasa</a></li>
-                        <li><a href="/students-control">IPS</a></li>
-                        <li><a href="/students-control">Agama</a></li>
+                        <li><a href="/students">MIPA</a></li>
+                        <li><a href="/students">Bahasa</a></li>
+                        <li><a href="/students">IPS</a></li>
+                        <li><a href="/students">Agama</a></li>
                     </ul>
                 </li>
 
@@ -41,7 +41,7 @@
                 <li class="divider" data-text="STARTER">CONTROL GURU</li>
 
                 <li>
-                    <a href="/teacher-control" class="{{ request()->is('teacher-control') ? 'active' : ''}}">
+                    <a href="/teachers" class="{{ request()->is('teachers') ? 'active' : ''}}">
                         <i class="bx bxs-user icon"></i>
                         Guru
                     </a>

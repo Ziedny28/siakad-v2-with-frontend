@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 @section('content')
     @include('partials.admin-topbar')
     @include('partials.admin-sidebar')
@@ -71,27 +71,23 @@
                                             <th>#</th>
                                             <th>NIG</th>
                                             <th>Nama</th>
-                                            <th class="w-25">Alamat</th>
+                                            <th>Alamat</th>
                                             <th>TTL</th>
                                             <th>Mapel</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($teachers as $teacher)
-                                            <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $teacher->ni }}</td>
-                                                <td>{{ $teacher->name }}</td>
-                                                <td>{{ $teacher->address }}</td>
-                                                <td>{{ $teacher->pob }}</td>
-                                                <td>{{ $teacher->subject->name }}</td>
-                                                <td><a href="/teachers/{{ $teacher->id }}/edit"
-                                                        class="btn btn-primary">edit</a>
-                                                    <a href="/teachers/{{ $teacher->id }}/delete"
-                                                        class="btn btn-danger">hapus</a>
-                                                </td>
-                                            </tr>
+                                        @foreach($teachers as $teacher)
+                                        <tr>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$teacher->ni}}</td>
+                                            <td>{{$teacher->name}}</td>
+                                            <td>{{$teacher->address}}</td>
+                                            <td>{{$teacher->pob}}</td>
+                                            <td>{{$teacher->subject->name}}</td>
+                                            <td><a href="/teachers/{{$teacher->id}}/edit" class="btn btn-success">edit</a></td>
+                                        </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
