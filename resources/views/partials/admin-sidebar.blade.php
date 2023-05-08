@@ -11,7 +11,7 @@
 
             <ul class="side-menu">
                 <li>
-                    <a href="/admin-dashboard" class="{{ request()->is('dashboard-admin') ? 'active' : ''}}">
+                    <a href="dashboard-admin" class="{{ request()->is('dashboard-admin') ? 'active' : ''}}">
                         <i class="bx bxs-dashboard icon"></i> Dashboard
                     </a>
                 </li>
@@ -51,7 +51,7 @@
                 <li class="divider" data-text="Pages">CONTROL MAPEL</li>
 
                 <li>
-                    <a href="/subjects-control" class="{{ request()->is('subjects-control') ? 'active' : ''}}">
+                    <a href="/subjects" class="{{ request()->is('subjects-control') ? 'active' : ''}}">
                         <i class="bx bx-columns icon"></i>
                         Mapel
                     </a>

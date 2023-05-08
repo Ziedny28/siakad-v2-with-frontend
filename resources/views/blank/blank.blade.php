@@ -1,4 +1,4 @@
-   @extends('layout.app')
+   @extends('layouts.main')
    @section('content')
 
        @include('partials.admin-topbar')

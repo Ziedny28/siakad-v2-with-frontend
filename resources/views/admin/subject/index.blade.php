@@ -68,31 +68,21 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
                                             <th>Nama Mapel</th>
-                                            <th>Deskripsi</th>
-                                            <th>Action</th>
+                                            <th>daftar guru pengejar</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Matematika</td>
-                                            <td>Mapel wajib semua jurusan</td>
-                                            <td>
-                                                <button class="btn btn-primary">Update</button>
-                                                <button class="btn btn-danger">Delete</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Biologi</td>
-                                            <td>Mapel khusus jurusan Mipa</td>
-                                            <td>
-                                                <button class="btn btn-primary">Update</button>
-                                                <button class="btn btn-danger">Delete</button>
-                                            </td>
-                                        </tr>
+                                        @foreach ($subjects as $subject)
+                                            <tr>
+                                                <td>{{ $subject->name }}</td>
+                                                <td>
+                                                    @foreach ($subject->teachers as $teacher)
+                                                        <li>{{ $teacher->name }}</li>
+                                                    @endforeach
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
