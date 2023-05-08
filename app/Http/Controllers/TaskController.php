@@ -27,7 +27,7 @@ class TaskController extends Controller
     {
         $teacher_id = Auth::user()->id; //getting teacher id
         $class_rooms = ClassRoom::with('teachers')->where('teacher_id', $teacher_id)->get(); //getting class rooms data of this teacher with teachers
-        $categories = ['task','dialy_test','mid_test','final_test'];
+        $categories = ['task','daily_test','mid_test','final_test'];
 
         return view('teacher.task.create', [
             'class_rooms' =>  $class_rooms,
