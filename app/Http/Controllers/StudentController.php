@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\ClassRoom;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 
@@ -13,7 +15,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.student.index', [
+            'students' => Student::all(),
+        ]);
     }
 
     /**
@@ -21,7 +25,9 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.student.create', [
+            'class_rooms' => ClassRoom::all(),
+        ]);
     }
 
     /**
@@ -29,7 +35,10 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
-        //
+        $student = $request->validated();
+        $student['password'] = Hash::make($request->password);
+        Student::create($student);
+        return redirect()->route('students.index')->with('success', 'Student created successfully');
     }
 
     /**
@@ -45,7 +54,11 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        $student = Student::with('class_room')->findOrFail($student->id);
+        return view('admin.student.edit', [
+            'student' => $student,
+            'class_rooms' => ClassRoom::all(),
+        ]);
     }
 
     /**
@@ -53,7 +66,10 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request, Student $student)
     {
-        //
+        $data = $request->validated();
+        $student->fill($data);
+        $student->save();
+        return redirect()->route('students.index')->with('success', 'Student updated successfully');
     }
 
     /**

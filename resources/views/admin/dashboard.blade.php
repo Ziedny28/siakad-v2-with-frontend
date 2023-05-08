@@ -2,6 +2,9 @@
 
 @section('content')
     halo admin,{{ $admin->name }}
+    <br>
+    <a class="" href="/teachers">teacher data</a><br>
+    <a class="" href="/students">student data</a>
 
     <h2>Teacher</h2>
 

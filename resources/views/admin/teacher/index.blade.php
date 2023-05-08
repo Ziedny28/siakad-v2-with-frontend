@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<a href="/teacher/create">create new teacher</a>
+<a href="/teachers/create">create new teacher</a>
 <table class="table">
     <thead>
         <tr>
@@ -23,7 +23,7 @@
             <td>{{$teacher->address}}</td>
             <td>{{$teacher->pob}}</td>
             <td>{{$teacher->subject->name}}</td>
-            <td><a href="/teacher/{{$teacher->id}}/edit" class="btn btn-success">edit</a></td>
+            <td><a href="/teachers/{{$teacher->id}}/edit" class="btn btn-success">edit</a></td>
         </tr>
         @endforeach
     </tbody>

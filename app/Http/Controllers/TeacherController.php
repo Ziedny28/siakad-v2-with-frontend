@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Requests\UpdateTeacherRequest;
 
@@ -40,7 +41,7 @@ class TeacherController extends Controller
         $teacher = $request->validated();
         $teacher['password'] = Hash::make($request->password);
         Teacher::create($teacher);
-        return redirect()->route('teacher.index')->with('success', 'Teacher created successfully');
+        return redirect()->route('teachers.index')->with('success', 'Teacher created successfully');
     }
 
     /**
@@ -56,7 +57,11 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
-        //
+        $teacher = Teacher::with('subject')->findOrFail($teacher->id);
+        return view('admin.teacher.edit', [
+            'teacher' => $teacher,
+            'subjects' => Subject::all(),
+        ]);
     }
 
     /**
@@ -64,7 +69,10 @@ class TeacherController extends Controller
      */
     public function update(UpdateTeacherRequest $request, Teacher $teacher)
     {
-        //
+        $data = $request->validated();
+        $teacher->fill($data);
+        $teacher->save();
+        return redirect()->route('teachers.index')->with('success', 'Teacher updated successfully');
     }
 
     /**

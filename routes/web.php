@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controsllers\TaskController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ScoreController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\DashboardController;
 
@@ -32,7 +33,8 @@ Route::middleware('guest')->group(function(){
 // page accessible for admin
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('/dashboard-admin',[DashboardController::class, 'admin']);
-    route::resource('teacher', TeacherController::class);
+    route::resource('/teachers', TeacherController::class);
+    route::resource('/students', StudentController::class);
 });
 
 // page accessible for teacher
