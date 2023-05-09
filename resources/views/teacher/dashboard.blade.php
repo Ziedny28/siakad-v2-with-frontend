@@ -1,7 +1,7 @@
 @extends('layout.app')
 @section('content')
     @include('partials.admin-topbar')
-    @include('partials.admin-sidebar')
+    @include('partials.teacher-sidebar')
 
     <!--Content Start-->
     <div class="content-start transition">
@@ -59,7 +59,6 @@
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>Mapel</th>
-                                            <th>Guru</th>
                                             <th>Tipe</th>
                                         </tr>
                                     </thead>
@@ -67,11 +66,11 @@
                                         <?php $prevData = ''; ?>
                                         @foreach ($scores as $score)
                                             @if ($prevData != $score->task->class_room->name)
-                                                <tr>
+                                                {{-- <tr>
                                                     <td>
                                                         <h4>{{ $score->task->class_room->name }}</h4>
                                                     </td>
-                                                </tr>
+                                                </tr> --}}
                                             @endif
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
