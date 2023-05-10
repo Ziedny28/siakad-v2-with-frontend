@@ -14,7 +14,7 @@ class ClassRoomSeeder extends Seeder
      */
     public function run(): void
     {
-        for($i = 1; $i <= 3; $i++){
+        for($i = 10; $i <= 12; $i++){
             for($j= 1; $j <= 4; $j++){
               $this->insert($i,$j);
             }
