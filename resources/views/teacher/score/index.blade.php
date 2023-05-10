@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Siswa</p>
-                                    <h5>340</h5>
+                                    <h5>2</h5>
                                 </div>
                             </div>
                         </div>

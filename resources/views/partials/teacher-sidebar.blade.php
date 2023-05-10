@@ -46,6 +46,15 @@
                         Tugas
                     </a>
                 </li>
+                <!-- Divider-->
+                <li class="divider" data-text="STARTER">LIHAT JADWAL</li>
+
+                <li>
+                    <a href="/schedule" class="{{ request()->is('schedule') ? 'active' : ''}}">
+                        <i class='bx bxs-time-five icon'></i>
+                        Jadwal Guru
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
