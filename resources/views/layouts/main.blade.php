@@ -5,18 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-</head>
 
+    <title>Siakad Teacher Dashboard</title>
+    <link rel="stylesheet" href="assets/modules/bootstrap-5.1.3/css/bootstrap.css" />
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- FontAwesome CSS-->
+    <link rel="stylesheet" href="assets/modules/fontawesome6.1.1/css/all.css" />
+    <!-- Boxicons CSS-->
+    <link rel="stylesheet" href="assets/modules/boxicons/css/boxicons.min.css" />
+    <!-- Apexcharts  CSS -->
+    <link rel="stylesheet" href="assets/modules/apexcharts/apexcharts.css" />
+</head>
 <body>
-    <div class="container">
-        @yield('content')
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous">
-    </script>
+    @yield('content')
+    <!-- bootstrap js -->
+    <script src="assets/modules/jquery/jquery.min.js"></script>
+    <script src="assets/modules/bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/modules/popper/popper.min.js"></script>
+
+    <!-- Chart Js -->
+    <script src="assets/modules/apexcharts/apexcharts.js"></script>
+    <script src="assets/js/ui-apexcharts.js"></script>
+
+    <!-- Template JS File -->
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/custom.js"></script>
 </body>
 
 </html>

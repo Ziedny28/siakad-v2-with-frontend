@@ -11,7 +11,7 @@ class UpdateTeacherRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true; //so kalo edit unauthorized ganti ini ke true
     }
 
     /**
@@ -22,7 +22,13 @@ class UpdateTeacherRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'ni'=>'required',
+            'name'=>'required',
+            'address'=>'required',
+            'pob'=>'required',
+            'password'=>'required',
+            'email'=>'required',
+            'subject_id'=>'required'
         ];
     }
 }

@@ -11,7 +11,7 @@
 
             <ul class="side-menu">
                 <li>
-                    <a href="dashboard-admin" class="{{ request()->is('dashboard-admin') ? 'active' : ''}}">
+                    <a href="/dashboard-teacher" class="{{ request()->is('dashboard-teacher') ? 'active' : ''}}">
                         <i class="bx bxs-dashboard icon"></i> Dashboard
                     </a>
                 </li>
@@ -21,39 +21,38 @@
                     </a>
                 </li>
                 <!-- Divider-->
-                <li class="divider" data-text="Atrana">CONTROL SISWA</li>
+                <li class="divider" data-text="Atrana">CONTROL NILAI SISWA</li>
 
                 <li>
                     <a href="#">
-                        <i class='bx bxs-graduation icon'></i>
-                        Siswa
+                        <i class='bx bxs-file icon'></i>
+                        Penilaian
                         <i class="bx bx-chevron-right icon-right"></i>
                     </a>
                     <ul class="side-dropdown">
-                        <li><a href="/students">MIPA</a></li>
-                        <li><a href="/students">Bahasa</a></li>
-                        <li><a href="/students">IPS</a></li>
-                        <li><a href="/students">Agama</a></li>
+                        <li><a href="/score">MIPA 1</a></li>
+                        <li><a href="/score">MIPA 2</a></li>
+                        <li><a href="/score">MIPA 3</a></li>
+                        <li><a href="/score">MIPA 4</a></li>
                     </ul>
                 </li>
 
                 <!-- Divider-->
-                <li class="divider" data-text="STARTER">CONTROL GURU</li>
+                <li class="divider" data-text="STARTER">CONTROL TUGAS</li>
 
                 <li>
-                    <a href="/teachers" class="{{ request()->is('teachers') ? 'active' : ''}}">
-                        <i class="bx bxs-user icon"></i>
-                        Guru
+                    <a href="/task" class="{{ request()->is('task') ? 'active' : ''}}">
+                        <i class='bx bx-task icon'></i>
+                        Tugas
                     </a>
                 </li>
-
                 <!-- Divider-->
-                <li class="divider" data-text="Pages">CONTROL MAPEL</li>
+                <li class="divider" data-text="STARTER">LIHAT JADWAL</li>
 
                 <li>
-                    <a href="/subjects" class="{{ request()->is('subjects-control') ? 'active' : ''}}">
-                        <i class="bx bx-columns icon"></i>
-                        Mapel
+                    <a href="/schedule" class="{{ request()->is('schedule') ? 'active' : ''}}">
+                        <i class='bx bxs-time-five icon'></i>
+                        Jadwal Guru
                     </a>
                 </li>
             </ul>
