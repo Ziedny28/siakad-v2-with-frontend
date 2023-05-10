@@ -7,6 +7,7 @@ use App\Models\ClassRoom;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Models\Teacher;
 
 class StudentController extends Controller
 {
@@ -17,6 +18,7 @@ class StudentController extends Controller
     {
         return view('admin.student.index', [
             'students' => Student::all(),
+            'teachers'=> Teacher::all(),
         ]);
     }
 

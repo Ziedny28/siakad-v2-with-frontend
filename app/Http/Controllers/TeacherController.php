@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Teacher;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Requests\UpdateTeacherRequest;
 
@@ -18,6 +19,7 @@ class TeacherController extends Controller
     {
         return view('admin.teacher.index', [
             'teachers' => Teacher::with('subject')->get(),
+            'students' => Student::all(),
         ]);
     }
 

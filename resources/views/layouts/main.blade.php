@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Siakad Teacher Dashboard</title>
+    <title>Siakad MAN 1 Kota Malang</title>
     <link rel="stylesheet" href="assets/modules/bootstrap-5.1.3/css/bootstrap.css" />
     <!-- Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css" />

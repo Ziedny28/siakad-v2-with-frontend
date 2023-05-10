@@ -13,11 +13,7 @@ class SubjectSeeder extends Seeder
      */
     public function run(): void
     {
-<<<<<<< HEAD
-        $subjects = ['Fisika', 'Biologi', 'Kimia', 'Matematika Wajib', 'Matematika Peminatan', 'Fiqih', 'Quran Hadist', 'Akidah Akhlak', 'Bahasa Indonesia', 'Pendidikan Kewarganegaraan', 'Olahraga', 'Bahasa Arab', 'Bahasa prancis'];
-=======
         $subjects = ['Fisika', 'Biologi', 'Kimia', 'Matematika Wajib', 'Matematika Peminatan', 'Fiqih', 'Quran Hadist', 'Akidah Akhlak', 'Bahasa Indonesia', 'Pendidikan Kewarganegaraan', 'Olagraha', 'Bahasa Arab', 'Bahasa Prancis', 'Sejarah Indonesia', 'Seni Budaya Daerah', 'Bahasa Daerah', 'Sejarah Kejayaan Islam', 'Prakarya'];
->>>>>>> f5828bf727fc94592a99a0c2d011a07bafa748c7
 
         foreach ($subjects as $subject) :
             DB::table('subjects')->insert(['name' => $subject, 'description' => '']);
