@@ -71,7 +71,7 @@
                                             <th>#</th>
                                             <th>Nis</th>
                                             <th>Nama</th>
-                                            <th>Alamat</th>
+                                            <th class="w-25">Alamat</th>
                                             <th>TTL</th>
                                             <th>Kelas</th>
                                             <th>Aksi</th>
@@ -95,8 +95,8 @@
                                                 <td>{{ $student->pob }}</td>
                                                 <td>{{ $student->class_room->name }}</td>
                                                 <td>
-                                                    <a href="/students/{{$student->id}}/edit" class="btn btn-success">Edit</a>
-                                                    <a href="/students/{{$student->id}}/delete" class="btn btn-danger">hapus</a>
+                                                    <a href="/students/{{$student->id}}/edit" class="btn btn-success"><i class='bx bx-edit'></i></a>
+                                                    <a href="/students/{{$student->id}}/delete" class="btn btn-danger"><i class='bx bx-trash-alt'></i></a>
                                                 </td>
                                             </tr>
                                             <?php $prevData = $student->class_room_id; ?>

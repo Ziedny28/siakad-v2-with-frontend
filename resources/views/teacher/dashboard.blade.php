@@ -57,7 +57,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama</th>
+                                            <th>Nama Siswa</th>
                                             <th>Mapel</th>
                                             <th>Tipe</th>
                                         </tr>
@@ -66,11 +66,11 @@
                                         <?php $prevData = ''; ?>
                                         @foreach ($scores as $score)
                                             @if ($prevData != $score->task->class_room->name)
-                                                {{-- <tr>
+                                                <tr>
                                                     <td>
                                                         <h4>{{ $score->task->class_room->name }}</h4>
                                                     </td>
-                                                </tr> --}}
+                                                </tr>
                                             @endif
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>

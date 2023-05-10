@@ -87,9 +87,9 @@
                                                 <td>{{ $teacher->pob }}</td>
                                                 <td>{{ $teacher->subject->name }}</td>
                                                 <td><a href="/teachers/{{ $teacher->id }}/edit"
-                                                        class="btn btn-primary">edit</a>
+                                                        class="btn btn-primary"><i class='bx bx-edit'></i></a>
                                                     <a href="/teachers/{{ $teacher->id }}/delete"
-                                                        class="btn btn-danger">hapus</a>
+                                                        class="btn btn-danger"><i class='bx bxs-trash-alt'></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

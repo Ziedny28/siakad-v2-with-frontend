@@ -17,7 +17,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="bx bxs-user-rectangle icon"></i> My Profile
+                        <i class="bx bxs-user icon"></i> My Profile
                     </a>
                 </li>
                 <!-- Divider-->
@@ -25,8 +25,8 @@
 
                 <li>
                     <a href="#">
-                        <i class="bx bxs-user icon"></i>
-                        Kelas
+                        <i class='bx bxs-file icon'></i>
+                        Penilaian
                         <i class="bx bx-chevron-right icon-right"></i>
                     </a>
                     <ul class="side-dropdown">
@@ -42,7 +42,7 @@
 
                 <li>
                     <a href="/task" class="{{ request()->is('task') ? 'active' : ''}}">
-                        <i class="bx bxs-user icon"></i>
+                        <i class='bx bx-task icon'></i>
                         Tugas
                     </a>
                 </li>

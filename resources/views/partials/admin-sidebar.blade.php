@@ -17,7 +17,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="bx bxs-user-rectangle icon"></i> My Profile
+                        <i class="bx bxs-user icon"></i> My Profile
                     </a>
                 </li>
                 <!-- Divider-->
@@ -25,7 +25,7 @@
 
                 <li>
                     <a href="#">
-                        <i class="bx bxs-user icon"></i>
+                        <i class='bx bxs-graduation icon'></i>
                         Siswa
                         <i class="bx bx-chevron-right icon-right"></i>
                     </a>
