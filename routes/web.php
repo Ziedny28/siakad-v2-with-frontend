@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\DashboardController;
 
@@ -33,6 +34,9 @@ Route::middleware(['auth:admin'])->group(function () {
     route::resource('/teachers', TeacherController::class);
     route::resource('/students', StudentController::class);
     route::resource('/subjects', SubjectController::class);
+    // Route::get('undefined-fitur', function () {
+    //     return view('admin.blank');
+    // });
 });
 
 // page accessible for teacher
@@ -43,12 +47,19 @@ Route::middleware(['auth:teacher'])->group(function () {
     Route::get('/score-choose-edit',[ ScoreController::class,'chooseEdit']);
     Route::get('/score-choose-one/{id}',[ ScoreController::class,'editOne']);
     Route::resource('task', TaskController::class);
+    // Route::get('undefined-fitur', function () {
+    //     return view('teacher.blank');
+    // });
 });
 
 
 // page accessible for student
 Route::middleware(['auth:student'])->group(function () {
     Route::get('/dashboard-student',[DashboardController::class, 'student']);
+    // Route::get('undefined-fitur', function () {
+    //     return view('student.blank');
+    // });
+
 });
 
 // page accessible for all

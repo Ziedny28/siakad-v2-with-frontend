@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subject;
+use App\Models\Teacher;
 use App\Http\Requests\StoreSubjectRequest;
 use App\Http\Requests\UpdateSubjectRequest;
+use App\Models\Student;
 
 class SubjectController extends Controller
 {
@@ -13,7 +15,11 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.subject.index', [
+            'teachers' => Teacher::with('subject')->get(),
+            'subjects' => Subject::all(),
+            'students' => Student::all(),
+        ]);
     }
 
     /**

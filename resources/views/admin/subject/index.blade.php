@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 @section('content')
     @include('partials.admin-topbar')
     @include('partials.admin-sidebar')
@@ -7,7 +7,7 @@
     <div class="content-start transition">
         <div class="container-fluid dashboard">
             <div class="content-header">
-                <h1>Manajemen Data Mata Pelajaran</h1>
+                <h1>Manajemen Data Guru</h1>
                 <p></p>
             </div>
 
@@ -21,7 +21,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Guru</p>
-                                    <h5>25</h5>
+                                    <h5>{{ $teachers->count() }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Siswa</p>
-                                    <h5>340</h5>
+                                    <h5>{{ $students->count() }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Data Mata Pelajaran</h4>
+                            <h4>Data Guru</h4>
                             <p></p>
                             <div class="card-menu">
                                 <div class="search-bar">
@@ -59,7 +59,7 @@
                                     </form>
                                 </div>
                                 <div class="btn btn-success mt-2">
-                                    <a href="#">Create New Mapel</a>
+                                    <a href="/teachers/create">Create New Guru</a>
                                 </div>
                             </div>
                         </div>

@@ -20,28 +20,46 @@
 
                     <form class="login-form" action="/login" method="post">
                         @csrf
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-xl" placeholder="Username" name="ni">
+                        <div class="form-group position-relative has-icon-left mb-4 -bottom-3">
+                            <input type="text"
+                                class="form-control form-control-xl
+
+                            @error('ni')
+                            is-invalid
+                            @enderror
+
+                            "
+                                placeholder="Username" name="ni">
                             <div class="form-control-icon">
                                 <i class="bx bx-user"></i>
                             </div>
+
+                            @error('ni')
+
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+
+                            @enderror
+
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="password" class="form-control form-control-xl" placeholder="Password" name="password">
+                            <input type="password" class="form-control form-control-xl" placeholder="Password"
+                                name="password">
                             <div class="form-control-icon">
                                 <i class="bx bx-lock-alt"></i>
                             </div>
                         </div>
-                        @if ($errors->any())
-                        <div class="alert alert-danger">
-                            There were some errors with your request.
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+                        {{-- @if ($errors->any())
+                            <div class="alert alert-danger">
+                                There were some errors with your request.
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif --}}
                         <div class="login-btn">
                             <button type="submit" class="btn btn-success btn-block btn-lg shadow-lg mt-5">Log in</button>
                         </div>
