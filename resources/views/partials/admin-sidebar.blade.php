@@ -4,7 +4,7 @@
         <div id="sidebar">
             <!-- Logo -->
             <div class="logo">
-                <img src="assets/images/logo-man1.png" />
+                <img src="/assets/images/logo-man1.png" />
                 <h3>SIAKAD</h3>
                 <h5>MAN 1 Kota Malang</h5>
             </div>

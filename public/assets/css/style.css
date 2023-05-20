@@ -361,7 +361,7 @@ a {
     color: #ffffff;
     font-size: 16px;
 }
-.login-choice{
+.login-choice {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -938,10 +938,14 @@ button {
     margin-top: 10px;
     margin-left: 5px;
 }
+.card-footer button{
+    margin-top: auto;
+}
 button,
 .fas {
     font-size: 10px;
 }
+
 .btn.btn-outline-white {
     color: #fff;
     border-color: #fff;
@@ -1131,7 +1135,10 @@ button,
 }
 
 .card-footer {
+    display: flex;
+    justify-content: end;
     background-color: #fff;
+    padding-right: 30px;
     margin-top: -30px;
     margin-bottom: 30px;
 }
@@ -1490,7 +1497,7 @@ ul.timeline > li:before {
     background: #fff;
 }
 #auth #auth-left {
-    background: linear-gradient(90deg, #14532D, #15803D);
+    background: linear-gradient(90deg, #14532d, #15803d);
     height: 100%;
 }
 #auth #auth-right {
@@ -1545,15 +1552,20 @@ ul.timeline > li:before {
 .form-group[class*="has-icon-"] .form-control.form-control-xl {
     padding-left: 3rem;
 }
+.card-body .form-group label {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
 .form-control.form-control-xl {
     font-size: 1.2rem;
     padding: 0.85rem 1rem;
 }
 .form-control {
-    background-color: #DEF1DC;
+    background-color: #def1dc;
 }
 .form-control-icon i {
-    color: #5A5A5A;
+    color: #5a5a5a;
 }
 /** 4.2 Errors **/
 #error {
@@ -3125,9 +3137,9 @@ input[type="reset"].btn-block,
 input[type="button"].btn-block {
     width: 100%;
 }
-.login-btn{
+.login-btn {
     margin-left: -10px;
-    margin-right:   10px;
+    margin-right: 10px;
 }
 .align-baseline {
     vertical-align: baseline !important;

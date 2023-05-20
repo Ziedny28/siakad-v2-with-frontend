@@ -4,7 +4,7 @@
     @include('partials.admin-sidebar')
 
     <!--Content Start-->
-    <div class="content-start transition">
+    <div class="content-start transition">1
         <div class="container-fluid dashboard">
             <div class="content-header">
                 <h1>Manajemen Data Guru</h1>
