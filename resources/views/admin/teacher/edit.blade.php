@@ -16,7 +16,6 @@
                         <form action="/teachers/{{ $teacher->id }}" method="post">
                             @method('PUT')
                             @csrf
-
                             <div class="card-header">
                                 <h4>Edit Data Guru </h4>
                             </div>
@@ -113,7 +112,7 @@
                                 </div>
                             </div>
                             <div class="card-footer text-right">
-                                <a class="btn btn-secondary" href="/teachers" role="button">Cancel</a>
+                                <a class="btn btn-secondary" href="teachers" role="button">Cancel</a>
                                 <button class="btn btn-success" type="submit">Submit</button>
                             </div>
                         </form>

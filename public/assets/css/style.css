@@ -1555,14 +1555,15 @@ ul.timeline > li:before {
 .card-body .form-group label {
     font-size: 1rem;
     font-weight: 500;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 }
 .form-control.form-control-xl {
     font-size: 1.2rem;
     padding: 0.85rem 1rem;
 }
-.form-control {
-    background-color: #def1dc;
+.card-body .form-group .form-control,
+.card-body .form-group .form-select {
+    background-color: #f9fbfd;
 }
 .form-control-icon i {
     color: #5a5a5a;

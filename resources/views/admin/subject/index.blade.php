@@ -7,7 +7,7 @@
     <div class="content-start transition">
         <div class="container-fluid dashboard">
             <div class="content-header">
-                <h1>Manajemen Data Guru</h1>
+                <h1>Manajemen Data Mata Pelajaran</h1>
                 <p></p>
             </div>
 
@@ -47,7 +47,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Data Guru</h4>
+                            <h4>Data Mata Pelajaran</h4>
                             <p></p>
                             <div class="card-menu">
                                 <div class="search-bar">
@@ -59,7 +59,7 @@
                                     </form>
                                 </div>
                                 <div class="btn btn-success mt-2">
-                                    <a href="/teachers/create">Create New Guru</a>
+                                    <a href="/subjects/create">Create New Mapel</a>
                                 </div>
                             </div>
                         </div>
@@ -68,8 +68,9 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Nama Mapel</th>
-                                            <th>daftar guru pengejar</th>
+                                            <th class="w-25">Nama Mapel</th>
+                                            <th class="w-25">Pengajar</th>
+                                            <th class="w-25">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -80,6 +81,12 @@
                                                     @foreach ($subject->teachers as $teacher)
                                                         <li>{{ $teacher->name }}</li>
                                                     @endforeach
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="btn btn-success"><i
+                                                            class='bx bx-edit'></i></a>
+                                                    <a href="#" class="btn btn-danger"><i
+                                                            class='bx bx-trash-alt'></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

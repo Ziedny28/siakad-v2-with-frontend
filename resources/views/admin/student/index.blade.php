@@ -21,7 +21,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Guru</p>
-                                    <h5>{{$teachers->count()}}</h5>
+                                    <h5>{{ $teachers->count() }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Siswa</p>
-                                    <h5>{{$students->count()}}</h5>
+                                    <h5>{{ $students->count() }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table>
+                                <table class="table" >
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -78,15 +78,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $prevData = ''; ?>
                                         @foreach ($students as $student)
-                                            @if ($prevData != $student->class_room_id)
-                                                <tr>
-                                                    <td>
-                                                        <h4>{{ $student->class_room->name }}</h4>
-                                                    </td>
-                                                </tr>
-                                            @endif
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $student->ni }}</td>
@@ -95,11 +87,12 @@
                                                 <td>{{ $student->pob }}</td>
                                                 <td>{{ $student->class_room->name }}</td>
                                                 <td>
-                                                    <a href="/students/{{$student->id}}/edit" class="btn btn-success"><i class='bx bx-edit'></i></a>
-                                                    <a href="/students/{{$student->id}}/delete" class="btn btn-danger"><i class='bx bx-trash-alt'></i></a>
+                                                    <a href="/students/{{ $student->id }}/edit" class="btn btn-success"><i
+                                                            class='bx bx-edit'></i></a>
+                                                    <a href="/students/{{ $student->id }}/delete" class="btn btn-danger"><i
+                                                            class='bx bx-trash-alt'></i></a>
                                                 </td>
                                             </tr>
-                                            <?php $prevData = $student->class_room_id; ?>
                                         @endforeach
                                     </tbody>
                                 </table>

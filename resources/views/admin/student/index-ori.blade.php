@@ -4,10 +4,10 @@
     @include('partials.admin-sidebar')
 
     <!--Content Start-->
-    <div class="content-start transition">1
+    <div class="content-start transition">
         <div class="container-fluid dashboard">
             <div class="content-header">
-                <h1>Manajemen Data Guru</h1>
+                <h1>Manajemen Siswa Jurusan Mipa</h1>
                 <p></p>
             </div>
 
@@ -47,7 +47,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Data Guru</h4>
+                            <h4>Data Siswa Mipa</h4>
                             <p></p>
                             <div class="card-menu">
                                 <div class="search-bar">
@@ -59,39 +59,47 @@
                                     </form>
                                 </div>
                                 <div class="btn btn-success mt-2">
-                                    <a href="/teachers/create">Create New Guru</a>
+                                    <a href="/students/create">Create New Siswa</a>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table">
+                                <table>
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>NIG</th>
+                                            <th>Nis</th>
                                             <th>Nama</th>
                                             <th class="w-25">Alamat</th>
                                             <th>TTL</th>
-                                            <th>Mapel</th>
+                                            <th>Kelas</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($teachers as $teacher)
+                                        <?php $prevData = ''; ?>
+                                        @foreach ($students as $student)
+                                            @if ($prevData != $student->class_room_id)
+                                                <tr>
+                                                    <td>
+                                                        <h4>{{ $student->class_room->name }}</h4>
+                                                    </td>
+                                                </tr>
+                                            @endif
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $teacher->ni }}</td>
-                                                <td>{{ $teacher->name }}</td>
-                                                <td>{{ $teacher->address }}</td>
-                                                <td>{{ $teacher->pob }}</td>
-                                                <td>{{ $teacher->subject->name }}</td>
-                                                <td><a href="/teachers/{{ $teacher->id }}/edit"
-                                                        class="btn btn-success"><i class='bx bx-edit'></i></a>
-                                                    <a href="/teachers/{{ $teacher->id }}/delete"
-                                                        class="btn btn-danger"><i class='bx bxs-trash-alt'></i></a>
+                                                <td>{{ $student->ni }}</td>
+                                                <td>{{ $student->name }}</td>
+                                                <td>{{ $student->address }}</td>
+                                                <td>{{ $student->pob }}</td>
+                                                <td>{{ $student->class_room->name }}</td>
+                                                <td>
+                                                    <a href="/students/{{$student->id}}/edit" class="btn btn-success"><i class='bx bx-edit'></i></a>
+                                                    <a href="/students/{{$student->id}}/delete" class="btn btn-danger"><i class='bx bx-trash-alt'></i></a>
                                                 </td>
                                             </tr>
+                                            <?php $prevData = $student->class_room_id; ?>
                                         @endforeach
                                     </tbody>
                                 </table>
