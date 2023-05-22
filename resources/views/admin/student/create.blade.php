@@ -42,8 +42,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="ni">Alamat :</label>
-                                        <input type="text" name='address' id="address"
-                                            class="form-control @error('address') is-invalid @enderror">
+                                        <textarea type="text" name='address' id="address" rows="3"
+                                            class="form-control @error('address') is-invalid @enderror"></textarea>
                                         @error('address')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

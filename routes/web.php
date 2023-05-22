@@ -34,9 +34,9 @@ Route::middleware(['auth:admin'])->group(function () {
     route::resource('/teachers', TeacherController::class);
     route::resource('/students', StudentController::class);
     route::resource('/subjects', SubjectController::class);
-    // Route::get('undefined-fitur', function () {
-    //     return view('admin.blank');
-    // });
+    Route::get('undefined-fitur', function () {
+        return view('admin.blank');
+    });
 });
 
 // page accessible for teacher
@@ -47,9 +47,9 @@ Route::middleware(['auth:teacher'])->group(function () {
     Route::get('/score-choose-edit',[ ScoreController::class,'chooseEdit']);
     Route::get('/score-choose-one/{id}',[ ScoreController::class,'editOne']);
     Route::resource('task', TaskController::class);
-    // Route::get('undefined-fitur', function () {
-    //     return view('teacher.blank');
-    // });
+    Route::get('undefined-fitur', function () {
+        return view('teacher.blank');
+    });
 });
 
 

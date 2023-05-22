@@ -4,7 +4,7 @@
     @include('partials.admin-sidebar')
 
     <!--Content Start-->
-    <div class="content-start transition">1
+    <div class="content-start transition">
         <div class="container-fluid dashboard">
             <div class="content-header">
                 <h1>Manajemen Data Guru</h1>
@@ -70,11 +70,11 @@
                                         <tr>
                                             <th>#</th>
                                             <th>NIG</th>
-                                            <th>Nama</th>
+                                            <th class="w-15">Nama</th>
                                             <th class="w-25">Alamat</th>
                                             <th>TTL</th>
-                                            <th>Mapel</th>
-                                            <th>Aksi</th>
+                                            <th class="w-15">Mapel</th>
+                                            <th >Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
