@@ -17,7 +17,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-4 d-flex align-items-center">
-                                    <i class="fas fa-inbox icon-home bg-primary text-light"></i>
+                                    <i class="bx bxs-user icon-home bg-primary text-light"></i>
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Guru</p>
@@ -33,7 +33,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-4 d-flex align-items-center">
-                                    <i class="fas fa-clipboard-list icon-home bg-success text-light"></i>
+                                    <i class="bx bxs-graduation icon-home bg-success text-light"></i>
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Siswa</p>
@@ -54,7 +54,7 @@
                                     <form action="#">
                                         <input type="text" class="form-control" placeholder="Search" />
                                         <button type="submit" class="btn btn-success">
-                                            <i class="fa fa-search"></i>
+                                            <i class="bx bx-search"></i>
                                         </button>
                                     </form>
                                 </div>
@@ -68,19 +68,19 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
+                                            <th class="w-15">#</th>
                                             <th class="w-25">Nama Mapel</th>
-                                            <th class="w-25">Pengajar</th>
+                                            <th class="w-25">Deskripsi</th>
                                             <th class="w-25">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($subjects as $subject)
                                             <tr>
+                                                <td>{{ $subject->id }}</td>
                                                 <td>{{ $subject->name }}</td>
                                                 <td>
-                                                    @foreach ($subject->teachers as $teacher)
-                                                        <li>{{ $teacher->name }}</li>
-                                                    @endforeach
+                                                    {{ $subject->description }}
                                                 </td>
                                                 <td>
                                                     <a href="#" class="btn btn-success"><i

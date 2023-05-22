@@ -1,72 +1,35 @@
 @extends('layouts.main')
 @section('content')
+    <section class="vh-100 bg-primary">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+                            <div class="logo">
+                                <img class="img-logo" src="assets/images/logo-man1.png" />
+                                <h3 class="mt-4">SIAKAD</h3>
+                                <h5>MAN 1 Kota Malang</h5>
+                            </div>
+                            <h3 class="mt-4 mb-4">Login Admin</h3>
 
-    <div id="auth">
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="">Nomor Induk</label>
+                                <input type="email" id="typeEmailX-2" class="form-control form-control-lg" />
+                            </div>
 
-        <div class="row h-100">
-            <div class="col-lg-7 d-none d-lg-block">
-                <div id="auth-left">
-                </div>
-            </div>
-            <div class="col-lg-5 col-12">
-                <div id="auth-right">
-                    <div class="logo">
-                        <img src="assets/images/logo-man1.png" />
-                        <h3>SIAKAD</h3>
-                        <h5>MAN 1 Kota Malang</h5>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="">Password</label>
+                                <input type="password" id="typePasswordX-2" class="form-control form-control-lg" />
+
+                            </div>
+
+                            <button class="btn btn-success btn-lg btn-block mt-5" type="submit">Login</button>
+
+                        </div>
                     </div>
-                    <h1 class="auth-title">Log in.</h1>
-                    <p class="auth-subtitle mb-5">Masukkan Nomor Induk sebagai username</p>
-
-                    <form class="login-form" action="/login" method="post">
-                        @csrf
-                        <div class="form-group position-relative has-icon-left mb-4 -bottom-3">
-                            <input type="text"
-                                class="form-control form-control-xl
-
-                            @error('ni')
-                            is-invalid
-                            @enderror
-
-                            "
-                                placeholder="Username" name="ni">
-                            <div class="form-control-icon">
-                                <i class="bx bx-user"></i>
-                            </div>
-
-                            @error('ni')
-
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-
-                            @enderror
-
-                        </div>
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="password" class="form-control form-control-xl" placeholder="Password"
-                                name="password">
-                            <div class="form-control-icon">
-                                <i class="bx bx-lock-alt"></i>
-                            </div>
-                        </div>
-                        {{-- @if ($errors->any())
-                            <div class="alert alert-danger">
-                                There were some errors with your request.
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif --}}
-                        <div class="login-btn">
-                            <button type="submit" class="btn btn-success btn-block btn-lg shadow-lg mt-5">Log in</button>
-                        </div>
-                    </form>
                 </div>
             </div>
-
         </div>
-    </div>
+    </section>
 @endsection

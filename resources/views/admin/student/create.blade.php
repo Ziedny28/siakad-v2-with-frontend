@@ -53,7 +53,8 @@
                                     <div class="form-group">
                                         <label for="pob">Tempat/Tanggal Lahir :</label>
                                         <input type="text" name='pob' id="pob"
-                                            class="form-control @error('pob') is-invalid @enderror" placeholder="Kota, hh Bulan tttt">
+                                            class="form-control @error('pob') is-invalid @enderror"
+                                            placeholder="Kota, hh Bulan tttt">
                                         @error('pob')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -91,4 +92,5 @@
             </div>
         </div>
     </div>
+    @include('partials.footer')
 @endsection

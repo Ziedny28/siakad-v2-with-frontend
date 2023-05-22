@@ -111,6 +111,10 @@ p {
 td {
     font-size: 14px;
 }
+
+.bg-primary {
+    background: linear-gradient(90deg, #14532d, #15803d);
+}
 .transition {
     -webkit-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
@@ -1672,7 +1676,7 @@ ul.timeline > li:before {
     right: 0;
     bottom: 0;
     margin: auto;
-    background: #081a51;
+    background: #14532D;
     text-align: center;
     width: fit-content;
     height: fit-content;
@@ -2093,7 +2097,6 @@ footer .author-footer {
 .btn-circle.btn-lg i {
     font-size: 26px;
 }
-
 .animated--grow-in {
     -webkit-animation-name: growIn;
     animation-name: growIn;

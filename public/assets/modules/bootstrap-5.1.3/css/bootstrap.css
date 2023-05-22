@@ -637,6 +637,12 @@ progress {
     max-width: 100%;
     height: auto;
 }
+.img-logo {
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    max-width: 50%;
+    height: auto;
+}
 
 .figure {
     display: inline-block;
