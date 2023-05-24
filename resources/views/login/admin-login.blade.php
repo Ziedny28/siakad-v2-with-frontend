@@ -13,14 +13,14 @@
                             </div>
                             <h3 class="mt-4 mb-4">Login Admin</h3>
 
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="">Nomor Induk</label>
-                                <input type="email" id="typeEmailX-2" class="form-control form-control-lg" />
+                            <div class="form-outline mb-4 text-start">
+                                <label class="form-label" for="">Nomor Induk :</label>
+                                <input type="email" id="" class="form-control form-control-lg" />
                             </div>
 
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="">Password</label>
-                                <input type="password" id="typePasswordX-2" class="form-control form-control-lg" />
+                            <div class="form-outline mb-4 text-start">
+                                <label class="form-label" for="">Password :</label>
+                                <input type="password" id="" class="form-control form-control-lg" />
 
                             </div>
 
