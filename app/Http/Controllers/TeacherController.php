@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Requests\UpdateTeacherRequest;
+use App\Models\ClassRoom;
 
 class TeacherController extends Controller
 {
@@ -60,8 +61,10 @@ class TeacherController extends Controller
     public function edit(Teacher $teacher)
     {
         $teacher = Teacher::with('subject')->findOrFail($teacher->id);
+        $class_rooms = ClassRoom::all();
         return view('admin.teacher.edit', [
             'teacher' => $teacher,
+            'class_rooms' => $class_rooms,
             'subjects' => Subject::all(),
         ]);
     }

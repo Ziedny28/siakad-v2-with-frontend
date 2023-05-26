@@ -107,6 +107,23 @@
                                             </div>
                                         @enderror
                                     </div>
+
+                                    {{-- input kelas --}}
+                                    <div class="form-group">
+                                        <label for="class_room_id">Akses kelas</label>
+                                        <select class="form-select" name="class_room_id" id="class_room_id"
+                                            class="form-control @error('class_room_id') is-invalid @enderror">
+                                            @foreach ($class_rooms as $class_room)
+                                                    <option value="{{ $class_room->id }}">{{ $class_room->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('class_room_id')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
                                     <input type="hidden" name="password" value="{{ $teacher->password }}">
                                     <input type="hidden" name="id" value="{{ $teacher->id }}">
                                 </div>
