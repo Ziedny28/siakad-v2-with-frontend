@@ -36,6 +36,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/dashboard-admin',[DashboardController::class, 'admin']);
     route::resource('/teachers', TeacherController::class);
     route::resource('/students', StudentController::class);
+    route::get('/students/major/{major}',[StudentController::class,'studentByMajor']); // get classroom by jurusan
     route::resource('/subjects', SubjectController::class);
     Route::get('undefined-fitur', function () {
         return view('admin.blank');

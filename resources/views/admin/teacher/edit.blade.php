@@ -109,34 +109,129 @@
                                     </div>
 
                                     {{-- input kelas --}}
-                                    <div class="form-group">
-                                        <label for="class_room_id">Akses kelas</label>
-                                        <select class="form-select" name="class_room_id" id="class_room_id"
-                                            class="form-control @error('class_room_id') is-invalid @enderror">
-                                            @foreach ($class_rooms as $class_room)
-                                                    <option value="{{ $class_room->id }}">{{ $class_room->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('class_room_id')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
+                                    <div class="form-group" id="class_access">
+                                        <label for="">Akses kelas</label>
+
+                                        <div class="class_room">
+                                            <div class="row">
+                                                <div class="col-10">
+                                                    <select class="form-select" name="inputs[0][class_room_id]"
+                                                        id="inputs[0][class_room_id]"
+                                                        class="form-control @error('inputs[0][class_room_id]') is-invalid @enderror">
+                                                        @foreach ($class_rooms as $class_room)
+                                                            <option value="{{ $class_room->id }}">{{ $class_room->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-2">
+                                                    <a class="btn btn-success" id="addColl" onclick="addColumn()">add
+                                                        row</a>
+                                                </div>
                                             </div>
-                                        @enderror
+                                            @error('inputs[0][class_room_id]')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
                                     </div>
+                                    <?php $i = 1; ?>
+
+                                    {{-- memasukkan list kelas yang sudah assigned --}}
+                                    {{-- dikasih isset, soalnya bisa saja datanya null/tidak ada ketika guru pertama dibuat --}}
+                                    @isset($assigned_class_rooms)
+                                        @foreach ($assigned_class_rooms as $assigned_class_room)
+                                            <div class="class_room" id="class_room_{{$i}}">
+                                                <div class="row">
+                                                    <div class="col-10">
+                                                        <select class="form-select"
+                                                            name="inputs[{{ $i }}][class_room_id]"
+
+                                                            class="form-control @error('inputs[{{ $i }}][class_room_id]') is-invalid @enderror">
+                                                            @foreach ($all_class_rooms as $class_room)
+                                                                <option value="{{ $class_room->id }}"
+                                                                    @if ($class_room->id === $assigned_class_room) selected="selected" @endif>
+                                                                    {{ $class_room->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <a class="btn btn-danger removeColl"
+                                                            onclick="removeColl({{ $i }})">remove column</a>
+                                                    </div>
+                                                </div>
+                                                @error('inputs[{{ $i }}][class_room_id]')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                            @php
+                                            $i++
+                                            @endphp
+
+                                        @endforeach
+                                    @endisset
 
                                     <input type="hidden" name="password" value="{{ $teacher->password }}">
                                     <input type="hidden" name="id" value="{{ $teacher->id }}">
-                                </div>
                             </div>
-                            <div class="card-footer text-right">
-                                <a class="btn btn-secondary" href="teachers" role="button">Cancel</a>
-                                <button class="btn btn-success" type="submit">Submit</button>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+
+                        <div class="card-footer text-right">
+                            <a class="btn btn-secondary" href="teachers" role="button">Cancel</a>
+                            <button class="btn btn-success" type="submit">Submit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    @include('partials.footer')
+</div>
+
+<script>
+    let i = {{$i}};
+
+    function addColumn(selectedValue = "") {
+        $('#class_access').append(
+            `
+                <div class="class_room" id="class_room_` + i + `">
+                                            <div class="row">
+                                                <div class="col-10">
+                                                    <select class="form-select" name="inputs[` + i + `][class_room_id]"
+                                                        id="inputs[` + i + `][class_room_id]"
+                                                        class="form-control @error('inputs[`+i+`][class_room_id]') is-invalid @enderror">
+                                                        @foreach ($class_rooms as $class_room)
+                                                            <option value="{{ $class_room->id }}">{{ $class_room->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-2">
+                                                    <a class="btn btn-danger removeColl" onclick="removeColl(` + i + `)">remove column</a>
+
+                                                </div>
+                                            </div>
+                                            @error('inputs[`+i+`][class_room_id]')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                `
+        )
+        i++;
+    }
+
+
+    function removeColl(index) {
+        console.log("remove");
+        let col_item = $(`#class_room_${index}`);
+        console.log(col_item);
+        $(col_item).remove();
+    }
+</script>
+@include('partials.footer')
 @endsection

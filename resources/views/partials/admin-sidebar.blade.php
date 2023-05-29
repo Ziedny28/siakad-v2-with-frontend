@@ -30,10 +30,10 @@
                         <i class="bx bx-chevron-right icon-right"></i>
                     </a>
                     <ul class="side-dropdown">
-                        <li><a href="\students">MIPA</a></li>
-                        <li><a href="\students">Bahasa</a></li>
-                        <li><a href="\students">IPS</a></li>
-                        <li><a href="\students">Agama</a></li>
+                        <li><a href="\students\major\mipa">MIPA</a></li>
+                        <li><a href="\students\major\bahasa">Bahasa</a></li>
+                        <li><a href="\students\major\ips">IPS</a></li>
+                        <li><a href="\students\major\agama">Agama</a></li>
                     </ul>
                 </li>
 
