@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Task;
+use App\Models\Score;
+use App\Models\Teacher;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -33,6 +36,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/dashboard-admin',[DashboardController::class, 'admin']);
     route::resource('/teachers', TeacherController::class);
     route::resource('/students', StudentController::class);
+    route::get('/students/major/{major}',[StudentController::class,'studentByMajor']); // get classroom by jurusan
     route::resource('/subjects', SubjectController::class);
     Route::get('undefined-fitur', function () {
         return view('admin.blank');
@@ -43,6 +47,7 @@ Route::middleware(['auth:admin'])->group(function () {
 Route::middleware(['auth:teacher'])->group(function () {
     Route::get('/dashboard-teacher',[DashboardController::class, 'teacher']);
     Route::resource('score', ScoreController::class);
+    Route::get('/score/class_room/{id}',[ ScoreController::class,'classRoomScore']);
     Route::get('/score/{id}/create-one',[ ScoreController::class,'createOne']);
     Route::get('/score-choose-edit',[ ScoreController::class,'chooseEdit']);
     Route::get('/score-choose-one/{id}',[ ScoreController::class,'editOne']);
@@ -50,15 +55,27 @@ Route::middleware(['auth:teacher'])->group(function () {
     Route::get('undefined-fitur', function () {
         return view('teacher.blank');
     });
+
 });
 
 
 // page accessible for student
 Route::middleware(['auth:student'])->group(function () {
     Route::get('/dashboard-student',[DashboardController::class, 'student']);
-    // Route::get('undefined-fitur', function () {
-    //     return view('student.blank');
-    // });
+
+    Route::get('/student-task',function(){
+        $task = Task::with('teacher.subject')->where('class_room_id',Auth::user()->class_room_id)
+        ->orderBy('teacher_id')->get();
+        // $tasks = Task::with('teacher.subject')->where('class_room_id', $student->class_room_id)->get(); //getting tasks data of this student
+        return view('student.task.index',['tasks'=>$task]);
+    });
+
+    Route::get('/student-score', function(){
+        $score = Score::with('task.teacher.subject')->where('student_id',Auth::user()->id)->orderBy('task_id')->get();
+        // $scores = Score::with('task.teacher.subject')->where('student_id', $student_id)->get(); //getting score data of this student
+        return view('student.score.index',['scores'=>$score]);
+    });
+
 
 });
 

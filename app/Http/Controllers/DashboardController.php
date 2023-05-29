@@ -30,10 +30,16 @@ class DashboardController extends Controller
 
         $teacher_id = Auth::user()->id; //getting teacher id
         $teacher = Teacher::with(['subject'])->findOrFail($teacher_id); //getting data of this one teacher with subject
-        $class_rooms = ClassRoom::with('teachers')->where('teacher_id', $teacher_id)->get(); //getting class rooms data of this teacher
         $tasks = Task::with('class_room')->where('teacher_id', $teacher_id)->get(); //getting tasks data of this teacher
         $teacherCount = Teacher::count(); //counting all teachers
         $studentCount = Student::count(); //counting all students
+
+        /*
+        get the class rooms that this teacher teach
+        panggil relasi class_rooms pada model Teacher untuk mendapatkan class room yang diajar oleh teacher ini
+        */
+        $class_rooms = Teacher::findOrFail($teacher_id);
+        $class_rooms = $class_rooms->class_rooms;
 
         //getting scores data of this teacher
         $scores = Score::with('task.teacher.subject')

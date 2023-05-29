@@ -81,4 +81,14 @@ class StudentController extends Controller
     {
         //
     }
+
+    public function studentByMajor($major){
+        $class_rooms = ClassRoom::where('name', 'like' , '%'.$major.'%')->pluck('id');
+        $students = Student::whereIn('class_room_id',$class_rooms)->with('class_room')->get();
+        return view('admin.student.index', [
+            'students' => $students,
+            'teachers'=> Teacher::all(),
+        ]);
+    }
+
 }

@@ -30,10 +30,9 @@
                         <i class="bx bx-chevron-right icon-right"></i>
                     </a>
                     <ul class="side-dropdown">
-                        <li><a href="/score">MIPA 1</a></li>
-                        <li><a href="/score">MIPA 2</a></li>
-                        <li><a href="/score">MIPA 3</a></li>
-                        <li><a href="/score">MIPA 4</a></li>
+                        @foreach ($class_rooms as $class_room)
+                        <li><a href="/score/class_room/{{$class_room->id}}">{{$class_room->name}}</a></li>
+                        @endforeach
                     </ul>
                 </li>
 
