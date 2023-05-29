@@ -45,10 +45,17 @@
                                                     <td>{{ $score->score }}</td>
                                                     <td>{{ $score->task->category }}</td>
                                                 </tr>
-                                                <?php $prevData = $score->task->teacher->subject->name?>
+                                                <?php $prevData = $score->task->teacher->subject->name; ?>
                                             @endforeach
                                         </tbody>
                                     </table>
+
+                                    <div class="paginator">
+                                        {{-- paginator --}}
+                                        {{ $scores->links() }}
+                                    </div>
+
+
                                 </div>
                                 {{-- <div class="pagination-bar">
                                     <ul class="pagination pagination-success  justify-content-center">
@@ -64,6 +71,7 @@
                                     </ul>
                                 </div> --}}
                             </div>
+
                         </div>
                     </div>
                 </div>

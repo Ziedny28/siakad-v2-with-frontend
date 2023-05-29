@@ -29,6 +29,8 @@
                                         <label for="ni">Deskripsi :</label>
                                         <textarea type="text" name='description' id="description"
                                             class="form-control @error('address') is-invalid @enderror">
+
+                                        </textarea>
                                     </div>
                                 </div>
                             </div>

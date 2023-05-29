@@ -17,7 +17,7 @@ class SubjectController extends Controller
     {
         return view('admin.subject.index', [
             'teachers' => Teacher::with('subject')->get(),
-            'subjects' => Subject::all(),
+            'subjects' => Subject::paginate(10),
             'students' => Student::all(),
         ]);
     }
@@ -27,7 +27,7 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.subject.create');
     }
 
     /**
@@ -35,7 +35,9 @@ class SubjectController extends Controller
      */
     public function store(StoreSubjectRequest $request)
     {
-        //
+        $subject = $request->validated();
+        Subject::create($subject);
+        return redirect()->route('subjects.index')->with('success', 'Subject created successfully');
     }
 
     /**
@@ -67,6 +69,7 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        //
+        $subject = Subject::findOrFail($subject->id);
+        $subject->delete();
     }
 }

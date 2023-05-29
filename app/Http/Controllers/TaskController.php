@@ -16,7 +16,7 @@ class TaskController extends Controller
     public function index()
     {
         $teacher_id = Auth::user()->id; //getting teacher id
-        $tasks = Task::with('class_room')->where('teacher_id', $teacher_id)->get(); //getting tasks data of this teacher with class room
+        $tasks = Task::with('class_room')->where('teacher_id', $teacher_id)->paginate(10); //getting tasks data of this teacher with class room
         $class_rooms = ClassRoom::with('teachers')->where('teacher_id', $teacher_id)->get(); // get the class rooms of this teacher
 
         return view('teacher.task.index', ['tasks' => $tasks, 'class_rooms' => $class_rooms]);
@@ -86,6 +86,9 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task = Task::findOrFail($task->id);
+        $task->delete();
+
+        return redirect()->route('task.index')->with('success', 'Task deleted successfully');
     }
 }

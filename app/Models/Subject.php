@@ -9,6 +9,9 @@ class Subject extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
+    public $timestamps = false;
     public function scores()
     {
         return $this->hasMany(Scores::class);

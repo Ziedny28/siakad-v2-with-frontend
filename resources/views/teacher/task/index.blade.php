@@ -93,8 +93,14 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+
+                                <div class="paginator">
+                                    {{-- paginator --}}
+                                    {{ $tasks->links() }}
+                                </div>
+
                             </div>
-                            <div class="pagination-bar">
+                            {{-- <div class="pagination-bar">
                                 <ul class="pagination pagination-success  justify-content-center">
                                     <li class="page-item disabled">
                                         <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
@@ -106,7 +112,7 @@
                                         <a class="page-link" href="#">Next</a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
