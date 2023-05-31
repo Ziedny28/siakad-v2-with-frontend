@@ -3,7 +3,7 @@
     @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
         </div>
     @endif
     @include('partials.admin-topbar')
@@ -23,7 +23,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-4 d-flex align-items-center">
-                                    <i class="bx bx-task icon-home bg-primary text-light"></i>
+                                    <i class="bx bx-task icon-home bg-success text-light"></i>
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Tugas</p>
@@ -60,7 +60,7 @@
                                     <form action="#">
                                         <input type="text" class="form-control" placeholder="Search" />
                                         <button type="submit" class="btn btn-success">
-                                            <i class="fa fa-search"></i>
+                                            <i class="bx bx-search"></i>
                                         </button>
                                     </form>
                                 </div>
@@ -88,7 +88,15 @@
                                                 <td>{{ $task->name }}</td>
                                                 <td>{{ $task->class_room->name }}</td>
                                                 <td>{{ $task->category }}</td>
-                                                <td><a class="btn btn-success"href="/task/{{ $task->id }}/edit">edit</a></td>
+                                                <td><a class="btn btn-success"href="/task/{{ $task->id }}/edit">edit</a>
+                                                    {{-- make delete button --}}
+                                                    <form action="/task/{{ $task->id }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-danger">hapus</button>
+                                                    </form>
+                                                </td>
+
                                             </tr>
                                         @endforeach
                                     </tbody>

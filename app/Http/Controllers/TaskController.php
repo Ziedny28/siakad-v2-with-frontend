@@ -7,6 +7,7 @@ use App\Models\ClassRoom;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TaskController extends Controller
 {
@@ -43,7 +44,9 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request)
     {
         Task::create($request->validated());
-        return redirect()->route('task.index')->with('success', 'Task created successfully');
+        Alert::success('Success', 'Berhasil Membuat Tugas');
+        return redirect()->route('task.index');
+
     }
 
     /**
@@ -88,7 +91,6 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($task->id);
         $task->delete();
-
-        return redirect()->route('task.index')->with('success', 'Task deleted successfully');
+        return redirect()->route('task.index');
     }
 }

@@ -22,6 +22,7 @@ class AuthController extends Controller
 
         if (Auth::guard('teacher')->attempt($credentials)) {
             $request->session()->regenerate();
+            Alert::success('Login Success', 'Welcome Teacher');
             return redirect('/dashboard-teacher');
         }
         if (Auth::guard('admin')->attempt($credentials)) {
@@ -31,6 +32,7 @@ class AuthController extends Controller
         }
         if (Auth::guard('student')->attempt($credentials)) {
             $request->session()->regenerate();
+            Alert::success('Login Success', 'Welcome Student');
             return redirect('/dashboard-student');
         }
 
@@ -46,5 +48,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('/login');
+
     }
 }

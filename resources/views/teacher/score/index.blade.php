@@ -25,7 +25,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-4 d-flex align-items-center">
-                                    <i class="bx bx-task icon-home bg-primary text-light"></i>
+                                    <i class="bx bx-task icon-home bg-success text-light"></i>
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Tugas</p>
@@ -62,7 +62,7 @@
                                     <form action="#">
                                         <input type="text" class="form-control" placeholder="Search" />
                                         <button type="submit" class="btn btn-success">
-                                            <i class="fa fa-search"></i>
+                                            <i class="bx bx-search"></i>
                                         </button>
                                     </form>
                                 </div>
