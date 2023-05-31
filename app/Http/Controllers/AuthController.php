@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
@@ -32,6 +33,7 @@ class AuthController extends Controller
             return redirect('/dashboard-student');
         }
 
+        Alert::error('Login Failed', 'NI or Password is wrong');
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
