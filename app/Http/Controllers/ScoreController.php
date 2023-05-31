@@ -143,8 +143,8 @@ class ScoreController extends Controller
             ->with('task.teacher.subject')
             ->orderBy(Task::select('class_room_id')->whereColumn('tasks.id', 'scores.task_id'))
             ->where(Task::select('teacher_id')->whereColumn('tasks.id', 'scores.task_id'), $teacher_id)
-            ->get();
-        //dd($scores);
+            ->paginate(10);
+
         return view('teacher.score.index', ['class_rooms' => $class_rooms, 'scores' => $scores]);
     }
 }

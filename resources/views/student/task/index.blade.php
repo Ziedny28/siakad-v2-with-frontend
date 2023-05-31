@@ -39,6 +39,10 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="paginator">
+                                    {{-- paginator --}}
+                                    {{ $tasks->links() }}
+                                </div>
                             </div>
                             {{-- <div class="pagination-bar">
                                 <ul class="pagination pagination-success  justify-content-center">

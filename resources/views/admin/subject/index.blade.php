@@ -83,17 +83,20 @@
                                                     {{ $subject->description }}
                                                 </td>
                                                 <td>
-                                                    <a href="#" class="btn btn-success"><i
+                                                    <a href="/subjects/create" class="btn btn-success"><i
                                                             class='bx bx-edit'></i></a>
-                                                    <a href="#" class="btn btn-danger"><i
+                                                    <a href="" class="btn btn-danger"><i
                                                             class='bx bx-trash-alt'></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="pagination">
+                                    {{$subjects->links()}}
+                                </div>
                             </div>
-                            <div class="pagination-bar">
+                            {{-- <div class="pagination-bar">
                                 <ul class="pagination pagination-success  justify-content-center">
                                     <li class="page-item disabled">
                                         <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
@@ -105,7 +108,7 @@
                                         <a class="page-link" href="#">Next</a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

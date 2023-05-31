@@ -65,13 +65,13 @@ Route::middleware(['auth:student'])->group(function () {
 
     Route::get('/student-task',function(){
         $task = Task::with('teacher.subject')->where('class_room_id',Auth::user()->class_room_id)
-        ->orderBy('teacher_id')->get();
+        ->orderBy('teacher_id')->paginate(10);
         // $tasks = Task::with('teacher.subject')->where('class_room_id', $student->class_room_id)->get(); //getting tasks data of this student
         return view('student.task.index',['tasks'=>$task]);
     });
 
     Route::get('/student-score', function(){
-        $score = Score::with('task.teacher.subject')->where('student_id',Auth::user()->id)->orderBy('task_id')->get();
+        $score = Score::with('task.teacher.subject')->where('student_id',Auth::user()->id)->orderBy('task_id')->paginate(10);
         // $scores = Score::with('task.teacher.subject')->where('student_id', $student_id)->get(); //getting score data of this student
         return view('student.score.index',['scores'=>$score]);
     });
