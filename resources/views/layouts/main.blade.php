@@ -15,6 +15,7 @@
 </head>
 <body>
     @yield('content')
+    @include('sweetalert::alert')
     <!-- bootstrap js -->
     <script src="/assets/modules/jquery/jquery.min.js"></script>
     <script src="/assets/modules/bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
