@@ -79,7 +79,9 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $task = Student::findOrFail($student->id);
+        $task->delete();
+        return redirect()->route('student.index');
     }
 
     public function studentByMajor($major){
