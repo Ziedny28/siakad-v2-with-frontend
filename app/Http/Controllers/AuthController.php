@@ -26,6 +26,7 @@ class AuthController extends Controller
         }
         if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
+            Alert::success('Login Success', 'Welcome Admin');
             return redirect('/dashboard-admin');
         }
         if (Auth::guard('student')->attempt($credentials)) {

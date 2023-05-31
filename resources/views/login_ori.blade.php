@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+@include('sweetalert::alert')
     @if ($errors->any())
         <div class="alert alert-danger">
             There were some errors with your request.
