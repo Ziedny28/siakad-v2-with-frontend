@@ -10,7 +10,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Data Nilai</h4>
+                            <h4>Jadwal Siswa</h4>
                             <p></p>
                             <div class="card-menu">
                             </div>

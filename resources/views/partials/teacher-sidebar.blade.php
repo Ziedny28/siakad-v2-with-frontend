@@ -24,16 +24,10 @@
                 <li class="divider" data-text="Atrana">CONTROL NILAI SISWA</li>
 
                 <li>
-                    <a href="#">
+                    <a href="/score" class="{{ request()->is('score') ? 'active' : ''}}">
                         <i class='bx bxs-file icon'></i>
                         Penilaian
-                        <i class="bx bx-chevron-right icon-right"></i>
                     </a>
-                    <ul class="side-dropdown">
-                        @foreach ($class_rooms as $class_room)
-                        <li><a href="/score/class_room/{{$class_room->id}}">{{$class_room->name}}</a></li>
-                        @endforeach
-                    </ul>
                 </li>
 
                 <!-- Divider-->

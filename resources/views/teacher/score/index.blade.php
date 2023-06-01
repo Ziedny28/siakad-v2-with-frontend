@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-
     {{-- score start --}}
     @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -29,7 +28,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Tugas</p>
-                                    <h5>25</h5>
+                                    <h5>must edit</h5>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +44,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Siswa</p>
-                                    <h5>2</h5>
+                                    <h5>must edit</h5>
                                 </div>
                             </div>
                         </div>
@@ -58,9 +57,13 @@
                             <h4>Data Guru</h4>
                             <p></p>
                             <div class="card-menu">
-                                <div class="search-bar">
+                                <div class="search-bar w-50">
                                     <form action="#">
-                                        <input type="text" class="form-control" placeholder="Search" />
+                                        <select class="form-select" name="class_room_id" id="">
+                                            @foreach ($class_rooms as $class_room)
+                                                <option value="{{ $class_room->id }}">{{ $class_room->name }}</option>
+                                            @endforeach
+                                        </select>
                                         <button type="submit" class="btn btn-success">
                                             <i class="bx bx-search"></i>
                                         </button>
@@ -68,9 +71,6 @@
                                 </div>
                                 <div class="btn btn-success mt-2">
                                     <a href="/score/create">Tambahkan Nilai</a>
-                                </div>
-                                <div class="btn btn-success mt-2">
-                                    <a href="/score-choose-edit">edit nilai</a>
                                 </div>
                             </div>
                         </div>
@@ -81,35 +81,38 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Nama</th>
-                                            <th>Mata Pelajaran</th>
+                                            <th>Kelas</th>
+                                            <th>Tugas</th>
                                             <th>Tipe</th>
                                             <th>nilai</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $prevData = ''; ?>
                                         @foreach ($scores as $score)
-                                            @if ($prevData != $score->task->class_room->name)
-                                                <tr>
-                                                    <td>
-                                                        <h4>{{ $score->task->class_room->name }}</h4>
-                                                    </td>
-                                                </tr>
-                                            @endif
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $score->student->name }}</td>
-                                                <td>{{ $score->task->teacher->subject->name }}</td>
+                                                <td>{{ $score->student->class_room->name}}</td>
+                                                <td>{{ $score->task->name }}</td>
                                                 <td>{{ $score->task->category }}</td>
                                                 <td>{{ $score->score }}</td>
+                                                <td><a class="btn btn-success" href="/scores/{{ $score->id }}/edit"><i
+                                                            class="bx bx-edit"></i></a>
+                                                    <form action="/scores/{{ $score->id }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-danger"><i
+                                                                class="bx bxs-trash-alt"></i></button>
+                                                    </form>
+                                                </td>
                                             </tr>
-                                            <?php $prevData = $score->task->class_room->name; ?>
                                         @endforeach
                                     </tbody>
                                 </table>
                                 <div class="paginator">
                                     {{-- paginator --}}
-                                    {{ $scores->links() }}
+                                    {{-- {{ $scores->links() }} --}}
                                 </div>
                             </div>
                             {{-- <div class="pagination-bar">
