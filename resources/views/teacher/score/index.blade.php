@@ -60,6 +60,7 @@
                                 <div class="search-bar w-50">
                                     <form action="#">
                                         <select class="form-select" name="class_room_id" id="">
+                                            <option>Semua</option>
                                             @foreach ($class_rooms as $class_room)
                                                 <option value="{{ $class_room->id }}">{{ $class_room->name }}</option>
                                             @endforeach
@@ -88,7 +89,7 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="align-middle">
                                         @foreach ($scores as $score)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
