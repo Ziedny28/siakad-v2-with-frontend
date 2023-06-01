@@ -16,7 +16,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="\profile-admin">
                         <i class="bx bxs-user icon"></i> My Profile
                     </a>
                 </li>

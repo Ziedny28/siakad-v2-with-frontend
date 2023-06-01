@@ -29,13 +29,12 @@
                                         <label for="ni">Deskripsi :</label>
                                         <textarea type="text" name='description' id="description"
                                             class="form-control @error('address') is-invalid @enderror">
-
                                         </textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer text-right">
-                                <a class="btn btn-secondary" href="/students" role="button">Cancel</a>
+                                <a class="btn btn-secondary" href="students" role="button">Cancel</a>
                                 <button class="btn btn-success" type="submit">Submit</button>
                             </div>
                         </form>

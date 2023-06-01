@@ -4627,7 +4627,10 @@ article dl {
     background-color: #ffc107;
     border-color: #ffc107;
 }
-
+tbody tr td .action-col {
+    display: flex;
+    flex-direction: column;
+}
 @keyframes growIn {
     0% {
         -webkit-transform: scale(0.9);

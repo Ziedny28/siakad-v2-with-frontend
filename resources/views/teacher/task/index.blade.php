@@ -89,7 +89,6 @@
                                                 <td>{{ $task->class_room->name }}</td>
                                                 <td>{{ $task->category }}</td>
                                                 <td><a class="btn btn-success"href="/task/{{ $task->id }}/edit">edit</a>
-                                                    {{-- make delete button --}}
                                                     <form action="/task/{{ $task->id }}" method="post">
                                                         @csrf
                                                         @method('delete')

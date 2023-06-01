@@ -17,7 +17,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-4 d-flex align-items-center">
-                                    <i class="bx bxs-user icon-home bg-primary text-light"></i>
+                                    <i class="bx bxs-user icon-home bg-success text-light"></i>
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Guru</p>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table" >
+                                <table class="table">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -77,7 +77,7 @@
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="align-middle">
                                         @foreach ($students as $student)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
@@ -86,11 +86,16 @@
                                                 <td>{{ $student->address }}</td>
                                                 <td>{{ $student->pob }}</td>
                                                 <td>{{ $student->class_room->name }}</td>
-                                                <td>
+                                                <td class="flex-col">
                                                     <a href="/students/{{ $student->id }}/edit" class="btn btn-success"><i
                                                             class='bx bx-edit'></i></a>
-                                                    <a href="/students/{{ $student->id }}/delete" class="btn btn-danger"><i
-                                                            class='bx bx-trash-alt'></i></a>
+                                                    <form action="/students/{{ $student->id }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-danger"><i
+                                                                class='bx bxs-trash-alt'></i></button>
+                                                    </form>
+
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -98,22 +103,10 @@
                                 </table>
                                 <div class="paginator">
                                     {{-- paginator --}}
-                                    {{ $students->links() }}
+                                    {{-- {{ $students->links() }} --}}
                                 </div>
                             </div>
-                            {{-- <div class="pagination-bar">
-                                <ul class="pagination pagination-success  justify-content-center">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </div> --}}
+
                         </div>
                     </div>
                 </div>

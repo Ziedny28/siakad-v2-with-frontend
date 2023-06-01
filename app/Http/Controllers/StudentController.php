@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Teacher;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class StudentController extends Controller
 {
@@ -71,7 +72,8 @@ class StudentController extends Controller
         $data = $request->validated();
         $student->fill($data);
         $student->save();
-        return redirect()->route('students.index')->with('success', 'Student updated successfully');
+        Alert::success('Success', 'Student updated successfully');
+        return redirect()->route('students.index');
     }
 
     /**
@@ -79,9 +81,10 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        $task = Student::findOrFail($student->id);
-        $task->delete();
-        return redirect()->route('student.index');
+        $student = Student::findOrFail($student->id);
+        $student->delete();
+        Alert::success('Success', 'Student deleted successfully');
+        return redirect()->route('students.index');
     }
 
     public function studentByMajor($major){
@@ -92,5 +95,4 @@ class StudentController extends Controller
             'teachers'=> Teacher::all(),
         ]);
     }
-
 }

@@ -74,7 +74,7 @@
                                             <th class="w-25">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="align-middle">
                                         @foreach ($subjects as $subject)
                                             <tr>
                                                 <td>{{ $subject->id }}</td>
@@ -85,30 +85,21 @@
                                                 <td>
                                                     <a href="/subjects/create" class="btn btn-success"><i
                                                             class='bx bx-edit'></i></a>
-                                                    <a href="" class="btn btn-danger"><i
-                                                            class='bx bx-trash-alt'></i></a>
+                                                    <form action="/subjects/{{ $subject->id }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-danger"><i
+                                                                class='bx bxs-trash-alt'></i></button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
                                 <div class="pagination">
-                                    {{$subjects->links()}}
+                                    {{-- {{$subjects->links()}} --}}
                                 </div>
                             </div>
-                            {{-- <div class="pagination-bar">
-                                <ul class="pagination pagination-success  justify-content-center">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
