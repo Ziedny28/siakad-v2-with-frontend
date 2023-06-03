@@ -21,7 +21,7 @@ class TeacherController extends Controller
     public function index()
     {
         return view('admin.teacher.index', [
-            'teachers' => Teacher::with('subject')->paginate(20),
+            'teachers' => Teacher::with('subject')->paginate(10),
             'students' => Student::all(),
         ]);
     }

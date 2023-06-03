@@ -103,7 +103,7 @@
                                 </table>
                                 <div class="paginator">
                                     {{-- paginator --}}
-                                    {{-- {{ $students->links() }} --}}
+                                    {{ $students->links() }}
                                 </div>
                             </div>
 

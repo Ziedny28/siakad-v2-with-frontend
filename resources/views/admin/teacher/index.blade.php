@@ -101,7 +101,7 @@
                                 </table>
                                 <div class="paginator">
                                     {{-- paginator --}}
-                                    {{-- {{ $teachers->links() }} --}}
+                                    {{ $teachers->links() }}
                                 </div>
                             </div>
                         </div>

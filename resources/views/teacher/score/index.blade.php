@@ -103,7 +103,7 @@
                                 </table>
                                 <div class="paginator">
                                     {{-- paginator --}}
-                                    {{-- {{ $scores->links() }} --}}
+                                    {{ $scores->links() }}
                                 </div>
                             </div>
                             {{-- <div class="pagination-bar">
