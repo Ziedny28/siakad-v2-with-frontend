@@ -24,13 +24,13 @@
                 <!-- Divider-->
                 <li class="divider" data-text="STARTER">DATA NILAI</li>
                 <li>
-                    <a href="/student-task" class="{{ request()->is('task') ? 'active' : ''}}">
+                    <a href="/student-task" class="{{ request()->is('student-task') ? 'active' : ''}}">
                         <i class='bx bx-task icon'></i>
                         Tugas
                     </a>
                 </li>
                 <li>
-                    <a href="/student-score" class="{{ request()->is('task') ? 'active' : ''}}">
+                    <a href="/student-score" class="{{ request()->is('student-score') ? 'active' : ''}}">
                         <i class='bx bx-task icon'></i>
                         Nilai
                     </a>
