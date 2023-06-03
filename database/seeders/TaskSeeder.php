@@ -8,7 +8,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class TaskSeeder extends Seeder
 {
-    public $category =['task','daily_test','mid_test','final_test'];
+    public $category =['Tugas','Quis','UTS','UAS'];
+    public $taskName = ['Membuat Rumus Kalkulus','Membuat Puisi','Mengerjakan exercise 10','Membuat Rangkuman','Membuat contoh soal','Mengerjakan soal','Mencari jenis-jenis Bola','Membuat Gamabar Anjing','Membuat Pesawat','Menghafal Alkitab','Evaluasi Mandiri'];
     /**
      * Run the database seeds.
      */
@@ -22,7 +23,7 @@ class TaskSeeder extends Seeder
 
     public function insert(){
         DB::table('tasks')->insert([
-            'name' => '',
+            'name' => $this->taskName[rand(0,10)],
             'teacher_id' => rand(1,10),
             'class_room_id' => rand(1,10),
             'category' => $this->category[rand(0,3)],
