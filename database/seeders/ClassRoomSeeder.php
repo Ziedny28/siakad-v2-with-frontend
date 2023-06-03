@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class ClassRoomSeeder extends Seeder
 {
-    public $majors = ['mipa', 'ips', 'bahasa','agama'];
+    public $majors = ['MIPA', 'IPS', 'Bahasa','Agama'];
     /**
      * Run the database seeds.
      */
