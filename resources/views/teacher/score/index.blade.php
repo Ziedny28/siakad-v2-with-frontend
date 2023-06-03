@@ -71,7 +71,7 @@
                                     </form>
                                 </div>
                                 <div class="btn btn-success mt-2">
-                                    <a href="/score/create">Tambahkan Nilai</a>
+                                    <a href="/score/create">Update Nilai</a>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +86,6 @@
                                             <th>Tugas</th>
                                             <th>Tipe</th>
                                             <th>nilai</th>
-                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody class="align-middle">
@@ -98,15 +97,6 @@
                                                 <td>{{ $score->task->name }}</td>
                                                 <td>{{ $score->task->category }}</td>
                                                 <td>{{ $score->score }}</td>
-                                                <td><a class="btn btn-success" href="/scores/{{ $score->id }}/edit"><i
-                                                            class="bx bx-edit"></i></a>
-                                                    <form action="/scores/{{ $score->id }}" method="post">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button type="submit" class="btn btn-danger"><i
-                                                                class="bx bxs-trash-alt"></i></button>
-                                                    </form>
-                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

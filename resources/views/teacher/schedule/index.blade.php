@@ -7,6 +7,7 @@
     <div class="content-start transition">
         <div class="container-fluid dashboard">
             <div class="row">
+                
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
@@ -16,8 +17,9 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <p>Ini nanti isinya gambar jadwal
-                            </p>
+                            <div>
+                                <img src="" alt="">
+                            </div>
                         </div>
                     </div>
                 </div>
