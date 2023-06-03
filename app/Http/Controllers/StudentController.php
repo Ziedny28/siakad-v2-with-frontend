@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Teacher;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class StudentController extends Controller
@@ -20,6 +21,7 @@ class StudentController extends Controller
         return view('admin.student.index', [
             'students' => Student::all()->paginate(10),
             'teachers'=> Teacher::all(),
+
         ]);
     }
 
@@ -93,6 +95,8 @@ class StudentController extends Controller
         return view('admin.student.index', [
             'students' => $students,
             'teachers'=> Teacher::all(),
+            'teacherCount' => Teacher::count(), //counting all teachers
+            'studentCount' => Student::count(),
         ]);
     }
 }

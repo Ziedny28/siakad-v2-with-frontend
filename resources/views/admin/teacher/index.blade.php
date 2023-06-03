@@ -21,7 +21,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Guru</p>
-                                    <h5>{{ $teachers->count() }}</h5>
+                                    <h5>{{ $teacherCount }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Siswa</p>
-                                    <h5>{{ $students->count() }}</h5>
+                                    <h5>{{ $studentCount }}</h5>
                                 </div>
                             </div>
                         </div>
