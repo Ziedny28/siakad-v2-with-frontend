@@ -74,14 +74,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="student">
-                                                <tr>
+                                                {{-- <tr>
                                                     <td>1</td>
-                                                    <td>Andi Dwi Prasetyo</td>
+                                                    <td>Nama</td>
                                                     <td>
                                                         <input type="text" name="score" id="score"
                                                             class="form-control @error('score') is-invalid @enderror">
                                                     </td>
-                                                </tr>
+                                                </tr> --}}
                                             </tbody>
                                         </table>
                                     </div>
@@ -132,7 +132,7 @@
                                         <td>1</td>
                                         <td>${value.name}</td>
                                         <td>
-                                            <input type="text" name="inputs[${i}]['score']" id="score"
+                                            <input type="text" name="inputs[${i}][score]" id="score"
                                                 class="form-control @error('score') is-invalid @enderror">
                                         </td>
                                     </tr>`);

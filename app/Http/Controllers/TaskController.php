@@ -47,6 +47,8 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request)
     {
         Task::create($request->validated());
+        //buat nilai siswa dengan nilai 0 pada tugas ini di kelas ini
+
         Alert::success('Success', 'Berhasil Membuat Tugas');
         return redirect()->route('task.index');
     }

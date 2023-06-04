@@ -13,8 +13,9 @@
 
                 <div class="col-md-12">
                     <div class="card">
-                        <form action="/subjects" method="post">
+                        <form action="/subjects/{{ $subject->id }}" method="post">
                             @csrf
+                            @method('PUT')
                             <div class="card-header">
                                 <h4>Create Data Mapel </h4>
                             </div>
@@ -23,16 +24,19 @@
                                     <div class="form-group">
                                         <label for="name">Nama :</label>
                                         <input type="text" name='name' id="name"
-                                            class="form-control @error('name') is-invalid @enderror">
+                                            class="form-control @error('name') is-invalid @enderror"
+                                            value="{{ $subject->name }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="ni">Deskripsi :</label>
                                         <textarea type="text" name='description' id="description"
                                             class="form-control @error('address') is-invalid @enderror">
+                                            {{ $subject->description }}
                                         </textarea>
                                     </div>
                                 </div>
                             </div>
+                            <input type="hidden" name="id" value="{{ $subject->id }}">
                             <div class="card-footer text-right">
                                 <a class="btn btn-secondary" href="/students" role="button">Cancel</a>
                                 <button class="btn btn-success" type="submit">Submit</button>

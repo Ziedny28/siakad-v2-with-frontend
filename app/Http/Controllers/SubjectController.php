@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Teacher;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreSubjectRequest;
 use App\Http\Requests\UpdateSubjectRequest;
-use App\Models\Student;
 
 class SubjectController extends Controller
 {
@@ -53,7 +54,7 @@ class SubjectController extends Controller
      */
     public function edit(Subject $subject)
     {
-        //
+        return view('admin.subject.edit', compact('subject'));
     }
 
     /**
@@ -61,7 +62,10 @@ class SubjectController extends Controller
      */
     public function update(UpdateSubjectRequest $request, Subject $subject)
     {
-        //
+        $data = $request->validated();
+        $subject->fill($data);
+        $subject->save();
+        return redirect()->route('subjects.index')->with('success', 'Subject updated successfully');
     }
 
     /**
@@ -69,7 +73,7 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        $subject = Subject::findOrFail($subject->id);
-        $subject->delete();
+        DB::table('subjects')->where('id', $subject->id)->delete();
+        return redirect()->route('subjects.index')->with('success', 'Subject removed successfully');
     }
 }

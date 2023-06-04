@@ -20,7 +20,7 @@ class StudentController extends Controller
     {
         return view('admin.student.index', [
             'students' => Student::all(),
-            'teachers'=> Teacher::all(),
+            'teachers' => Teacher::all(),
         ]);
     }
 
@@ -88,12 +88,13 @@ class StudentController extends Controller
         return redirect()->route('students.index');
     }
 
-    public function studentByMajor($major){
-        $class_rooms = ClassRoom::where('name', 'like' , '%'.$major.'%')->pluck('id');
-        $students = Student::whereIn('class_room_id',$class_rooms)->with('class_room')->paginate(10);
+    public function studentByMajor($major)
+    {
+        $class_rooms = ClassRoom::where('name', 'like', '%' . $major . '%')->pluck('id');
+        $students = Student::whereIn('class_room_id', $class_rooms)->with('class_room')->paginate(10);
         return view('admin.student.index', [
             'students' => $students,
-            'teachers'=> Teacher::all(),
+            'teachers' => Teacher::all(),
             'teacherCount' => Teacher::count(), //counting all teachers
             'studentCount' => Student::count(),
         ]);

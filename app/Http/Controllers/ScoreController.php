@@ -29,8 +29,6 @@ class ScoreController extends Controller
             ->where(Task::select('teacher_id')->whereColumn('tasks.id', 'scores.task_id'), $teacher_id)
             ->orderBy(Task::select('class_room_id')->whereColumn('tasks.id', 'scores.task_id'))
             ->paginate(10);
-
-
         /*
         get the class rooms that this teacher teach
         panggil relasi class_rooms pada model Teacher untuk mendapatkan class room yang diajar oleh teacher ini
@@ -83,7 +81,28 @@ class ScoreController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+
+        //get student id in this class
+
+        $validated = $request->validate([
+            'inputs.*.score' => 'required',
+            'class_room_id' => 'required',
+            'task_id' => 'required',
+        ]);
+
+        $students = Student::where('class_room_id', $validated['class_room_id'])->get();
+
+        $i = 0;
+        foreach ($students as $student) {
+            $score = new Score();
+            $score->student_id = $student->id;
+            $score->task_id = $validated['task_id'];
+            $score->score = $validated['inputs'][$i]['score'];
+            $score->save();
+            $i++;
+        }
+
+        return redirect()->route('score.index')->with('success', 'Score created successfully');
     }
 
     /**

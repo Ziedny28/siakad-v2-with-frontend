@@ -71,7 +71,7 @@
                                     </form>
                                 </div>
                                 <div class="btn btn-success mt-2">
-                                    <a href="/score/create">Update Nilai</a>
+                                    <a href="/score/create">Insert Nilai</a>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $score->student->name }}</td>
-                                                <td>{{ $score->student->class_room->name}}</td>
+                                                <td>{{ $score->student->class_room->name }}</td>
                                                 <td>{{ $score->task->name }}</td>
                                                 <td>{{ $score->task->category }}</td>
                                                 <td>{{ $score->score }}</td>

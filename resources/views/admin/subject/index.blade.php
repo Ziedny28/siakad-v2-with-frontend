@@ -83,7 +83,7 @@
                                                     {{ $subject->description }}
                                                 </td>
                                                 <td>
-                                                    <a href="/subjects/create" class="btn btn-success"><i
+                                                    <a href="/subjects/{{ $subject->id }}/edit" class="btn btn-success"><i
                                                             class='bx bx-edit'></i></a>
                                                     <form action="/subjects/{{ $subject->id }}" method="post">
                                                         @csrf
@@ -97,7 +97,7 @@
                                     </tbody>
                                 </table>
                                 <div class="pagination">
-                                    {{-- {{$subjects->links()}} --}}
+                                    {{ $subjects->links() }}
                                 </div>
                             </div>
                         </div>
