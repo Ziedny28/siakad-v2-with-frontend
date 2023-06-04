@@ -25,7 +25,6 @@
                                         <label for="name">Nama Tugas :</label>
                                         <input type="text" name="name" id="name"
                                             class="form-control @error('name') is-invalid @enderror">
-
                                         @error('name')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

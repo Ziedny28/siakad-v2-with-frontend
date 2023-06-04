@@ -7,7 +7,7 @@
     <div class="content-start transition">
         <div class="container-fluid dashboard">
             <div class="row">
-                
+
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
@@ -18,7 +18,7 @@
                         </div>
                         <div class="card-body">
                             <div>
-                                <img src="" alt="">
+                                <img src='{{asset('assets/images/jadwal-guru.jpg')}}' class="img-fluid" alt="">
                             </div>
                         </div>
                     </div>

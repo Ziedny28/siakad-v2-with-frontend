@@ -16,8 +16,9 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <p>Ini nanti isinya gambar jadwal
-                            </p>
+                            <div>
+                                <img src='{{asset('assets/images/jadwal-siswa.jpg')}}' class="img-fluid" alt="">
+                            </div>
                         </div>
                     </div>
                 </div>

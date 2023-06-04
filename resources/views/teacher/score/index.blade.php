@@ -133,7 +133,6 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-
                                         <th>Nama</th>
                                         <th>Kelas</th>
                                         <th>Tugas</th>
