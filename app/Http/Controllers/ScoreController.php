@@ -7,6 +7,8 @@ use App\Models\Score;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\ClassRoom;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreScoreRequest;
 use App\Http\Requests\UpdateScoreRequest;
@@ -45,10 +47,13 @@ class ScoreController extends Controller
      */
     public function create()
     {
-        $teacher_id = Auth::user()->id;// get the teacher id
-        $tasks = Task::with('class_room')->where('teacher_id', $teacher_id)->get();// get the tasks of this teacher with class room
+        $teacher_id = Auth::user()->id; // get the teacher id
+        $tasks = Task::with('class_room')->where('teacher_id', $teacher_id)->get(); // get the tasks of this teacher with class room
 
-        return view('teacher.score.create', ['tasks' => $tasks]);
+        //class diajar oleh guru ini
+        $class_rooms = $this->getClassRooms();
+
+        return view('teacher.score.create', ['tasks' => $tasks, 'class_rooms' => $class_rooms]);
     }
 
     // create the one score
@@ -66,10 +71,19 @@ class ScoreController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreScoreRequest $request)
+    // old
+
+    // public function store(StoreScoreRequest $request)
+    // {
+    //     dd($request);
+
+    //     Score::create($request->validated());
+    //     return redirect()->route('score.index')->with('success', 'Task created successfully');
+    // }
+
+    public function store(Request $request)
     {
-        Score::create($request->validated());
-        return redirect()->route('score.index')->with('success', 'Task created successfully');
+        dd($request->all());
     }
 
     /**
@@ -113,6 +127,7 @@ class ScoreController extends Controller
      */
     public function update(UpdateScoreRequest $request, Score $score)
     {
+
         $data = $request->validated();
         $score->fill($data);
         $score->save();
@@ -146,5 +161,38 @@ class ScoreController extends Controller
             ->paginate(10);
 
         return view('teacher.score.index', ['class_rooms' => $class_rooms, 'scores' => $scores]);
+    }
+
+    // untuk ajax request
+    public function getClassRooms()
+    {
+        //mendapatkan kelas apa saja yang diajar oleh guru ini
+        $teacher_id = auth()->user()->id;
+        $teacher_class_room = DB::table('teacher_class_room')->where('teacher_id',  $teacher_id)->pluck('class_room_id');
+        $class_rooms = ClassRoom::whereIn('id', $teacher_class_room)->get();
+        return $class_rooms;
+    }
+
+    public function getTasks(Request $request)
+    {
+        //mendapatkan tugas apa saja yang terdapat pada kelas yang diajar oleh guru ini dan milik guru ini
+        $teacher_id = auth()->user()->id;
+        $tasks = DB::table('tasks')
+            ->where('teacher_id', $teacher_id)
+            ->where('class_room_id', $request->class_room_id)
+            ->get();
+
+        if (count($tasks) > 0) {
+            return response()->json($tasks);
+        }
+    }
+
+    public function getStudents(Request $request)
+    {
+        //mendapatkan siswa apa saja yang terdapat pada kelas yang diminta oleh request
+        $students = Student::where('class_room_id', $request->class_room_id)->get();
+        if (count($students) > 0) {
+            return response()->json($students);
+        }
     }
 }

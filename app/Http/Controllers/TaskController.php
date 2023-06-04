@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\ClassRoom;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
@@ -18,9 +19,8 @@ class TaskController extends Controller
     {
         $teacher_id = Auth::user()->id; //getting teacher id
         $tasks = Task::with('class_room')->where('teacher_id', $teacher_id)->paginate(10); //getting tasks data of this teacher with class room
-        $class_rooms = ClassRoom::with('teachers')->where('teacher_id', $teacher_id)->get(); // get the class rooms of this teacher
 
-        return view('teacher.task.index', ['tasks' => $tasks, 'class_rooms' => $class_rooms]);
+        return view('teacher.task.index', ['tasks' => $tasks,]);
     }
 
     /**
@@ -29,8 +29,11 @@ class TaskController extends Controller
     public function create()
     {
         $teacher_id = Auth::user()->id; //getting teacher id
-        $class_rooms = ClassRoom::with('teachers')->where('teacher_id', $teacher_id)->get(); //getting class rooms data of this teacher with teachers
-        $categories = ['task','daily_test','mid_test','final_test'];
+
+        $teacher_class_room = DB::table('teacher_class_room')->where('teacher_id', $teacher_id)->pluck('class_room_id'); // get the class room id that this teacher teach
+        $class_rooms = ClassRoom::whereIn('id', $teacher_class_room)->get();
+
+        $categories = ['task', 'daily_test', 'mid_test', 'final_test'];
 
         return view('teacher.task.create', [
             'class_rooms' =>  $class_rooms,
@@ -46,7 +49,6 @@ class TaskController extends Controller
         Task::create($request->validated());
         Alert::success('Success', 'Berhasil Membuat Tugas');
         return redirect()->route('task.index');
-
     }
 
     /**
@@ -64,7 +66,7 @@ class TaskController extends Controller
     {
         $teacher_id = Auth::user()->id; //getting teacher id
         $class_rooms = ClassRoom::with('teachers')->where('teacher_id', $teacher_id)->get(); //getting class rooms data of this teacher with teachers
-        $categories = ['task','dialy_test','mid_test','final_test'];
+        $categories = ['task', 'dialy_test', 'mid_test', 'final_test'];
 
         return view('teacher.task.edit', [
             'class_rooms' =>  $class_rooms,

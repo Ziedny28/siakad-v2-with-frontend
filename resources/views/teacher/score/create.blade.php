@@ -13,7 +13,7 @@
 
                 <div class="col-md-12">
                     <div class="card">
-                        <form action="/score" method="post">
+                        <form action="{{ route('score.store') }}" method="POST">
                             @csrf
                             <div class="card-header">
                                 <h4>Input Nilai Siswa</h4>
@@ -22,10 +22,24 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="class_room_id">Untuk Kelas :</label>
-                                        <select class="form-select" name="class_room_id"
+
+                                        {{-- dummy --}}
+                                        {{-- <select class="form-select" name="class_room_id"
                                             class="@error('class_room_id') is-invalid @enderror">
                                             <option selected value="">Classroom</option>
-                                        </select>
+                                        </select> --}}
+
+                                        {{-- new with dependent select --}}
+                                        <div class="mb-3">
+                                            <select class="form-select form-select-lg mb-3" id="class_room_id"
+                                                name="class_room_id">
+                                                <option selected disabled>Select class Room</option>
+                                                @foreach ($class_rooms as $class_room)
+                                                    <option value="{{ $class_room->id }}">{{ $class_room->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
                                         @error('class_room_id')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -35,19 +49,21 @@
 
                                     <div class="form-group">
                                         <label for="">Nama Tugas :</label>
-                                        <select class="form-select" name="category"
-                                            class="@error('name') is-invalid @enderror">
-                                            <option selected value="">Tugas Membuat CV</option>
+                                        <select class="form-select @error('name') is-invalid @enderror" name="task_id"
+                                            id="task">
+                                            <option selected value="">List Tugas</option>
                                         </select>
-                                        @error('category')
+                                        @error('task_id')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
                                         @enderror
                                     </div>
+
                                     <div>
                                         <hr>
                                     </div>
+
                                     <div class="form-group">
                                         <table class="table">
                                             <thead>
@@ -57,48 +73,16 @@
                                                     <th class="w-25">Nilai</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="student">
                                                 <tr>
                                                     <td>1</td>
                                                     <td>Andi Dwi Prasetyo</td>
                                                     <td>
                                                         <input type="text" name="score" id="score"
                                                             class="form-control @error('score') is-invalid @enderror">
-                                                        @error('score')
-                                                            <div class="invalid-feedback">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
                                                     </td>
                                                 </tr>
-                                                {{-- ini sample doang nanti dihapus yak --}}
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Raga Sang Prabu</td>
-                                                    <td>
-                                                        <input type="text" name="score" id="score"
-                                                            class="form-control @error('score') is-invalid @enderror" value="20">
-                                                        @error('score')
-                                                            <div class="invalid-feedback">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Ahmad Samidun</td>
-                                                    <td>
-                                                        <input type="text" name="score" id="score"
-                                                            class="form-control @error('score') is-invalid @enderror">
-                                                        @error('score')
-                                                            <div class="invalid-feedback">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
-                                                    </td>
-                                                </tr>
-                                                {{-- batas sample sampe sinih --}}
+                                            </tbody>
                                         </table>
                                     </div>
                                     <input type="hidden" name="teacher_id" value="{{ auth()->user()->id }}">
@@ -115,4 +99,50 @@
         </div>
     </div>
     @include('partials.footer')
+
+    {{-- Dependent dropdown --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#class_room_id').on('change', function() { //ketika kelas dipilih
+                var class_room_id = this.value; //mengambil id kelas
+                $('#task').html('');
+                $("#student").html('');
+                $.ajax({
+                    url: '{{ route('getTasks') }}?class_room_id=' + class_room_id,
+                    type: 'get',
+                    // if success
+                    success: function(res) {
+                        $('#task').html('<option value="">Select Task</option>');
+                        $.each(res, function(key, value) {
+                            $('#task').append('<option value="' + value
+                                .id + '">' + value.name + '</option>');
+                        });
+                    }
+                });
+                $.ajax({
+                    url: '{{ route('getStudents') }}?class_room_id=' + class_room_id,
+                    type: 'get',
+                    // if success
+                    success: function(res) {
+                        $('#student').html('');
+                        let i = 0;
+                        $.each(res, function(key, value) {
+                            $('#student')
+                                .append(`<tr>
+                                        <td>1</td>
+                                        <td>${value.name}</td>
+                                        <td>
+                                            <input type="text" name="inputs[${i}]['score']" id="score"
+                                                class="form-control @error('score') is-invalid @enderror">
+                                        </td>
+                                    </tr>`);
+
+                            i++;
+                        });
+                    }
+                });
+
+            });
+        });
+    </script>
 @endsection
