@@ -10,16 +10,51 @@
                 <p></p>
             </div>
             <div class="row">
-
                 <div class="col-md-12">
                     <div class="card">
-                        <form action="/teachers" method="post">
-                            <div class="card-header">
-                                <h4>Create Data Guru </h4>
-                            </div>
+
+                        <div class="card-header">
+                            <h4>Create Data Guru </h4>
+                        </div>
+                        <form action="">
+                            @csrf
                             <div class="card-body">
                                 <div class="col-md-6">
-                                    @csrf
+                                    <ul>
+                                        <li>
+                                            <h5>Input dari file .csv</h5>
+                                        </li>
+                                        <li>
+                                            <p>1. siapkan file .csv berisi data guru</p>
+                                        </li>
+                                        <li>
+                                            <p>2. pastikan file .csv sesuai dengan format yang telah ditentukan</p>
+                                        </li>
+                                        <li>
+                                            <p>3. pastikan file .csv tidak melebihi 2MB</p>
+                                        </li>
+                                        <li>
+                                            <p>4. pastikan file .csv tidak kosong</p>
+                                        </li>
+                                        <li>
+                                            <p>5. pastikan file .csv tidak mengandung data yang sama</p>
+                                        </li>
+                                        <li>
+                                            {{-- input file .csv --}}
+                                            <input type="file" name="file" id="file" class="form-control">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <a class="btn btn-secondary" href="/students/major/mipa" role="button">Cancel</a>
+                                <button class="btn btn-success" type="submit">Submit</button>
+                            </div>
+                        </form>
+                        <form action="/teachers" method="post">
+                            @csrf
+                            <div class="card-body">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="ni">Nomor Induk Guru :</label>
                                         <input type="number" name='ni' id="ni"

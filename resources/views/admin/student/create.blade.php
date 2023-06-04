@@ -13,11 +13,46 @@
 
                 <div class="col-md-12">
                     <div class="card">
+                        <div class="card-header">
+                            <h4>Create Data Siswa </h4>
+                        </div>
+                        <form action="">
+                            @csrf
+                            <div class="card-body">
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>
+                                            <h5>Input dari file .csv</h5>
+                                        </li>
+                                        <li>
+                                            <p>1. siapkan file .csv berisi data siswa</p>
+                                        </li>
+                                        <li>
+                                            <p>2. pastikan file .csv sesuai dengan format yang telah ditentukan</p>
+                                        </li>
+                                        <li>
+                                            <p>3. pastikan file .csv tidak melebihi 2MB</p>
+                                        </li>
+                                        <li>
+                                            <p>4. pastikan file .csv tidak kosong</p>
+                                        </li>
+                                        <li>
+                                            <p>5. pastikan file .csv tidak mengandung data yang sama</p>
+                                        </li>
+                                        <li>
+                                            {{-- input file .csv --}}
+                                            <input type="file" name="file" id="file" class="form-control">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <a class="btn btn-secondary" href="/students/major/mipa" role="button">Cancel</a>
+                                <button class="btn btn-success" type="submit">Submit</button>
+                            </div>
+                        </form>
                         <form action="/students" method="post">
                             @csrf
-                            <div class="card-header">
-                                <h4>Create Data Siswa </h4>
-                            </div>
                             <div class="card-body">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -54,7 +89,7 @@
                                         <label for="pob">Tempat/Tanggal Lahir :</label>
                                         <input type="text" name='pob' id="pob"
                                             class="form-control @error('pob') is-invalid @enderror"
-                                            placeholder="Kota, hh Bulan tttt">
+                                            placeholder="contoh : Malang, 20 Mei 2001">
                                         @error('pob')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

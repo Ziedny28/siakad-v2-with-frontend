@@ -65,15 +65,6 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    {{-- <div class="form-group">
-    <label for="password">password</label>
-    <input type="password" name='password' id="password" class="form-control @error('password') is-invalid @enderror" value="{{$student->password}}">
-    @error('password')
-    <div class="invalid-feedback">
-        {{ $message }}
-    </div>
-@enderror
-</div> --}}
                                     <div class="form-group">
                                         <label for="class_room_id">Kelas</label>
                                         <select class="form-select" name="class_room_id" class="@error('class_room_id') is-invalid @enderror">
@@ -96,7 +87,7 @@
                                 </div>
                             </div>
                             <div class="card-footer text-right">
-                                <a class="btn btn-secondary" href="\students" role="button">Cancel</a>
+                                <a class="btn btn-secondary" href="/students/major/mipa" role="button">Cancel</a>
                                 <button class="btn btn-success" type="submit">Submit</button>
                             </div>
                         </form>
