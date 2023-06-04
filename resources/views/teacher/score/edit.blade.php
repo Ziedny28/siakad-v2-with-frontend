@@ -1,34 +1,88 @@
 @extends('layouts.main')
-
 @section('content')
-    <form action="/score/{{ $score->id }}" method="post">
-        @method('PUT')
-        @csrf
-        <div class="form-group">
-            <label for="student_id">siswa</label>
-            <select name="student_id" id="student_id" class="form-control @error('student_id') is-invalid @enderror">
-                @foreach ($students as $student)
-                    <option value="{{$student->id}}">{{ $student->name }}</option>
-                @endforeach
-            </select>
-            @error('student_id')
-                <div class="invalid-feedback">
-                    {{ $message }}
+    @include('partials.teacher-sidebar')
+    @include('partials.admin-topbar')
+
+    <div class="content-start transition">
+        <div class="container-fluid dashboard">
+            <div class="content-header">
+                <h1>Manajemen Data Penilaian</h1>
+                <p></p>
+            </div>
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <form action="/score/{{ $score->id }}" method="post">
+                            @method('PUT')
+                            @csrf
+                            <div class="card-header">
+                                <h4>Edit Nilai Siswa </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Nama Tugas</label>
+                                        <input type="text" name="name" id="name"
+                                            class="form-control @error('name') is-invalid @enderror"
+                                            value="{{ $task->name }}">
+                                    </div>
+                                    @error('name')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                    <div class="form-group">
+                                        <label for="name">Kelas</label>
+                                        <select class="form-select" name="class_room_id"
+                                            class="@error('class_room_id') is-invalid @enderror">
+                                            <option></option>
+                                            @foreach ($class_rooms as $class_room)
+                                                @if ($task->class_room_id == $class_room->id)
+                                                    <option value="{{ $class_room->id }}" selected>{{ $class_room->name }}
+                                                    </option>
+                                                @else
+                                                    <option value="{{ $class_room->id }}">{{ $class_room->name }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                        @error('class_room_id')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Kategori</label>
+                                        <select class="form-select" name="category" class="custom-select"
+                                            class="@error('category') is-invalid @enderror">
+                                            <option></option>
+                                            @foreach ($categories as $category)
+                                                @if ($task->category == $category)
+                                                    <option value="{{ $category }}" selected>{{ $category }}
+                                                    </option>
+                                                @else
+                                                    <option value="{{ $category }}">{{ $category }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                        @error('category')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <a class="btn btn-secondary" href="\task" role="button">Cancel</a>
+                                <button class="btn btn-success" type="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            @enderror
+            </div>
         </div>
-        <div class="form-group">
-            <label for="score">score</label>
-            <input type="number" name="score" id="score" class="form-control @error('score') is-invalid @enderror"
-                value="{{ $score->score }}">
-            @error('score')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-        <input type="hidden" name="score_id" value="{{ $score->id }}">
-        <input type="hidden" name="task_id" value="{{ $score->task_id }}">
-        <button type="submit" class="btn btn-primary">submit</button>
-    </form>
+    </div>
+    @include('partials.footer')
 @endsection

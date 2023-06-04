@@ -86,6 +86,7 @@
                                             <th>Tugas</th>
                                             <th>Tipe</th>
                                             <th>nilai</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody class="align-middle">
@@ -97,6 +98,10 @@
                                                 <td>{{ $score->task->name }}</td>
                                                 <td>{{ $score->task->category }}</td>
                                                 <td>{{ $score->score }}</td>
+                                                <td><button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                        data-bs-target="#ModalUbah{{ $score->id }}">
+                                                        <i class="bx bxs-edit"></i>
+                                                    </button></td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -106,19 +111,6 @@
                                     {{ $scores->links() }}
                                 </div>
                             </div>
-                            {{-- <div class="pagination-bar">
-                                <ul class="pagination pagination-success  justify-content-center">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -126,5 +118,36 @@
         </div>
     </div>
 
+    <!-- Modal -->
+    @foreach ($scores as $score)
+        <div class="modal fade" id="ModalUbah{{ $score->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Nilai Siswa</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="">
+                        <div class="modal-body">
+                            {{-- get student name --}}
+                            <p>Nama : {{ $score->student->name }}</p>
+                            {{-- input score --}}
+                            <div class="form-group">
+                                <label for="score">Ubah Nilai</label>
+                                <input type="text" name="score" id="score" class="form-control w-15"
+                                    value="{{ $score->score }}">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    {{-- score end --}}
     @include('partials.footer')
 @endsection

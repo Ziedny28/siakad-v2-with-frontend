@@ -31,7 +31,7 @@
 
                                         {{-- new with dependent select --}}
                                         <div class="mb-3">
-                                            <select class="form-select form-select-lg mb-3" id="class_room_id"
+                                            <select class="form-select" id="class_room_id"
                                                 name="class_room_id">
                                                 <option selected disabled>Select class Room</option>
                                                 @foreach ($class_rooms as $class_room)
