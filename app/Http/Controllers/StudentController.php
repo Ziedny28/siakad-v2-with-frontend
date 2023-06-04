@@ -19,9 +19,8 @@ class StudentController extends Controller
     public function index()
     {
         return view('admin.student.index', [
-            'students' => Student::all()->paginate(10),
+            'students' => Student::all(),
             'teachers'=> Teacher::all(),
-
         ]);
     }
 
@@ -31,7 +30,7 @@ class StudentController extends Controller
     public function create()
     {
         return view('admin.student.create', [
-            'class_rooms' => ClassRoom::all(),
+            'class_rooms' => ClassRoom::all()->sortBy('name'),
         ]);
     }
 
@@ -62,7 +61,7 @@ class StudentController extends Controller
         $student = Student::with('class_room')->findOrFail($student->id);
         return view('admin.student.edit', [
             'student' => $student,
-            'class_rooms' => ClassRoom::all(),
+            'class_rooms' => ClassRoom::all()->sortBy('name'),
         ]);
     }
 
@@ -91,7 +90,7 @@ class StudentController extends Controller
 
     public function studentByMajor($major){
         $class_rooms = ClassRoom::where('name', 'like' , '%'.$major.'%')->pluck('id');
-        $students = Student::whereIn('class_room_id',$class_rooms)->with('class_room')->paginate(20);
+        $students = Student::whereIn('class_room_id',$class_rooms)->with('class_room')->paginate(10);
         return view('admin.student.index', [
             'students' => $students,
             'teachers'=> Teacher::all(),

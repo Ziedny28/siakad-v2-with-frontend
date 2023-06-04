@@ -8,7 +8,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class TaskSeeder extends Seeder
 {
-    public $category =['Tugas','Quis','UTS','UAS'];
+    public $category =['task','daily_test','mid_test','final_test'];
     public $taskName = ['Membuat Rumus Kalkulus','Membuat Puisi','Mengerjakan exercise 10','Membuat Rangkuman','Membuat contoh soal','Mengerjakan soal','Mencari jenis-jenis Bola','Membuat Gamabar Anjing','Membuat Pesawat','Menghafal Alkitab','Evaluasi Mandiri'];
     /**
      * Run the database seeds.
