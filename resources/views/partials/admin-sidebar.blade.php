@@ -4,14 +4,14 @@
         <div id="sidebar">
             <!-- Logo -->
             <div class="logo">
-                <img src={{asset('assets/images/logo-man1.png')}} />
+                <img src={{ asset('assets/images/logo-man1.png') }} />
                 <h3>SIAKAD</h3>
                 <h5>MAN 1 Kota Malang</h5>
             </div>
 
             <ul class="side-menu">
                 <li>
-                    <a href="\dashboard-admin" class="{{ request()->is('dashboard-admin') ? 'active' : ''}}">
+                    <a href="\dashboard-admin" class="{{ request()->is('dashboard-admin') ? 'active' : '' }}">
                         <i class="bx bxs-dashboard icon"></i> Dashboard
                     </a>
                 </li>
@@ -41,7 +41,7 @@
                 <li class="divider" data-text="STARTER">CONTROL GURU</li>
 
                 <li>
-                    <a href="\teachers" class="{{ request()->is('teachers') ? 'active' : ''}}">
+                    <a href="\teachers" class="{{ request()->is('teachers') ? 'active' : '' }}">
                         <i class="bx bxs-user icon"></i>
                         Guru
                     </a>
@@ -51,9 +51,18 @@
                 <li class="divider" data-text="Pages">CONTROL MAPEL</li>
 
                 <li>
-                    <a href="\subjects" class="{{ request()->is('subjects') ? 'active' : ''}}">
+                    <a href="\subjects" class="{{ request()->is('subjects') ? 'active' : '' }}">
                         <i class="bx bx-columns icon"></i>
                         Mapel
+                    </a>
+                </li>
+                <!-- Divider-->
+                <li class="divider" data-text="Pages">CONTROL JADWAL</li>
+
+                <li>
+                    <a href="\schedule" class="{{ request()->is('schedule') ? 'active' : '' }}">
+                        <i class="bx bxs-spreadsheet icon"></i>
+                        Jadwal Kelas
                     </a>
                 </li>
             </ul>

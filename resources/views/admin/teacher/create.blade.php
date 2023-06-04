@@ -130,6 +130,11 @@
                                             </div>
                                         @enderror
                                     </div>
+                                    {{-- input jadwal mengajar --}}
+                                    {{-- <div class="form-group">
+                                        <label for="">Jadwal Mengajar</label>
+                                        <input class="form-control" type="file" name="" id="">
+                                    </div> --}}
                                 </div>
                             </div>
                             <div class="card-footer text-right">

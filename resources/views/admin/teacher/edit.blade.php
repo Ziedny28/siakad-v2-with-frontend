@@ -66,17 +66,6 @@
                                         @enderror
                                     </div>
 
-                                    {{-- apakah admin bisa ganti password teacher? --}}
-                                    {{-- <div class="form-group">
-                        <label for="password">password</label>
-                        <input type="password" name='password' id="password" class="form-control @error('password') is-invalid @enderror" value="{{$teacher->password}}">
-                        @error('password')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                    </div> --}}
-
                                     <div class="form-group">
                                         <label for="email">Email</label>
                                         <input type="email" name='email' id="email"
@@ -107,7 +96,11 @@
                                             </div>
                                         @enderror
                                     </div>
-
+                                    {{-- input jadwal mengajar --}}
+                                    {{-- <div class="form-group">
+                                        <label for="">Jadwal Mengajar</label>
+                                        <input class="form-control" type="file" name="" id="">
+                                    </div> --}}
                                     {{-- input kelas --}}
                                     <div class="form-group" id="class_access">
                                         <label for="">Akses kelas</label>
@@ -125,8 +118,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-2">
-                                                    <a class="btn btn-success" id="addColl" onclick="addColumn()">add
-                                                        row</a>
+                                                    <a class="btn btn-success" id="addColl" onclick="addColumn()"><i class='bx bx-plus' ></i></a>
                                                 </div>
                                             </div>
                                             @error('inputs[0][class_room_id]')
@@ -159,7 +151,7 @@
                                                     </div>
                                                     <div class="col-2">
                                                         <a class="btn btn-danger removeColl"
-                                                            onclick="removeColl({{ $i }})">remove column</a>
+                                                            onclick="removeColl({{ $i }})"><i class='bx bxs-trash-alt' ></i></a>
                                                     </div>
                                                 </div>
                                                 @error('inputs[{{ $i }}][class_room_id]')
