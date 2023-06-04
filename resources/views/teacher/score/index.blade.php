@@ -122,7 +122,7 @@
     @foreach ($scores as $score)
         <div class="modal fade" id="ModalUbah{{ $score->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Edit Nilai Siswa</h5>
@@ -130,14 +130,33 @@
                     </div>
                     <form action="">
                         <div class="modal-body">
-                            {{-- get student name --}}
-                            <p>Nama : {{ $score->student->name }}</p>
-                            {{-- input score --}}
-                            <div class="form-group">
-                                <label for="score">Ubah Nilai</label>
-                                <input type="text" name="score" id="score" class="form-control w-15"
-                                    value="{{ $score->score }}">
-                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+
+                                        <th>Nama</th>
+                                        <th>Kelas</th>
+                                        <th>Tugas</th>
+                                        <th>Tipe</th>
+                                        <th class="w-15">nilai</th>
+                                    </tr>
+                                </thead>
+                                <tbody class=" align-middle">
+                                    <tr>
+
+                                        <td>{{ $score->student->name }}</td>
+                                        <td>{{ $score->student->class_room->name }}</td>
+                                        <td>{{ $score->task->name }}</td>
+                                        <td>{{ $score->task->category }}</td>
+                                        <td>
+                                            <input type="text" name="score" id="score" class="form-control"
+                                                value="{{ $score->score }}">
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
