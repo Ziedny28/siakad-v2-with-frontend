@@ -23,7 +23,7 @@
                 <!-- Divider-->
                 <li class="divider" data-text="Atrana">CONTROL SISWA</li>
                 <li>
-                    <a href="#" class="{{ request()->is('student-schedule') ? 'active' : '' }}">
+                    <a href="/schedule" class="{{ request()->is('schedule') ? 'active' : '' }}">
                         <i class="bx bx-spreadsheet icon"></i>
                         Jadwal Siswa
                     </a>

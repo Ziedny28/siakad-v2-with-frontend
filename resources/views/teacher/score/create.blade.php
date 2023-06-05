@@ -25,8 +25,7 @@
 
                                         {{-- new with dependent select --}}
                                         <div class="mb-3">
-                                            <select class="form-select" id="class_room_id"
-                                                name="class_room_id">
+                                            <select class="form-select" id="class_room_id" name="class_room_id">
                                                 <option selected disabled>Select class Room</option>
                                                 @foreach ($class_rooms as $class_room)
                                                     <option value="{{ $class_room->id }}">{{ $class_room->name }}</option>
@@ -59,6 +58,13 @@
                                     </div>
 
                                     <div class="form-group">
+
+                                        @error('inputs.*.score')
+                                            <div class="alert alert-danger" role="alert">
+                                                perhatikan format nilai
+                                            </div>
+                                        @enderror
+
                                         <table class="table">
                                             <thead>
                                                 <tr>

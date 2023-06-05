@@ -17,7 +17,7 @@
                         </div>
                         <div class="card-body">
                             <div>
-                                <img src='{{asset('assets/images/jadwal-siswa.jpg')}}' class="img-fluid" alt="">
+                                <img src='{{ asset('assets/images/jadwal-siswa.jpg') }}' class="img-fluid" alt="">
                             </div>
                         </div>
                     </div>

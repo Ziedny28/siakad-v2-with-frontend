@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\ClassRoom;
 use App\Http\Requests\StoreClassRoomRequest;
 use App\Http\Requests\UpdateClassRoomRequest;
+use App\Models\Student;
+use App\Models\Teacher;
 
 class ClassRoomController extends Controller
 {
@@ -13,9 +15,11 @@ class ClassRoomController extends Controller
      */
     public function index()
     {
-        return view('admin.schedule.index', [
-            
-        ]);
+        $teacherCount = Teacher::all()->count();
+        $studentCount = Student::all()->count();
+        $students = Student::all();
+        $classRooms = ClassRoom::with('teacher')->get();
+        return view('admin.schedule.index', ['teacherCount' => $teacherCount, 'studentCount' => $studentCount, 'classRooms' => $classRooms, 'students' => $students]);
     }
 
     /**
@@ -26,12 +30,13 @@ class ClassRoomController extends Controller
         //
     }
 
+
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreClassRoomRequest $request)
     {
-        //
     }
 
     /**
@@ -47,7 +52,7 @@ class ClassRoomController extends Controller
      */
     public function edit(ClassRoom $classRoom)
     {
-        //
+        return view('admin.schedule.edit', compact('classRoom'));
     }
 
     /**

@@ -34,7 +34,6 @@
                                             3. pastikan file berukuran 800x800 pixel
                                         </li>
                                         <li>
-                                            {{-- input file .csv --}}
                                             <input type="file" name="file" id="file" class="form-control">
                                         </li>
                                     </ul>

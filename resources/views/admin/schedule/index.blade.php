@@ -68,17 +68,19 @@
                                             <th>#</th>
                                             <th>Kelas</th>
                                             <th>Nama Wali Kelas</th>
+                                            <th>Jadwal</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody class="align-middle">
-                                        @foreach ($students as $student)
+                                        @foreach ($classRooms as $classRoom)
                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $classRoom->name }}</td>
+                                                <td>{{ $classRoom->teacher->name }}</td>
+                                                <td>{{ $classRoom->schedule }}</td>
                                                 <td class="flex-col">
-                                                    <a href="#" class="btn btn-success"><i
+                                                    <a href="/uploadClassRoomImage" class="btn btn-success"><i
                                                             class='bx bx-edit'></i></a>
                                                 </td>
                                             </tr>

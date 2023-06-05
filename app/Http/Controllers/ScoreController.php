@@ -83,12 +83,9 @@ class ScoreController extends Controller
 
     public function store(Request $request)
     {
-
-        //get student id in this class
-
         $validated = $request->validate([
-            'inputs.*.score' => 'required',
-            'class_room_id' => 'required',
+            'inputs.*.score' => 'required|numeric|min:0|max:100',
+            'class_room_id' => 'required|exists:class_rooms,id',
             'task_id' => 'required',
         ]);
 

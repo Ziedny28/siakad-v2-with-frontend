@@ -40,11 +40,13 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/dashboard-admin', [DashboardController::class, 'admin']);
     route::resource('/teachers', TeacherController::class);
     route::resource('/students', StudentController::class);
-    route::resource('/student-schedule', ClassRoomController::class);
+    route::resource('/schedule', ClassRoomController::class);
     route::get('/students/major/{major}', [StudentController::class, 'studentByMajor']); // get classroom by jurusan
     route::resource('/subjects', SubjectController::class);
-    Route::view('undefined-fitur','admin.blank');
+    Route::view('undefined-fitur', 'admin.blank');
     route::view('/admin-profile', 'admin.my-profile');
+
+    // route::view('//uploadClassRoomImage', );
 });
 
 // page accessible for teacher
@@ -56,7 +58,7 @@ Route::middleware(['auth:teacher'])->group(function () {
     Route::get('/score-choose-edit', [ScoreController::class, 'chooseEdit']);
     Route::get('/score-choose-one/{id}', [ScoreController::class, 'editOne']);
     Route::resource('task', TaskController::class);
-    Route::view('undefined-fitur','teacher.blank');
+    Route::view('undefined-fitur', 'teacher.blank');
 
     route::view('/teacher-schedule', 'teacher.schedule.index');
     route::view('/teacher-profile', 'teacher.my-profile');
