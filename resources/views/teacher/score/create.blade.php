@@ -23,15 +23,9 @@
                                     <div class="form-group">
                                         <label for="class_room_id">Untuk Kelas :</label>
 
-                                        {{-- dummy --}}
-                                        {{-- <select class="form-select" name="class_room_id"
-                                            class="@error('class_room_id') is-invalid @enderror">
-                                            <option selected value="">Classroom</option>
-                                        </select> --}}
-
                                         {{-- new with dependent select --}}
                                         <div class="mb-3">
-                                            <select class="form-select form-select-lg mb-3" id="class_room_id"
+                                            <select class="form-select" id="class_room_id"
                                                 name="class_room_id">
                                                 <option selected disabled>Select class Room</option>
                                                 @foreach ($class_rooms as $class_room)
@@ -74,14 +68,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="student">
-                                                {{-- <tr>
-                                                    <td>1</td>
-                                                    <td>Nama</td>
-                                                    <td>
-                                                        <input type="text" name="score" id="score"
-                                                            class="form-control @error('score') is-invalid @enderror">
-                                                    </td>
-                                                </tr> --}}
                                             </tbody>
                                         </table>
                                     </div>

@@ -71,7 +71,7 @@
                                     </form>
                                 </div>
                                 <div class="btn btn-success mt-2">
-                                    <a href="/score/create">Insert Nilai</a>
+                                    <a href="/score/create">Update Nilai</a>
                                 </div>
                             </div>
                         </div>
@@ -86,6 +86,7 @@
                                             <th>Tugas</th>
                                             <th>Tipe</th>
                                             <th>nilai</th>
+                                            <th>action</th>
                                         </tr>
                                     </thead>
                                     <tbody class="align-middle">
@@ -97,6 +98,10 @@
                                                 <td>{{ $score->task->name }}</td>
                                                 <td>{{ $score->task->category }}</td>
                                                 <td>{{ $score->score }}</td>
+                                                <td><button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                        data-bs-target="#ModalId{{ $score->id }}">
+                                                        <i class="bx bxs-edit"></i>
+                                                    </button></td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -106,19 +111,6 @@
                                     {{ $scores->links() }}
                                 </div>
                             </div>
-                            {{-- <div class="pagination-bar">
-                                <ul class="pagination pagination-success  justify-content-center">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -126,5 +118,59 @@
         </div>
     </div>
 
+    @foreach ($scores as $score)
+        <div class="modal fade" id="ModalId{{ $score->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="">
+                        <div class="modal-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nama</th>
+                                        <th>Kelas</th>
+                                        <th>Tugas</th>
+                                        <th>Tipe</th>
+                                        <th class="w-15">nilai</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="align-middle">
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $score->student->name }}</td>
+                                        <td>{{ $score->student->class_room->name }}</td>
+                                        <td>{{ $score->task->name }}</td>
+                                        <td>{{ $score->task->category }}</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="number" name="score" id="score" class="form-control @error('score') is-invalid @enderror"
+                                                    value="{{ $score->score }}">
+                                                @error('score')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+
+                                        </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
     @include('partials.footer')
 @endsection
