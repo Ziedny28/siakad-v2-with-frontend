@@ -16,7 +16,7 @@
                         <div class="card-header">
                             <h4>Create Data Guru </h4>
                         </div>
-                        <form action="">
+                        <form action="{{ route('teacher.import') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="col-md-6">
@@ -49,6 +49,7 @@
                             <div class="card-footer text-right">
                                 <a class="btn btn-secondary" href="/students/major/mipa" role="button">Cancel</a>
                                 <button class="btn btn-success" type="submit">Submit</button>
+
                             </div>
                         </form>
                         <form action="/teachers" method="post">

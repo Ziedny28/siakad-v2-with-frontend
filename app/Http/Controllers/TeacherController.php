@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Requests\UpdateTeacherRequest;
+use App\Imports\TeacherImport;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TeacherController extends Controller
 {
@@ -98,7 +100,7 @@ class TeacherController extends Controller
 
         // gantikan data lama dengan data baru
         DB::table('teacher_class_room')->where('teacher_id', $teacher->id)->delete();
-        foreach($class_room['inputs'] as $class_room_id){
+        foreach ($class_room['inputs'] as $class_room_id) {
             DB::table('teacher_class_room')->insert([
                 'class_room_id' => $class_room_id['class_room_id'],
                 'teacher_id' => $teacher->id,
@@ -112,7 +114,8 @@ class TeacherController extends Controller
         return redirect()->route('teachers.index')->with('success', 'Teacher updated successfully');
     }
 
-    public function getTeacherData(Request $teacherRequest){
+    public function getTeacherData(Request $teacherRequest)
+    {
         $teacherRules = new UpdateTeacherRequest;
         $teacherRules = $teacherRules->rules();
         return $teacherRequest->validate($teacherRules);
@@ -124,5 +127,15 @@ class TeacherController extends Controller
     public function destroy(Teacher $teacher)
     {
         //
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    // importing
+    public function import()
+    {
+        Excel::import(new TeacherImport, request()->file('file'));
+        return back();
     }
 }

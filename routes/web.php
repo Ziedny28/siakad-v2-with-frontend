@@ -47,6 +47,9 @@ Route::middleware(['auth:admin'])->group(function () {
     route::view('/admin-profile', 'admin.my-profile');
 
     // route::view('//uploadClassRoomImage', );
+
+    // import
+    route::post('/teacher-import', [TeacherController::class, 'import'])->name('teacher.import');
 });
 
 // page accessible for teacher
