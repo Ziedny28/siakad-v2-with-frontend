@@ -3,16 +3,18 @@
 use App\Models\Task;
 use App\Models\Score;
 use App\Models\Teacher;
+use App\Models\ClassRoom;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ClassRoomTaskController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ClassRoomTaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,15 +74,29 @@ Route::middleware(['auth:student'])->group(function () {
     Route::get('/student-task', function () {
         $task = Task::with('teacher.subject')->where('class_room_id', Auth::user()->class_room_id)
             ->orderBy('teacher_id')->paginate(10);
+
+        // topboxes
+        $scoreAvg = Score::where('student_id', Auth::user()->id)->avg('score'); //getting average score of this student
+        $taskCount = Task::where('class_room_id', Auth::user()->class_room_id)->count();
+
+
         // $tasks = Task::with('teacher.subject')->where('class_room_id', $student->class_room_id)->get(); //getting tasks data of this student
-        return view('student.task.index', ['tasks' => $task]);
+        return view('student.task.index', ['tasks' => $task, 'taskCount' => $taskCount, 'scoreAvg' => $scoreAvg]);
     });
 
     Route::get('/student-score', function () {
+        // dd(Auth::user()->class_room_id);
         $score = Score::with('task.teacher.subject')->where('student_id', Auth::user()->id)->orderBy('task_id')->paginate(10);
         // $scores = Score::with('task.teacher.subject')->where('student_id', $student_id)->get(); //getting score data of this student
-        return view('student.score.index', ['scores' => $score]);
+
+        // topboxes
+        $scoreAvg = Score::where('student_id', Auth::user()->id)->avg('score'); //getting average score of this student
+        $taskCount = Task::where('class_room_id', Auth::user()->class_room_id)->count();
+
+        return view('student.score.index', ['scores' => $score, 'taskCount' => $taskCount, 'scoreAvg' => $scoreAvg]);
     });
+
+    route::view('/student-schedule', 'student.schedule.index');
 });
 
 // page accessible for all

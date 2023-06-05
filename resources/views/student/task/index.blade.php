@@ -16,7 +16,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Tugas</p>
-                                    <h5>must edit</h5>
+                                    <h5>{{ $taskCount }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Nilai Rata-rata</p>
-                                    <h5>must edit</h5>
+                                    <h5>{{ $scoreAvg }}</h5>
                                 </div>
                             </div>
                         </div>

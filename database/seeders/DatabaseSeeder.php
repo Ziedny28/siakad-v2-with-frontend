@@ -33,6 +33,5 @@ class DatabaseSeeder extends Seeder
         $this->call([TeacherClassRoomSeeder::class,]);
         $this->call([TaskSeeder::class,]);
         $this->call([ScoreSeeder::class,]);
-
     }
 }

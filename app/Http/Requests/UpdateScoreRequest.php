@@ -25,6 +25,7 @@ class UpdateScoreRequest extends FormRequest
             'task_id' => 'required|exists:tasks,id',
             'student_id' => 'required|exists:students,id',
             'score' => 'required|numeric|min:0|max:100',
+            'id' => 'required|exists:scores,id',
         ];
     }
 }

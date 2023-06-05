@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreScoreRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\UpdateScoreRequest;
 
 class ScoreController extends Controller
@@ -35,6 +36,7 @@ class ScoreController extends Controller
         */
         $class_rooms = Teacher::findOrFail($teacher_id);
         $class_rooms = $class_rooms->class_rooms;
+
 
 
         return view('teacher.score.index', ['scores' => $scores, 'class_rooms' => $class_rooms]);
@@ -146,11 +148,11 @@ class ScoreController extends Controller
      */
     public function update(UpdateScoreRequest $request, Score $score)
     {
-
         $data = $request->validated();
         $score->fill($data);
         $score->save();
-        return redirect()->route('score.index')->with('success', 'Score updated successfully');
+        Alert::success('Success', 'Score updated successfully');
+        return redirect()->route('score.index');
     }
 
     /**

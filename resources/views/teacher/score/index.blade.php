@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Tugas</p>
-                                    <h5>must edit</h5>
+                                    <h5>{{}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -43,8 +43,8 @@
                                     <i class="bx bxs-graduation icon-home bg-success text-light"></i>
                                 </div>
                                 <div class="col-8">
-                                    <p>Jumlah Siswa</p>
-                                    <h5>must edit</h5>
+                                    <p>Rata Nilai</p>
+                                    <h5>{{}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -127,7 +127,9 @@
                         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="">
+                    <form action="/score/{{ $score->id }}" method="post">
+                        @csrf
+                        @method('patch')
                         <div class="modal-body">
                             <table class="table">
                                 <thead>
@@ -149,7 +151,8 @@
                                         <td>{{ $score->task->category }}</td>
                                         <td>
                                             <div class="form-group">
-                                                <input type="number" name="score" id="score" class="form-control @error('score') is-invalid @enderror"
+                                                <input type="number" name="score" id="score"
+                                                    class="form-control @error('score') is-invalid @enderror"
                                                     value="{{ $score->score }}">
                                                 @error('score')
                                                     <div class="invalid-feedback">
@@ -157,17 +160,21 @@
                                                     </div>
                                                 @enderror
 
-                                        </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+
+                        <input type="hidden" name="id" value="{{ $score->id }}">
+                        <input type="hidden" name="student_id" value="{{ $score->student_id }}">
+                        <input type="hidden" name="task_id" value="{{ $score->task_id }}">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
                     </form>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
                 </div>
             </div>
         </div>
