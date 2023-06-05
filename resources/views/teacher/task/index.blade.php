@@ -42,7 +42,7 @@
                                     <i class="bx bxs-graduation icon-home bg-success text-light"></i>
                                 </div>
                                 <div class="col-8">
-                                    <p>Jumlah Siswa</p>
+                                    <p>Siswa</p>
                                     <h5>must edit</h5>
                                 </div>
                             </div>
@@ -105,21 +105,8 @@
                                     {{-- paginator --}}
                                     {{ $tasks->links() }}
                                 </div>
-
                             </div>
-                            {{-- <div class="pagination-bar">
-                                <ul class="pagination pagination-success  justify-content-center">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </div> --}}
+
                         </div>
                     </div>
                 </div>

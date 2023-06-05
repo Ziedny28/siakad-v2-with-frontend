@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\StudentController;
@@ -39,11 +40,11 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/dashboard-admin', [DashboardController::class, 'admin']);
     route::resource('/teachers', TeacherController::class);
     route::resource('/students', StudentController::class);
+    route::resource('/student-schedule', ClassRoomController::class);
     route::get('/students/major/{major}', [StudentController::class, 'studentByMajor']); // get classroom by jurusan
     route::resource('/subjects', SubjectController::class);
-    Route::get('undefined-fitur', function () {
-        return view('admin.blank');
-    });
+    Route::view('undefined-fitur','admin.blank');
+    route::view('/admin-profile', 'admin.my-profile');
 });
 
 // page accessible for teacher
@@ -55,10 +56,10 @@ Route::middleware(['auth:teacher'])->group(function () {
     Route::get('/score-choose-edit', [ScoreController::class, 'chooseEdit']);
     Route::get('/score-choose-one/{id}', [ScoreController::class, 'editOne']);
     Route::resource('task', TaskController::class);
-    Route::get('undefined-fitur', function () {
-        return view('teacher.blank');
-    });
+    Route::view('undefined-fitur','teacher.blank');
 
+    route::view('/teacher-schedule', 'teacher.schedule.index');
+    route::view('/teacher-profile', 'teacher.my-profile');
 
     // route for ajax requests
     Route::get('getClassRoom', [ScoreController::class, 'getClassRoom'])->name('getClassRoom');
@@ -97,6 +98,7 @@ Route::middleware(['auth:student'])->group(function () {
     });
 
     route::view('/student-schedule', 'student.schedule.index');
+    route::view('/student-profile', 'student.my-profile');
 });
 
 // page accessible for all

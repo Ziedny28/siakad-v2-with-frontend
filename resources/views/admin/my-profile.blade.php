@@ -7,7 +7,7 @@
     <div class="content-start transition">
         <div class="container-fluid dashboard">
             <div class="content-header">
-                <h1>Profile Admin</h1>
+                <h1>Profile Admin</h1>x`
             </div>
             <div class="row">
                 <div class="col-md-12">

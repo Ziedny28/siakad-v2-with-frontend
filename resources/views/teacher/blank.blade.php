@@ -1,6 +1,5 @@
    @extends('layouts.main')
    @section('content')
-
        @include('partials.admin-topbar')
        @include('partials.teacher-sidebar')
 
@@ -15,8 +14,11 @@
                    <div class="col-md-12">
                        <div class="card">
                            <div class="card-header">
-                               <h4>Fitur ini akan dikembangkan jika kami ada waktu</h4>
-                               <p><a href="/login">Login instead</a></p>
+                            <p>fitur akan dikembangkan jika kami ada waktu</p>
+                           </div>
+                           <div class="card-body">
+                               <img src='{{ asset('assets/images/development-features.png') }}'
+                                   class="img-fluid" alt="">
                            </div>
                        </div>
                    </div>

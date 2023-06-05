@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Tugas</p>
-                                    <h5>{{}}</h5>
+                                    <h5></h5>
                                 </div>
                             </div>
                         </div>
@@ -43,8 +43,8 @@
                                     <i class="bx bxs-graduation icon-home bg-success text-light"></i>
                                 </div>
                                 <div class="col-8">
-                                    <p>Rata Nilai</p>
-                                    <h5>{{}}</h5>
+                                    <p>Jumlah Siswa</p>
+                                    <h5></h5>
                                 </div>
                             </div>
                         </div>

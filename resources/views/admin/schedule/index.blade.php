@@ -7,7 +7,7 @@
     <div class="content-start transition">
         <div class="container-fluid dashboard">
             <div class="content-header">
-                <h1>Manajemen Data Mata Pelajaran</h1>
+                <h1>Manajemen Siswa Jurusan Mipa</h1>
                 <p></p>
             </div>
 
@@ -21,7 +21,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Guru</p>
-                                    <h5>{{ $teachers->count() }}</h5>
+                                    <h5>{{ $teacherCount }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Siswa</p>
-                                    <h5>{{ $students->count() }}</h5>
+                                    <h5>{{ $studentCount }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Data Mata Pelajaran</h4>
+                            <h4>Data Siswa Mipa</h4>
                             <p></p>
                             <div class="card-menu">
                                 <div class="search-bar">
@@ -58,9 +58,6 @@
                                         </button>
                                     </form>
                                 </div>
-                                <div class="btn btn-success mt-2">
-                                    <a href="/subjects/create">Create New Mapel</a>
-                                </div>
                             </div>
                         </div>
                         <div class="card-body">
@@ -68,37 +65,26 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th class="w-15">#</th>
-                                            <th class="w-25">Nama Mapel</th>
-                                            <th class="w-25">Deskripsi</th>
-                                            <th class="w-25">Action</th>
+                                            <th>#</th>
+                                            <th>Kelas</th>
+                                            <th>Nama Wali Kelas</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody class="align-middle">
-                                        @foreach ($subjects as $subject)
+                                        @foreach ($students as $student)
                                             <tr>
-                                                <td>{{ $subject->id }}</td>
-                                                <td>{{ $subject->name }}</td>
-                                                <td>
-                                                    {{ $subject->description }}
-                                                </td>
-                                                <td>
-                                                    <a href="/subjects/{{ $subject->id }}/edit" class="btn btn-success"><i
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td class="flex-col">
+                                                    <a href="#" class="btn btn-success"><i
                                                             class='bx bx-edit'></i></a>
-                                                    <form action="/subjects/{{ $subject->id }}" method="post">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button type="submit" class="btn btn-danger"><i
-                                                                class='bx bxs-trash-alt'></i></button>
-                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <div class="pagination">
-                                    {{ $subjects->links() }}
-                                </div>
                             </div>
                         </div>
                     </div>

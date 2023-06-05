@@ -16,7 +16,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/student-profile" class="{{ request()->is('student-profile') ? 'active' : '' }}">
                         <i class="bx bxs-user icon"></i> My Profile
                     </a>
                 </li>

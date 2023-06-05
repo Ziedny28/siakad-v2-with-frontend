@@ -13,7 +13,9 @@ class ClassRoomController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.schedule.index', [
+            
+        ]);
     }
 
     /**
