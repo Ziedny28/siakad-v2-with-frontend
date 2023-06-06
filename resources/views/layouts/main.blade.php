@@ -15,11 +15,21 @@
     {{-- jquery --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+    {{-- select2 --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    {{-- other styles --}}
+    <style>
+        .select2-dropdown.increasezindex {
+            z-index: 99999;
+        }
+    </style>
 </head>
 
 <body>
     @yield('content')
     @include('sweetalert::alert')
+
     <!-- bootstrap js -->
     <script src="/assets/modules/jquery/jquery.min.js"></script>
     <script src="/assets/modules/bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>

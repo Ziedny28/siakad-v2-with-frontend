@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AjaxRequestController;
 use App\Models\Task;
 use App\Models\Score;
 use App\Models\Teacher;
@@ -70,6 +71,10 @@ Route::middleware(['auth:teacher'])->group(function () {
     Route::get('getClassRoom', [ScoreController::class, 'getClassRoom'])->name('getClassRoom');
     Route::get('getTasks', [ScoreController::class, 'getTasks'])->name('getTasks');
     Route::get('getStudents', [ScoreController::class, 'getStudents'])->name('getStudents');
+
+    // new ajax request with select 2
+    Route::get('selectClassRoom', [AjaxRequestController::class, 'classRoom'])->name('classRoom.ajaxrequest');
+    Route::get('selectTask/{id}', [AjaxRequestController::class, 'task'])->name('task.ajaxrequest');
 });
 
 

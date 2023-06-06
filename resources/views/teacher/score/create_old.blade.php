@@ -3,7 +3,6 @@
     @include('partials.teacher-sidebar')
     @include('partials.admin-topbar')
 
-
     <div class="content-start transition">
         <div class="container-fluid dashboard">
             <div class="content-header">
@@ -22,13 +21,15 @@
                             <div class="card-body">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="class_room">Untuk Kelas :</label>
+                                        <label for="class_room_id">Untuk Kelas :</label>
 
-                                        {{-- new with select2 --}}
-
+                                        {{-- new with dependent select --}}
                                         <div class="mb-3">
-                                            <select class="form-select" id="class_room" name="class_room_id" style="">
-
+                                            <select class="form-select" id="class_room_id" name="class_room_id">
+                                                <option selected disabled>Select class Room</option>
+                                                @foreach ($class_rooms as $class_room)
+                                                    <option value="{{ $class_room->id }}">{{ $class_room->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
 
@@ -41,9 +42,9 @@
 
                                     <div class="form-group">
                                         <label for="">Nama Tugas :</label>
-                                        <select class="form-select @error('task_id') is-invalid @enderror" name="task_id"
-                                            id="task_id">
-
+                                        <select class="form-select @error('name') is-invalid @enderror" name="task_id"
+                                            id="task">
+                                            <option selected value="">List Tugas</option>
                                         </select>
                                         @error('task_id')
                                             <div class="invalid-feedback">
@@ -91,29 +92,49 @@
     </div>
     @include('partials.footer')
 
-    {{-- select2 --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
-
-    {{-- Dependent dropdown with select2 --}}
-    <script>
+    {{-- Dependent dropdown --}}
+    <script type="text/javascript">
         $(document).ready(function() {
-            $('#class_room').select2({
-                placeholder: 'Pilih Kelas',
-                ajax: {
-                    url: "{{ route('classRoom.ajaxrequest') }}",
-                    processResults: function(data) {
-                        return {
-                            results: $.map(data, function(item) {
-                                console.log(item);
-                                return {
-                                    id: item.id,
-                                    text: item.name
-                                }
-                            })
-                        }
+            $('#class_room_id').on('change', function() { //ketika kelas dipilih
+                var class_room_id = this.value; //mengambil id kelas
+                $('#task').html('');
+                $("#student").html('');
+                $.ajax({
+                    url: '{{ route('getTasks') }}?class_room_id=' + class_room_id,
+                    type: 'get',
+                    // if success
+                    success: function(res) {
+                        $('#task').html('<option value="">Select Task</option>');
+                        $.each(res, function(key, value) {
+                            $('#task').append('<option value="' + value
+                                .id + '">' + value.name + '</option>');
+                        });
                     }
-                }
-            })
+                });
+                $.ajax({
+                    url: '{{ route('getStudents') }}?class_room_id=' + class_room_id,
+                    type: 'get',
+                    // if success
+                    success: function(res) {
+                        $('#student').html('');
+                        let i = 0;
+                        $.each(res, function(key, value) {
+                            $('#student')
+                                .append(`<tr>
+                                        <td>1</td>
+                                        <td>${value.name}</td>
+                                        <td>
+                                            <input type="text" name="inputs[${i}][score]" id="score"
+                                                class="form-control @error('score') is-invalid @enderror">
+                                        </td>
+                                    </tr>`);
+
+                            i++;
+                        });
+                    }
+                });
+
+            });
         });
     </script>
 @endsection
