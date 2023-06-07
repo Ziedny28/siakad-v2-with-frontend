@@ -17,7 +17,7 @@
                             @csrf
                             @method('PUT')
                             <div class="card-header">
-                                <h4>Create Data Mapel </h4>
+                                <h4>Edit Data Mapel</h4>
                             </div>
                             <div class="card-body">
                                 <div class="col-md-6">
@@ -30,7 +30,7 @@
                                     <div class="form-group">
                                         <label for="ni">Deskripsi :</label>
                                         <textarea type="text" name='description' id="description"
-                                            class="form-control @error('address') is-invalid @enderror">
+                                            class="form-control">
                                             {{ $subject->description }}
                                         </textarea>
                                     </div>
@@ -38,7 +38,7 @@
                             </div>
                             <input type="hidden" name="id" value="{{ $subject->id }}">
                             <div class="card-footer text-right">
-                                <a class="btn btn-secondary" href="/students" role="button">Cancel</a>
+                                <a class="btn btn-secondary" href="\subjects" role="button">Cancel</a>
                                 <button class="btn btn-success" type="submit">Submit</button>
                             </div>
                         </form>

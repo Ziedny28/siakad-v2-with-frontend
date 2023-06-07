@@ -70,8 +70,8 @@
                                         <tr>
                                             <th class="w-15">#</th>
                                             <th class="w-25">Nama Mapel</th>
-                                            <th class="w-25">Deskripsi</th>
-                                            <th class="w-25">Action</th>
+                                            <th class="w-50">Deskripsi</th>
+                                            <th class="w-15">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody class="align-middle">

@@ -53,6 +53,7 @@
                                                 <th>No.</th>
                                                 <th>Mata Pelajaran</th>
                                                 <th>Guru</th>
+                                                <th>Tugas</th>
                                                 <th>Tipe</th>
                                                 <th>Nilai</th>
                                             </tr>
@@ -60,19 +61,14 @@
                                         <tbody>
                                             <?php $prevData = ''; ?>
                                             @foreach ($scores as $score)
-                                                {{-- @if ($prevData != $score->task->teacher->subject->name)
-                                                    <tr>
-                                                        <th>
-                                                            {{ $score->task->teacher->subject->name }}
-
-                                                        </th>
-                                                    </tr>
-                                                @endif --}}
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $score->task->teacher->subject->name }}</td>
                                                     <td>{{ $score->task->teacher->name }}</td>
-                                                    <td>{{ $score->task->category }}</td>
+                                                    <td>{{ $score->task->name }}</td>
+                                                    <td>@php
+                                                        echo str_replace('_', ' ', $score->task->category);
+                                                    @endphp </td>
                                                     <td>{{ $score->score }}</td>
                                                 </tr>
                                                 <?php $prevData = $score->task->teacher->subject->name; ?>
@@ -84,22 +80,7 @@
                                         {{-- paginator --}}
                                         {{ $scores->links() }}
                                     </div>
-
-
                                 </div>
-                                {{-- <div class="pagination-bar">
-                                    <ul class="pagination pagination-success  justify-content-center">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Next</a>
-                                        </li>
-                                    </ul>
-                                </div> --}}
                             </div>
 
                         </div>

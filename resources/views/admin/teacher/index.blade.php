@@ -72,7 +72,7 @@
                                             <th>NIG</th>
                                             <th class="w-15">Nama</th>
                                             <th class="w-25">Alamat</th>
-                                            <th>TTL</th>
+                                            <th>Email</th>
                                             <th class="w-15">Mapel</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -84,7 +84,7 @@
                                                 <td>{{ $teacher->ni }}</td>
                                                 <td>{{ $teacher->name }}</td>
                                                 <td>{{ $teacher->address }}</td>
-                                                <td>{{ $teacher->pob }}</td>
+                                                <td>{{ $teacher->email }}</td>
                                                 <td>{{ $teacher->subject->name }}</td>
                                                 <td><a href="/teachers/{{ $teacher->id }}/edit" class="btn btn-success"><i
                                                             class='bx bx-edit'></i></a>

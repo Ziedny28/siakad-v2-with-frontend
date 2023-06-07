@@ -71,8 +71,7 @@
                                             <th>#</th>
                                             <th>Nis</th>
                                             <th>Nama</th>
-                                            <th class="w-25">Alamat</th>
-                                            <th>TTL</th>
+                                            <th>Alamat</th>
                                             <th>Kelas</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -84,7 +83,6 @@
                                                 <td>{{ $student->ni }}</td>
                                                 <td>{{ $student->name }}</td>
                                                 <td>{{ $student->address }}</td>
-                                                <td>{{ $student->pob }}</td>
                                                 <td>{{ $student->class_room->name }}</td>
                                                 <td class="flex-col">
                                                     <a href="/students/{{ $student->id }}/edit" class="btn btn-success"><i

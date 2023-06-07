@@ -9,8 +9,8 @@
                     Modified
                     <span class="text-danger">
                         <i class="fa fa-face-smile"></i> by
-                        <a href="#" class="author-footer">
-                            Muhamad Syaroful Anam
+                        <a href="https://www.behance.net/Syaroful/projects" class="author-footer">
+                            kelompok 5
                         </a>
                     </span>
                 </p>

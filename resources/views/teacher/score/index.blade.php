@@ -71,7 +71,7 @@
                                     </form>
                                 </div>
                                 <div class="btn btn-success mt-2">
-                                    <a href="/score/create">Update Nilai</a>
+                                    <a href="/score/create">Input Nilai</a>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +96,10 @@
                                                 <td>{{ $score->student->name }}</td>
                                                 <td>{{ $score->student->class_room->name }}</td>
                                                 <td>{{ $score->task->name }}</td>
-                                                <td>{{ $score->task->category }}</td>
+                                                <td>@php
+                                                    echo str_replace('_', ' ', $score->task->category);
+                                                @endphp
+                                                </td>
                                                 <td>{{ $score->score }}</td>
                                                 <td><button type="button" class="btn btn-success" data-bs-toggle="modal"
                                                         data-bs-target="#ModalId{{ $score->id }}">
@@ -124,7 +127,7 @@
             <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Nilai Siswa</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form action="/score/{{ $score->id }}" method="post">
@@ -148,7 +151,10 @@
                                         <td>{{ $score->student->name }}</td>
                                         <td>{{ $score->student->class_room->name }}</td>
                                         <td>{{ $score->task->name }}</td>
-                                        <td>{{ $score->task->category }}</td>
+                                        <td>@php
+                                            echo str_replace('_', ' ', $score->task->category);
+                                        @endphp
+                                        </td>
                                         <td>
                                             <div class="form-group">
                                                 <input type="number" name="score" id="score"
@@ -172,7 +178,7 @@
                         <input type="hidden" name="task_id" value="{{ $score->task_id }}">
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-success">Save changes</button>
                         </div>
                     </form>
                 </div>

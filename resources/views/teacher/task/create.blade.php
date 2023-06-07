@@ -17,7 +17,7 @@
                         <form action="/task" method="post">
                             @csrf
                             <div class="card-header">
-                                <h4>Edit Data Tugas </h4>
+                                <h4>Membuat Data Tugas </h4>
                             </div>
                             <div class="card-body">
                                 <div class="col-md-6">

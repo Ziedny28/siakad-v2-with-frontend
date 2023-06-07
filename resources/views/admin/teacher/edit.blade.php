@@ -114,19 +114,9 @@
 
                                         <div class="class_room">
                                             <div class="row">
-                                                <div class="col-10">
-                                                    <select class="form-select" name="inputs[0][class_room_id]"
-                                                        id="inputs[0][class_room_id]"
-                                                        class="form-control @error('inputs[0][class_room_id]') is-invalid @enderror">
-                                                        @foreach ($class_rooms as $class_room)
-                                                            <option value="{{ $class_room->id }}">{{ $class_room->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
+
                                                 <div class="col-2">
-                                                    <a class="btn btn-success" id="addColl" onclick="addColumn()">add
-                                                        row</a>
+                                                    <a class="btn btn-success" id="addColl" onclick="addColumn()"><i class="bx bx-plus"></i> Tambahkan akses kelas </a>
                                                 </div>
                                             </div>
                                             @error('inputs[0][class_room_id]')
@@ -142,12 +132,11 @@
                                     {{-- dikasih isset, soalnya bisa saja datanya null/tidak ada ketika guru pertama dibuat --}}
                                     @isset($assigned_class_rooms)
                                         @foreach ($assigned_class_rooms as $assigned_class_room)
-                                            <div class="class_room" id="class_room_{{$i}}">
+                                            <div class="class_room" id="class_room_{{ $i }}">
                                                 <div class="row">
                                                     <div class="col-10">
                                                         <select class="form-select"
                                                             name="inputs[{{ $i }}][class_room_id]"
-
                                                             class="form-control @error('inputs[{{ $i }}][class_room_id]') is-invalid @enderror">
                                                             @foreach ($all_class_rooms as $class_room)
                                                                 <option value="{{ $class_room->id }}"
@@ -159,7 +148,7 @@
                                                     </div>
                                                     <div class="col-2">
                                                         <a class="btn btn-danger removeColl"
-                                                            onclick="removeColl({{ $i }})">remove column</a>
+                                                            onclick="removeColl({{ $i }})"><i class="bx bxs-trash-alt"></i></a>
                                                     </div>
                                                 </div>
                                                 @error('inputs[{{ $i }}][class_room_id]')
@@ -169,34 +158,33 @@
                                                 @enderror
                                             </div>
                                             @php
-                                            $i++
+                                                $i++;
                                             @endphp
-
                                         @endforeach
                                     @endisset
 
                                     <input type="hidden" name="password" value="{{ $teacher->password }}">
                                     <input type="hidden" name="id" value="{{ $teacher->id }}">
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="card-footer text-right">
-                            <a class="btn btn-secondary" href="teachers" role="button">Cancel</a>
-                            <button class="btn btn-success" type="submit">Submit</button>
-                        </div>
-                    </form>
+                            <div class="card-footer text-right">
+                                <a class="btn btn-secondary" href="\teachers" role="button">Cancel</a>
+                                <button class="btn btn-success" type="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    let i = {{$i}};
+    <script>
+        let i = {{ $i }};
 
-    function addColumn(selectedValue = "") {
-        $('#class_access').append(
-            `
+        function addColumn(selectedValue = "") {
+            $('#class_access').append(
+                `
                 <div class="class_room" id="class_room_` + i + `">
                                             <div class="row">
                                                 <div class="col-10">
@@ -221,17 +209,17 @@
                                             @enderror
                                         </div>
                 `
-        )
-        i++;
-    }
+            )
+            i++;
+        }
 
 
-    function removeColl(index) {
-        console.log("remove");
-        let col_item = $(`#class_room_${index}`);
-        console.log(col_item);
-        $(col_item).remove();
-    }
-</script>
-@include('partials.footer')
+        function removeColl(index) {
+            console.log("remove");
+            let col_item = $(`#class_room_${index}`);
+            console.log(col_item);
+            $(col_item).remove();
+        }
+    </script>
+    @include('partials.footer')
 @endsection

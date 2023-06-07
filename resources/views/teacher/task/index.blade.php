@@ -42,7 +42,7 @@
                                     <i class="bx bxs-graduation icon-home bg-success text-light"></i>
                                 </div>
                                 <div class="col-8">
-                                    <p>Siswa</p>
+                                    <p>Jumlah Siswa</p>
                                     <h5>must edit</h5>
                                 </div>
                             </div>

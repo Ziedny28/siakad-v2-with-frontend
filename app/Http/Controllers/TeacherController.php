@@ -7,13 +7,14 @@ use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\ClassRoom;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\StoreTeacherRequest;
-use App\Http\Requests\UpdateTeacherRequest;
 use App\Imports\TeacherImport;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\StoreTeacherRequest;
+use App\Http\Requests\UpdateTeacherRequest;
 
 class TeacherController extends Controller
 {
@@ -137,6 +138,7 @@ class TeacherController extends Controller
     public function import()
     {
         Excel::import(new TeacherImport, request()->file('file'));
+        Alert::success('Success', 'Teacher imported successfully');
         return back();
     }
 }

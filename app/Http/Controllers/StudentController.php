@@ -22,7 +22,7 @@ class StudentController extends Controller
     public function index()
     {
         return view('admin.student.index', [
-            'students' => Student::all(),
+            'students' => Student::all()->with('class_room')->sortBy('name'),
             'teachers' => Teacher::all(),
         ]);
     }
@@ -106,6 +106,7 @@ class StudentController extends Controller
     function import()
     {
         Excel::import(new StudentImport, request()->file('file'));
+        Alert()->success('Success', 'Student imported successfully');
         return back();
     }
 }

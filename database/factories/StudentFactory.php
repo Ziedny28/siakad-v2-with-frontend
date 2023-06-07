@@ -22,6 +22,7 @@ class StudentFactory extends Factory
             'name' => $this->faker->name,
             'address' => $this->faker->address,
             'pob' => $this->faker->city.", ".$this->faker->date('Y-m-d'),
+            'email' => $this->faker->unique()->safeEmail,
             'password' => Hash::make('password'),
             'class_room_id' => $this->faker->numberBetween(1, 48),
         ];

@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                             <div class="card-footer text-right">
-                                <a class="btn btn-secondary" href="students" role="button">Cancel</a>
+                                <a class="btn btn-secondary" href="\subjects" role="button">Cancel</a>
                                 <button class="btn btn-success" type="submit">Submit</button>
                             </div>
                         </form>
