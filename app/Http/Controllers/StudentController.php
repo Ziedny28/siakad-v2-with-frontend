@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Teacher;
 use App\Models\ClassRoom;
+use App\Imports\StudentImport;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
-use App\Models\Teacher;
-use Illuminate\Support\Facades\DB;
-use RealRashid\SweetAlert\Facades\Alert;
+
 
 class StudentController extends Controller
 {
@@ -98,5 +101,11 @@ class StudentController extends Controller
             'teacherCount' => Teacher::count(), //counting all teachers
             'studentCount' => Student::count(),
         ]);
+    }
+
+    function import()
+    {
+        Excel::import(new StudentImport, request()->file('file'));
+        return back();
     }
 }

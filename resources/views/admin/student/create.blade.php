@@ -16,7 +16,7 @@
                         <div class="card-header">
                             <h4>Create Data Siswa </h4>
                         </div>
-                        <form action="">
+                        <form action="{{ route('student.import') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="col-md-6">

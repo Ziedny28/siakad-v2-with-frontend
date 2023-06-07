@@ -51,6 +51,7 @@ Route::middleware(['auth:admin'])->group(function () {
 
     // import
     route::post('/teacher-import', [TeacherController::class, 'import'])->name('teacher.import');
+    route::post('/student-import', [StudentController::class, 'import'])->name('student.import');
 });
 
 // page accessible for teacher
