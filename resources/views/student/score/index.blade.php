@@ -53,6 +53,7 @@
                                                 <th>No.</th>
                                                 <th>Mata Pelajaran</th>
                                                 <th>Guru</th>
+                                                <th>Tugas</th>
                                                 <th>Tipe</th>
                                                 <th>Nilai</th>
                                             </tr>
@@ -72,7 +73,10 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $score->task->teacher->subject->name }}</td>
                                                     <td>{{ $score->task->teacher->name }}</td>
-                                                    <td>{{ $score->task->category }}</td>
+                                                    <td>{{ $score->task->name}}</td>
+                                                    <td>@php
+                                                        echo(str_replace('_',' ',$score->task->category));
+                                                    @endphp </td>
                                                     <td>{{ $score->score }}</td>
                                                 </tr>
                                                 <?php $prevData = $score->task->teacher->subject->name; ?>

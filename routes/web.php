@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AjaxRequestController;
 use App\Models\Task;
 use App\Models\Score;
 use App\Models\Teacher;
@@ -8,14 +7,16 @@ use App\Models\ClassRoom;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Database\Query\Builder;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AjaxRequestController;
 use App\Http\Controllers\ClassRoomTaskController;
 
 /*
@@ -96,8 +97,11 @@ Route::middleware(['auth:student'])->group(function () {
     });
 
     Route::get('/student-score', function () {
+
         // dd(Auth::user()->class_room_id);
-        $score = Score::with('task.teacher.subject')->where('student_id', Auth::user()->id)->orderBy('task_id')->paginate(10);
+        $score = Score::with('task.teacher.subject')->where('student_id', Auth::user()->id)->orderBy(function(Builder $q){
+            $q->select('teacher_id')->from('tasks')->whereColumn('task_id', 'tasks.id');
+        })->paginate(10);
         // $scores = Score::with('task.teacher.subject')->where('student_id', $student_id)->get(); //getting score data of this student
 
         // topboxes
