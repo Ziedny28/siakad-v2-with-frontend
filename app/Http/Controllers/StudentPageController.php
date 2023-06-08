@@ -27,13 +27,12 @@ class StudentPageController extends Controller
     // menampilkan halaman nilai murid ini
     function studentScore()
     {
-
-        $score = Score::with('task.teacher.subject')->where('student_id', Auth::user()->id)->orderBy(function (Builder $q) {
+        $student_id = Auth::user()->id; //getting student id
+        $score = Score::with('task.teacher.subject')->where('student_id', $student_id)->orderBy(function (Builder $q) {
             $q->select('teacher_id')->from('tasks')->whereColumn('task_id', 'tasks.id');
         })->paginate(10);
-
         // topboxes
-        $scoreAvg = Score::where('student_id', Auth::user()->id)->avg('score'); //getting average score of this student
+        $scoreAvg = Score::where('student_id', $student_id)->avg('score'); //getting average score of this student
         $taskCount = Task::where('class_room_id', Auth::user()->class_room_id)->count();
 
         return view('student.score.index', ['scores' => $score, 'taskCount' => $taskCount, 'scoreAvg' => $scoreAvg]);

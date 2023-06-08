@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\Student;
 use App\Models\ClassRoom;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +13,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class TaskController extends Controller
 {
+    // kategori yang tersedia
+    private $categories = ['task', 'dialy_test', 'mid_test', 'final_test'];
     /**
      * menampilkan halaman tugas
      */
@@ -20,7 +23,10 @@ class TaskController extends Controller
         $teacher_id = Auth::user()->id; //getting teacher id
         $tasks = Task::with('class_room')->where('teacher_id', $teacher_id)->paginate(10); //getting tasks data of this teacher with class room
 
-        return view('teacher.task.index', ['tasks' => $tasks,]);
+        $taskCount = Task::where('teacher_id', $teacher_id)->count();
+        $studentCount = Student::count();
+
+        return view('teacher.task.index', ['tasks' => $tasks, 'taskCount' => $taskCount, 'studentCount' => $studentCount]);
     }
 
     /**
@@ -29,15 +35,10 @@ class TaskController extends Controller
     public function create()
     {
         $teacher_id = Auth::user()->id; //getting teacher id
-
-        $teacher_class_room = DB::table('teacher_class_room')->where('teacher_id', $teacher_id)->pluck('class_room_id'); // get the class room id that this teacher teach
-        $class_rooms = ClassRoom::whereIn('id', $teacher_class_room)->get();
-
-        $categories = ['task', 'daily_test', 'mid_test', 'final_test'];
-
+        $class_rooms = $this->getClassRoom($teacher_id);
         return view('teacher.task.create', [
             'class_rooms' =>  $class_rooms,
-            'categories' => $categories,
+            'categories' => $this->categories,
         ]);
     }
 
@@ -47,8 +48,6 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request)
     {
         Task::create($request->validated());
-        //buat nilai siswa dengan nilai 0 pada tugas ini di kelas ini
-
         Alert::success('Success', 'Berhasil Membuat Tugas');
         return redirect()->route('task.index');
     }
@@ -59,12 +58,10 @@ class TaskController extends Controller
     public function edit(Task $task)
     {
         $teacher_id = Auth::user()->id; //getting teacher id
-        $class_rooms = ClassRoom::with('teachers')->where('teacher_id', $teacher_id)->get(); //getting class rooms data of this teacher with teachers
-        $categories = ['task', 'dialy_test', 'mid_test', 'final_test'];
-
+        $class_rooms = $this->getClassRoom($teacher_id);
         return view('teacher.task.edit', [
             'class_rooms' =>  $class_rooms,
-            'categories' => $categories,
+            'categories' => $this->categories,
             'task' => $task,
         ]);
     }
@@ -77,7 +74,8 @@ class TaskController extends Controller
         $data = $request->validated();
         $task->fill($data);
         $task->save();
-        return redirect()->route('task.index')->with('success', 'Task updated successfully');
+        Alert::success('Success', 'Berhasil Mengubah Tugas');
+        return redirect()->route('task.index');
     }
 
     /**
@@ -87,6 +85,14 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($task->id);
         $task->delete();
+        Alert::success('Success', 'Berhasil Menghapus Tugas');
         return redirect()->route('task.index');
+    }
+
+    function getClassRoom($teacher_id)
+    {
+        $teacher_class_room = DB::table('teacher_class_room')->where('teacher_id', $teacher_id)->pluck('class_room_id'); // get the class room id that this teacher teach
+        $class_rooms = ClassRoom::whereIn('id', $teacher_class_room)->get();
+        return $class_rooms;
     }
 }

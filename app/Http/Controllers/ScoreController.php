@@ -39,7 +39,9 @@ class ScoreController extends Controller
         $class_rooms = Teacher::findOrFail($teacher_id);
         $class_rooms = $class_rooms->class_rooms;
 
-        return view('teacher.score.index', ['scores' => $scores, 'class_rooms' => $class_rooms]);
+        $taskCount = Task::where('teacher_id', $teacher_id)->count();
+
+        return view('teacher.score.index', ['scores' => $scores, 'class_rooms' => $class_rooms, 'taskCount' => $taskCount, 'studentCount' => Student::count()]);
     }
 
     /**
@@ -115,7 +117,8 @@ class ScoreController extends Controller
         }
 
         // jika sukses maka akan diarahkan ke halaman nilai
-        return redirect()->route('score.index')->with('success', 'Score created successfully');
+        Alert::success('Success', 'Score updated successfully');
+        return redirect()->route('score.index');
     }
 
     /**
@@ -127,25 +130,26 @@ class ScoreController extends Controller
         return view('teacher.score.edit', ['score' => $score, 'students' => $students]);
     }
 
-    // change to choosetask
-    public function chooseEdit()
-    {
-        $teacher_id = Auth::user()->id;
-        $tasks = Task::where('teacher_id', $teacher_id)->with('class_room')->get();
-        return view('teacher.score.choose-edit', ['tasks' => $tasks]);
-    }
+    // // delete this part after testing
+    // // change to choosetask
+    // public function chooseEdit()
+    // {
+    //     $teacher_id = Auth::user()->id;
+    //     $tasks = Task::where('teacher_id', $teacher_id)->with('class_room')->get();
+    //     return view('teacher.score.choose-edit', ['tasks' => $tasks]);
+    // }
 
-    // change to choosescore
-    public function editOne($id)
-    {
-        $task = Task::with('class_room')->find($id);
+    // // change to choosescore
+    // public function editOne($id)
+    // {
+    //     $task = Task::with('class_room')->find($id);
 
-        $scores = Score::where('task_id', $task->id)->with('student')->get();
-        return view('teacher.score.edit-one', [
-            'task' => $task,
-            'scores' => $scores,
-        ]);
-    }
+    //     $scores = Score::where('task_id', $task->id)->with('student')->get();
+    //     return view('teacher.score.edit-one', [
+    //         'task' => $task,
+    //         'scores' => $scores,
+    //     ]);
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -155,7 +159,7 @@ class ScoreController extends Controller
         $data = $request->validated();
         $score->fill($data);
         $score->save();
-        Alert::success('Success', 'Score updated successfully');
+        Alert::success('Success', 'Score created successfully');
         return redirect()->route('score.index');
     }
 
@@ -214,5 +218,9 @@ class ScoreController extends Controller
         if (count($students) > 0) {
             return response()->json($students);
         }
+    }
+
+    function search(Request $request)
+    {
     }
 }

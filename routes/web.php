@@ -65,7 +65,8 @@ these routes accessible for guest
 Route::middleware(['auth:teacher'])->group(function () {
     Route::get('/dashboard-teacher', [DashboardController::class, 'teacher']);
 
-    Route::resource('score', ScoreController::class);
+    Route::resource('/score', ScoreController::class);
+    Route::get('/score-search', [ScoreController::class, 'search'])->name('score.search');
 
     //we can delete this route after testing
     // Route::controller(ScoreController::class)->group(function () {

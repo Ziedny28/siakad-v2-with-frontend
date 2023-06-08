@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Tugas</p>
-                                    <h5>must edit</h5>
+                                    <h5>{{ $taskCount }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Siswa</p>
-                                    <h5>must edit</h5>
+                                    <h5>{{ $studentCount }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -88,11 +88,13 @@
                                                 <td>{{ $task->name }}</td>
                                                 <td>{{ $task->class_room->name }}</td>
                                                 <td>{{ $task->category }}</td>
-                                                <td><a class="btn btn-success"href="/task/{{ $task->id }}/edit"><i class="bx bx-edit"></i></a>
+                                                <td><a class="btn btn-success"href="/task/{{ $task->id }}/edit"><i
+                                                            class="bx bx-edit"></i></a>
                                                     <form action="/task/{{ $task->id }}" method="post">
                                                         @csrf
                                                         @method('delete')
-                                                        <button type="submit" class="btn btn-danger"><i class="bx bxs-trash-alt"></i></button>
+                                                        <button type="submit" class="btn btn-danger"><i
+                                                                class="bx bxs-trash-alt"></i></button>
                                                     </form>
                                                 </td>
 

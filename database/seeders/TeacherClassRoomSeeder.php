@@ -13,15 +13,17 @@ class TeacherClassRoomSeeder extends Seeder
      */
     public function run(): void
     {
-        for($i = 0; $i < 100; $i++){
+        $accessCount = 200;
+        for ($i = 0; $i < $accessCount; $i++) {
             $this->insert();
         }
     }
 
-    public function insert(){
+    public function insert()
+    {
         DB::table('teacher_class_room')->insert([
-            'teacher_id' => rand(1,10),
-            'class_room_id' => rand(1,10),
+            'teacher_id' => rand(1, 50),
+            'class_room_id' => rand(1, 48),
         ]);
     }
 }

@@ -26,9 +26,9 @@ class DatabaseSeeder extends Seeder
         \App\Models\Admin::factory(10)->create();
 
         $this->call([SubjectSeeder::class,]);
-        \App\Models\Teacher::factory(23)->create();
+        \App\Models\Teacher::factory(50)->create();
         $this->call([ClassroomSeeder::class,]);
-        \App\Models\Student::factory(600)->create();
+        \App\Models\Student::factory(1000)->create();
         $this->call([StudyActivitySeeder::class,]);
         $this->call([TeacherClassRoomSeeder::class,]);
         $this->call([TaskSeeder::class,]);

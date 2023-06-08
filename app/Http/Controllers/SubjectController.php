@@ -8,6 +8,7 @@ use App\Models\Teacher;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreSubjectRequest;
 use App\Http\Requests\UpdateSubjectRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SubjectController extends Controller
 {
@@ -38,7 +39,8 @@ class SubjectController extends Controller
     {
         $subject = $request->validated();
         Subject::create($subject);
-        return redirect()->route('subjects.index')->with('success', 'Subject created successfully');
+        Alert::success('Success', 'Berhasil Membuat Mata Pelajaran');
+        return redirect()->route('subjects.index');
     }
 
     /**
@@ -57,6 +59,7 @@ class SubjectController extends Controller
         $data = $request->validated();
         $subject->fill($data);
         $subject->save();
+        Alert::success('Success', 'Berhasil Mengubah Mata Pelajaran');
         return redirect()->route('subjects.index')->with('success', 'Subject updated successfully');
     }
 
@@ -66,6 +69,7 @@ class SubjectController extends Controller
     public function destroy(Subject $subject)
     {
         DB::table('subjects')->where('id', $subject->id)->delete();
+        Alert::success('Success', 'Berhasil Menghapus Mata Pelajaran');
         return redirect()->route('subjects.index')->with('success', 'Subject removed successfully');
     }
 }

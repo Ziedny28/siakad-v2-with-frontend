@@ -13,15 +13,16 @@ class StudyActivitySeeder extends Seeder
      */
     public function run(): void
     {
-        for($i=0;$i<50;$i++){
+        for ($i = 0; $i < 50; $i++) {
             $this->insert();
         }
     }
 
-    public function insert(){
+    public function insert()
+    {
         DB::table('study_activities')->insert([
-            'teacher_id' => rand(1,10),
-            'class_room_id' => rand(1,48),
+            'teacher_id' => rand(1, 50),
+            'class_room_id' => rand(1, 48),
         ]);
     }
 }

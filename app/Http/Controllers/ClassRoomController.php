@@ -17,9 +17,8 @@ class ClassRoomController extends Controller
     {
         $teacherCount = Teacher::all()->count(); //mendapatkan jumlah data teacher
         $studentCount = Student::all()->count(); //mendapatkan jumlah data student
-        $students = Student::all();
         $classRooms = ClassRoom::with('teacher')->get();
-        return view('admin.schedule.index', ['teacherCount' => $teacherCount, 'studentCount' => $studentCount, 'classRooms' => $classRooms, 'students' => $students]);
+        return view('admin.schedule.index', ['teacherCount' => $teacherCount, 'studentCount' => $studentCount, 'classRooms' => $classRooms, 'students' => Student::all()]);
     }
 
     /**

@@ -25,7 +25,7 @@
 
                                         {{-- new with dependent select --}}
                                         <div class="mb-3">
-                                            <select class="form-select" id="class_room_id" name="class_room_id">
+                                            <select class="form-select" id="class_room_id" name="class_room_id" required>
                                                 <option selected disabled>Select class Room</option>
                                                 @foreach ($class_rooms as $class_room)
                                                     <option value="{{ $class_room->id }}">{{ $class_room->name }}</option>
@@ -43,7 +43,7 @@
                                     <div class="form-group">
                                         <label for="">Nama Tugas :</label>
                                         <select class="form-select @error('name') is-invalid @enderror" name="task_id"
-                                            id="task">
+                                            id="task" required>
                                             <option selected value="">List Tugas</option>
                                         </select>
                                         @error('task_id')
@@ -121,14 +121,13 @@
                         $.each(res, function(key, value) {
                             $('#student')
                                 .append(`<tr>
-                                        <td>1</td>
+                                        <td>${i+1}</td>
                                         <td>${value.name}</td>
                                         <td>
                                             <input type="number" name="inputs[${i}][score]" id="score"
-                                                class="form-control @error('score') is-invalid @enderror">
+                                                class="form-control @error('score') is-invalid @enderror" required>
                                         </td>
                                     </tr>`);
-
                             i++;
                         });
                     }

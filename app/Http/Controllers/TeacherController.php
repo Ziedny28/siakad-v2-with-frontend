@@ -34,9 +34,8 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        $subjects = Subject::all();
         return view('admin.teacher.create', [
-            'subjects' => $subjects,
+            'subjects' => Subject::all(),
         ]);
     }
 
@@ -45,11 +44,11 @@ class TeacherController extends Controller
      */
     public function store(StoreTeacherRequest $request)
     {
-
         $teacher = $request->validated();
         $teacher['password'] = Hash::make($request->password); //melakukan hash pada password
         Teacher::create($teacher);
-        return redirect()->route('teachers.index')->with('success', 'Teacher created successfully');
+        Alert::success('Success', 'Berhasil Membuat Guru');
+        return redirect()->route('teachers.index');
     }
 
     /**
@@ -63,8 +62,6 @@ class TeacherController extends Controller
         $excluded_class_rooms = DB::table('teacher_class_room')->where('teacher_id', $teacher->id)->pluck('class_room_id')->toArray();
         $class_rooms = ClassRoom::whereNotIn('id', $excluded_class_rooms)->get();
 
-        $all_class_rooms = ClassRoom::all();
-
         // getting classroom data where there's the teacher is assigned to it
         $assigned_class_rooms = DB::table('teacher_class_room')->where('teacher_id', $teacher->id)->pluck('class_room_id')->toArray();
 
@@ -73,7 +70,7 @@ class TeacherController extends Controller
             'class_rooms' => $class_rooms,
             'subjects' => Subject::all(),
             'assigned_class_rooms' => $assigned_class_rooms,
-            'all_class_rooms' => $all_class_rooms,
+            'all_class_rooms' => ClassRoom::all(),
         ]);
     }
 
@@ -99,7 +96,8 @@ class TeacherController extends Controller
         $data = $teacherRequest;
         $teacher->fill($data);
         $teacher->save();
-        return redirect()->route('teachers.index')->with('success', 'Teacher updated successfully');
+        Alert::success('Success', 'Berhasil Mengubah Guru');
+        return redirect()->route('teachers.index');
     }
 
     public function getTeacherData(Request $teacherRequest)
@@ -115,7 +113,8 @@ class TeacherController extends Controller
     public function destroy(Teacher $teacher)
     {
         $teacher->delete();
-        return redirect()->route('teachers.index')->with('success', 'Teacher deleted successfully');
+        Alert::success('Success', 'Berhasil Menghapus Guru');
+        return redirect()->route('teachers.index');
     }
 
     /**

@@ -38,8 +38,6 @@ class DashboardController extends Controller
         $teacher_id = Auth::user()->id; //getting teacher id
         $teacher = Teacher::with(['subject'])->findOrFail($teacher_id); //getting data of this one teacher with subject
         $tasks = Task::with('class_room')->where('teacher_id', $teacher_id)->get(); //getting tasks data of this teacher
-        $teacherCount = Teacher::count(); //counting all teachers
-        $studentCount = Student::count(); //counting all students
 
         /*
         get the class rooms that this teacher teach
@@ -59,8 +57,8 @@ class DashboardController extends Controller
             'teacher' => $teacher,
             'class_rooms' => $class_rooms,
             'tasks' => $tasks,
-            'teacherCount' => $teacherCount,
-            'studentCount' => $studentCount,
+            'teacherCount' => Teacher::count(),
+            'studentCount' => Student::count(),
         ]);
     }
 
@@ -69,7 +67,6 @@ class DashboardController extends Controller
     */
     public function admin()
     {
-        $admin = Auth::user(); //getting this admin data
         $student = Student::with('class_room')->orderBy('class_room_id')->get(); //getting all students data with class room and order by class room
         $teacher = Teacher::with('subject')->get(); //getting all teachers data with subject
         $subjects = Subject::with('teachers')->get(); //getting all subjects data with teachers
@@ -78,7 +75,7 @@ class DashboardController extends Controller
         return view('admin.dashboard', [
             'students' => $student,
             'teachers' => $teacher,
-            'admin' => $admin,
+            'admin' => Auth::user(),
             'subjects' => $subjects,
             'class_rooms' => $class_rooms,
         ]);

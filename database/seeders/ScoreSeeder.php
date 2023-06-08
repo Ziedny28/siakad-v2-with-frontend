@@ -13,11 +13,13 @@ class ScoreSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 0; $i < 100; $i++) {
+        //making 1000 scores
+        $scoreCount = 1000;
+        for ($i = 0; $i < $scoreCount; $i++) {
             DB::table('scores')->insert([
-                'student_id' => rand(1, 10),
-                'task_id' => rand(1, 20),
-                'score' => rand(50, 100),
+                'student_id' => rand(1, 1000),
+                'task_id' => rand(1, 300),
+                'score' => rand(0, 100),
             ]);
         }
     }

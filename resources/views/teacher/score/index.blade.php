@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Tugas</p>
-                                    <h5></h5>
+                                    <h5>{{ $taskCount }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Siswa</p>
-                                    <h5></h5>
+                                    <h5>{{ $studentCount }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -58,8 +58,8 @@
                             <p></p>
                             <div class="card-menu">
                                 <div class="search-bar w-50">
-                                    <form action="#">
-                                        <select class="form-select" name="class_room_id" id="">
+                                    <form action="{{ route('score.search') }}">
+                                        <select class="form-select" name="query">
                                             <option>Semua</option>
                                             @foreach ($class_rooms as $class_room)
                                                 <option value="{{ $class_room->id }}">{{ $class_room->name }}</option>

@@ -8,6 +8,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
+
     //menampilkan halaman login
     public function login()
     {
@@ -18,10 +19,7 @@ class AuthController extends Controller
     public function processLogin(Request $request)
     {
         //mengambil data yang diperlukan dan melakukan validasi
-        $credentials = $request->validate([
-            'ni' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'max:255'],
-        ]);
+        $credentials = $request->validate($this->credentialRules);
 
         //jika berhasil login sebagai teacher maka dapat mengakses route yang dapat diakses oleh teacher
         if (Auth::guard('teacher')->attempt($credentials)) {
@@ -59,4 +57,9 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('/login');
     }
+
+    private $credentialRules = [
+        'ni' => ['required', 'string', 'max:255'],
+        'password' => ['required', 'string', 'max:255'],
+    ];
 }
