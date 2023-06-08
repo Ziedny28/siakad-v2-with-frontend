@@ -51,8 +51,8 @@
                             <p></p>
                             <div class="card-menu">
                                 <div class="search-bar">
-                                    <form action="#">
-                                        <input type="text" class="form-control" placeholder="Search" />
+                                    <form action="{{ route('student.search') }}">
+                                        <input type="text" class="form-control" name="query" placeholder="Search" />
                                         <button type="submit" class="btn btn-success">
                                             <i class="bx bx-search"></i>
                                         </button>

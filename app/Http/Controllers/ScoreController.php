@@ -16,9 +16,11 @@ use App\Http\Requests\UpdateScoreRequest;
 
 class ScoreController extends Controller
 {
+    /*
+      menampilkan halaman nilai yang telah dibuat oleh guru ini.
+     */
     public function index()
     {
-
         $teacher_id = Auth::user()->id; //get the teacher id
 
         /*
@@ -37,13 +39,11 @@ class ScoreController extends Controller
         $class_rooms = Teacher::findOrFail($teacher_id);
         $class_rooms = $class_rooms->class_rooms;
 
-
-
         return view('teacher.score.index', ['scores' => $scores, 'class_rooms' => $class_rooms]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * menampilkan halaman untuk memasukkan data nilai baru
      */
     public function create()
     {
@@ -56,17 +56,21 @@ class ScoreController extends Controller
         return view('teacher.score.create', ['tasks' => $tasks, 'class_rooms' => $class_rooms]);
     }
 
-    // create the one score
-    public function createOne($id)
-    {
-        $task = Task::with('class_room')->find($id); // get the task with class room
-        $students = Student::where('class_room_id', $task->class_room_id)->get(); // get the students of this class room
 
-        return view('teacher.score.create-one', [
-            'task' => $task,
-            'students' => $students,
-        ]);
-    }
+    /*
+    delete this part after testing
+    */
+    // create the one score
+    // public function createOne($id)
+    // {
+    //     $task = Task::with('class_room')->find($id); // get the task with class room
+    //     $students = Student::where('class_room_id', $task->class_room_id)->get(); // get the students of this class room
+
+    //     return view('teacher.score.create-one', [
+    //         'task' => $task,
+    //         'students' => $students,
+    //     ]);
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -81,16 +85,25 @@ class ScoreController extends Controller
     //     return redirect()->route('score.index')->with('success', 'Task created successfully');
     // }
 
+    /*
+    */
+
+    /**
+     *  memasukkan data nilai baru
+     */
     public function store(Request $request)
     {
+        // melakukan validasi dan mengambil data
         $validated = $request->validate([
             'inputs.*.score' => 'required|numeric|min:0|max:100',
             'class_room_id' => 'required|exists:class_rooms,id',
             'task_id' => 'required',
         ]);
 
+        // mendapatkan semua murid yang ada di kelas yang telah dipilih
         $students = Student::where('class_room_id', $validated['class_room_id'])->get();
 
+        // memasukkan nilai untuk semua siswa
         $i = 0;
         foreach ($students as $student) {
             $score = new Score();
@@ -101,18 +114,12 @@ class ScoreController extends Controller
             $i++;
         }
 
+        // jika sukses maka akan diarahkan ke halaman nilai
         return redirect()->route('score.index')->with('success', 'Score created successfully');
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Score $score)
-    {
-    }
-
-    /**
-     * Show the form for editing the specified resource.
+     * menampilkan halaman untuk melakukan edit nilai
      */
     public function edit(Score $score)
     {
@@ -153,13 +160,8 @@ class ScoreController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * menampilkan halaman untuk melihat nilai berdasarkan kelas
      */
-    public function destroy(Score $score)
-    {
-        //
-    }
-
     public function classRoomScore($classRoomId)
     {
         $teacher_id = Auth::user()->id;
@@ -181,7 +183,7 @@ class ScoreController extends Controller
         return view('teacher.score.index', ['class_rooms' => $class_rooms, 'scores' => $scores]);
     }
 
-    // untuk ajax request
+    // fungsi untuk ajax request
     public function getClassRooms()
     {
         //mendapatkan kelas apa saja yang diajar oleh guru ini

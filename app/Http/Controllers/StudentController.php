@@ -12,23 +12,22 @@ use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
-
+use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * menampilkan halaman yang akan menampilkan seluruh siswa
      */
     public function index()
     {
         return view('admin.student.index', [
             'students' => Student::all()->with('class_room')->sortBy('name'),
-            'teachers' => Teacher::all(),
         ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * menampilkan halaman untuk membuat siswa baru
      */
     public function create()
     {
@@ -38,7 +37,7 @@ class StudentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * menyimpan data siswa
      */
     public function store(StoreStudentRequest $request)
     {
@@ -48,13 +47,6 @@ class StudentController extends Controller
         return redirect()->route('students.index')->with('success', 'Student created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Student $student)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -91,6 +83,9 @@ class StudentController extends Controller
         return redirect()->route('students.index');
     }
 
+    /**
+     * menampilkan halaman untuk melihat siswa berdasarkan jurusan
+     */
     public function studentByMajor($major)
     {
         $class_rooms = ClassRoom::where('name', 'like', '%' . $major . '%')->pluck('id');
@@ -108,5 +103,16 @@ class StudentController extends Controller
         Excel::import(new StudentImport, request()->file('file'));
         Alert()->success('Success', 'Student imported successfully');
         return back();
+    }
+
+    function search(Request $request)
+    {
+        $query = $request->input('query');
+        $students = Student::search($query)->paginate(10);
+        return view('admin.student.index', [
+            'students' => $students,
+            'teacherCount' => Teacher::count(), //counting all teachers
+            'studentCount' => Student::count(),
+        ]);
     }
 }

@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
+    /*
+    jika berhasil login sebagai student, pertama akan diarahkan ke dashboard student
+    */
     public function student()
     {
         $student_id = Auth::user()->id; //getting student id
@@ -25,6 +28,10 @@ class DashboardController extends Controller
             'scores' => $scores,
         ]);
     }
+
+    /*
+    jika berhasil login sebagai teacher, pertama akan diarahkan ke dashboard teacher
+    */
     public function teacher()
     {
 
@@ -43,9 +50,9 @@ class DashboardController extends Controller
 
         //getting scores data of this teacher
         $scores = Score::with('task.teacher.subject')
-        ->where(Task::select('teacher_id')->whereColumn('tasks.id', 'scores.task_id'),$teacher_id)
-        ->orderBy(Task::select('class_room_id')->whereColumn('tasks.id', 'scores.task_id'))
-        ->get();
+            ->where(Task::select('teacher_id')->whereColumn('tasks.id', 'scores.task_id'), $teacher_id)
+            ->orderBy(Task::select('class_room_id')->whereColumn('tasks.id', 'scores.task_id'))
+            ->get();
 
         return view('teacher.dashboard', [
             'scores' => $scores,
@@ -56,15 +63,19 @@ class DashboardController extends Controller
             'studentCount' => $studentCount,
         ]);
     }
+
+    /*
+    jika berhasil login sebagai admin, pertama akan diarahkan ke dashboard admin
+    */
     public function admin()
     {
         $admin = Auth::user(); //getting this admin data
         $student = Student::with('class_room')->orderBy('class_room_id')->get(); //getting all students data with class room and order by class room
         $teacher = Teacher::with('subject')->get(); //getting all teachers data with subject
         $subjects = Subject::with('teachers')->get(); //getting all subjects data with teachers
-        $class_rooms = ClassRoom::with(['teachers','teacher'])->get(); //getting all class rooms data with teachers
+        $class_rooms = ClassRoom::with(['teachers', 'teacher'])->get(); //getting all class rooms data with teachers
 
-        return view('admin.dashboard',[
+        return view('admin.dashboard', [
             'students' => $student,
             'teachers' => $teacher,
             'admin' => $admin,

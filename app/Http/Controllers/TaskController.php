@@ -13,7 +13,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 class TaskController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * menampilkan halaman tugas
      */
     public function index()
     {
@@ -24,7 +24,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * menampilkan halaman untuk membuat tugas
      */
     public function create()
     {
@@ -42,7 +42,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * menyimpan data tugas
      */
     public function store(StoreTaskRequest $request)
     {
@@ -54,15 +54,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Task $task)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
+     * menampilkan halaman edit tugas
      */
     public function edit(Task $task)
     {
@@ -78,7 +70,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * menyimpan hasil edit
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
@@ -89,7 +81,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * menghapus tugas
      */
     public function destroy(Task $task)
     {

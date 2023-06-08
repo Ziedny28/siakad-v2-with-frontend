@@ -12,7 +12,7 @@ use App\Http\Requests\UpdateSubjectRequest;
 class SubjectController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * menampilkan semua mata pelajaran
      */
     public function index()
     {
@@ -24,7 +24,7 @@ class SubjectController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * menampilkan halaman membuat mata pelajaran baru
      */
     public function create()
     {
@@ -32,7 +32,7 @@ class SubjectController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * menyimpan mata pelajaran yang baru dibuat
      */
     public function store(StoreSubjectRequest $request)
     {
@@ -42,15 +42,7 @@ class SubjectController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Subject $subject)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
+     * menampilkan halaman untuk melakukan edit mata pelajaran
      */
     public function edit(Subject $subject)
     {
@@ -58,7 +50,7 @@ class SubjectController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * menyimpan hasil edit
      */
     public function update(UpdateSubjectRequest $request, Subject $subject)
     {
@@ -69,7 +61,7 @@ class SubjectController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * menghapus mata pelajaran yang dipilih
      */
     public function destroy(Subject $subject)
     {

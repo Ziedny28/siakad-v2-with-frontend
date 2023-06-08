@@ -9,7 +9,6 @@ use App\Models\ClassRoom;
 use Illuminate\Http\Request;
 use App\Imports\TeacherImport;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -19,20 +18,19 @@ use App\Http\Requests\UpdateTeacherRequest;
 class TeacherController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * menampilkan halaman untuk melihat semua guru
      */
     public function index()
     {
         return view('admin.teacher.index', [
             'teachers' => Teacher::with('subject')->paginate(10),
-            'students' => Student::all(),
-            'teacherCount' => Teacher::count(), //counting all teachers
+            'teacherCount' => Teacher::count(), //menghitung semua guru
             'studentCount' => Student::count(),
         ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * menampilkan halmaan untuk membuat guru baru
      */
     public function create()
     {
@@ -43,32 +41,23 @@ class TeacherController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * menyimpan guru baru ke database
      */
     public function store(StoreTeacherRequest $request)
     {
 
         $teacher = $request->validated();
-        $teacher['password'] = Hash::make($request->password);
+        $teacher['password'] = Hash::make($request->password); //melakukan hash pada password
         Teacher::create($teacher);
         return redirect()->route('teachers.index')->with('success', 'Teacher created successfully');
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Teacher $teacher)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
+     * menampilkan halaman edit guru
      */
     public function edit(Teacher $teacher)
     {
         $teacher = Teacher::with('subject')->findOrFail($teacher->id);
-        // $teachers_class_rooms_access = DB::table('teacher_class_room')->where('teacher_id', $teacher->id)->get();
 
         // getting classroom data where there's the teacher isnt assigned to it, soo we can only input the classroom where this teacher isn't assigned to
         $excluded_class_rooms = DB::table('teacher_class_room')->where('teacher_id', $teacher->id)->pluck('class_room_id')->toArray();
@@ -85,16 +74,14 @@ class TeacherController extends Controller
             'subjects' => Subject::all(),
             'assigned_class_rooms' => $assigned_class_rooms,
             'all_class_rooms' => $all_class_rooms,
-            // 'teachers_class_rooms_access' => $teachers_class_rooms_access,
         ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * menyimpan data hasil edit
      */
     public function update(Request $request, Teacher $teacher)
     {
-        // dd($request->all());
         $class_room = $request->validate([
             "inputs.*.class_room_id" => 'required'
         ]);
@@ -123,7 +110,7 @@ class TeacherController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * menghapus data guru
      */
     public function destroy(Teacher $teacher)
     {
@@ -132,13 +119,30 @@ class TeacherController extends Controller
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * proses import data guru dengan menggunakan laravel excel
      */
-    // importing
+
+
     public function import()
     {
         Excel::import(new TeacherImport, request()->file('file'));
         Alert::success('Success', 'Teacher imported successfully');
         return back();
+    }
+
+    /**
+     * menampilkan halaman hasil pencarian
+     */
+
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+        $teachers = Teacher::search($query)->paginate(10);
+
+        return view('admin.teacher.index', [
+            'teachers' => $teachers,
+            'teacherCount' => Teacher::count(),
+            'studentCount' => Student::count(),
+        ]);
     }
 }

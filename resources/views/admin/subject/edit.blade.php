@@ -29,10 +29,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="ni">Deskripsi :</label>
-                                        <textarea type="text" name='description' id="description"
-                                            class="form-control">
-                                            {{ $subject->description }}
-                                        </textarea>
+                                        <textarea type="text" name='description' id="description" class="form-control"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -47,5 +44,8 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById("description").value = "{{ $subject->description }}";
+    </script>
     @include('partials.footer')
 @endsection
