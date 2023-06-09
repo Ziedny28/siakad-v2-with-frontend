@@ -50,9 +50,9 @@
                             <h4>Data Guru</h4>
                             <p></p>
                             <div class="card-menu">
-                                <div class="search-bar">
+                                <div class="search-bar w-50">
                                     <form action="{{ route('teachers.search') }}">
-                                        <input type="text" name="search" class="form-control" placeholder="Search" />
+                                        <input type="text" name="search" class="form-control bg-white" placeholder="Search" />
                                         <button type="submit" class="btn btn-success">
                                             <i class='bx bx-search'></i>
                                         </button>
@@ -78,16 +78,19 @@
                                         </tr>
                                     </thead>
                                     <tbody class="align-middle">
-                                        @foreach ($teachers as $teacher)
+                                        @foreach ($teachers as $i => $teacher)
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $teachers->firstItem() + $i }}</td>
                                                 <td>{{ $teacher->ni }}</td>
                                                 <td>{{ $teacher->name }}</td>
                                                 <td>{{ $teacher->address }}</td>
                                                 <td>{{ $teacher->email }}</td>
                                                 <td>{{ $teacher->subject->name }}</td>
-                                                <td><a href="/teachers/{{ $teacher->id }}/edit" class="btn btn-success"><i
+                                                <td class="d-flex">
+                                                    <button class="btn btn-success px-1">
+                                                        <a href="/teachers/{{ $teacher->id }}/edit" class="text-white"><i
                                                             class='bx bx-edit'></i></a>
+                                                        </button>
                                                     <form action="/teachers/{{ $teacher->id }}" method="post">
                                                         @csrf
                                                         @method('delete')

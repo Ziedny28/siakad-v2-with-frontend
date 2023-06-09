@@ -50,13 +50,10 @@
                             <h4>Data Mata Pelajaran</h4>
                             <p></p>
                             <div class="card-menu">
-                                <div class="search-bar">
-                                    <form action="#">
-                                        <input type="text" class="form-control" placeholder="Search" />
-                                        <button type="submit" class="btn btn-success">
-                                            <i class="bx bx-search"></i>
-                                        </button>
-                                    </form>
+                                <div class="search-bar w-50">
+                                    {{-- search wihout button --}}
+                                    <input type="text" class="form-control bg-white" wire:model="search"
+                                        placeholder="Search" />
                                 </div>
                                 <div class="btn btn-success mt-2">
                                     <a href="/subjects/create">Create New Mapel</a>
@@ -82,9 +79,11 @@
                                                 <td>
                                                     {{ $subject->description }}
                                                 </td>
-                                                <td>
-                                                    <a href="/subjects/{{ $subject->id }}/edit" class="btn btn-success"><i
-                                                            class='bx bx-edit'></i></a>
+                                                <td class="d-flex">
+                                                    <button class="btn btn-success px-1">
+                                                        <a href="/subjects/{{ $subject->id }}/edit" class=" text-white"><i
+                                                                class='bx bx-edit'></i></a>
+                                                    </button>
                                                     <form action="/subjects/{{ $subject->id }}" method="post">
                                                         @csrf
                                                         @method('delete')

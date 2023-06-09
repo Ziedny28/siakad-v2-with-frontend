@@ -47,16 +47,13 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Data Siswa Mipa</h4>
+                            <h4>Data Siswa {{ $major }}</h4>
                             <p></p>
                             <div class="card-menu">
-                                <div class="search-bar">
-                                    <form action="{{ route('student.search') }}">
-                                        <input type="text" class="form-control" name="query" placeholder="Search" />
-                                        <button type="submit" class="btn btn-success">
-                                            <i class="bx bx-search"></i>
-                                        </button>
-                                    </form>
+                                <div class="search-bar w-50">
+                                    {{-- search wihout button --}}
+                                    <input type="text" class="form-control bg-white" wire:model="search"
+                                        placeholder="Search" />
                                 </div>
                                 <div class="btn btn-success mt-2">
                                     <a href="/students/create">Create New Siswa</a>
@@ -71,22 +68,26 @@
                                             <th>#</th>
                                             <th>Nis</th>
                                             <th>Nama</th>
-                                            <th>Alamat</th>
+                                            <th class="w-25">Alamat</th>
+                                            <th>Email</th>
                                             <th>Kelas</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody class="align-middle">
-                                        @foreach ($students as $student)
+                                        @foreach ($students as $i => $student)
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $students->firstItem() + $i }}</td>
                                                 <td>{{ $student->ni }}</td>
                                                 <td>{{ $student->name }}</td>
                                                 <td>{{ $student->address }}</td>
+                                                <td>{{ $student->email }}</td>
                                                 <td>{{ $student->class_room->name }}</td>
-                                                <td class="flex-col">
-                                                    <a href="/students/{{ $student->id }}/edit" class="btn btn-success"><i
-                                                            class='bx bx-edit'></i></a>
+                                                <td class="d-flex">
+                                                    <button class="btn btn-success px-1">
+                                                        <a href="/students/{{ $student->id }}/edit"
+                                                            class="text-white"><i class='bx bx-edit'></i></a>
+                                                    </button>
                                                     <form action="/students/{{ $student->id }}" method="post">
                                                         @csrf
                                                         @method('delete')

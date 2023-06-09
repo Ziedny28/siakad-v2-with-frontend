@@ -50,12 +50,9 @@
                             <h4>Data Siswa Mipa</h4>
                             <p></p>
                             <div class="card-menu">
-                                <div class="search-bar">
+                                <div class="search-bar w-50">
                                     <form action="#">
-                                        <input type="text" class="form-control" placeholder="Search" />
-                                        <button type="submit" class="btn btn-success">
-                                            <i class="bx bx-search"></i>
-                                        </button>
+                                        <input type="text" class="form-control bg-white" placeholder="Search" />
                                     </form>
                                 </div>
                             </div>
@@ -78,7 +75,10 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $classRoom->name }}</td>
                                                 <td>{{ $classRoom->teacher->name }}</td>
-                                                <td>{{ $classRoom->schedule }}</td>
+                                                <td><button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                        data-bs-target="#ModalId{{ $classRoom->id }}">
+                                                        Lihat Jadwal
+                                                    </button></td>
                                                 <td class="flex-col">
                                                     <a href="/uploadClassRoomImage" class="btn btn-success"><i
                                                             class='bx bx-edit'></i></a>
@@ -88,12 +88,31 @@
                                     </tbody>
                                 </table>
                             </div>
+                            {{-- {{ $classRooms->links() }} --}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @foreach ($classRooms as $classRoom)
+        <div class="modal fade" id="ModalId{{ $classRoom->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Jadwal Kelas {{ $classRoom->name }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <img class="img-fluid" src='{{ asset('assets/images/jadwal-siswa.jpg') }}' alt="">
+                        </div>
+                    </div>
 
+                </div>
+            </div>
+        </div>
+    @endforeach
     @include('partials.footer')
 @endsection

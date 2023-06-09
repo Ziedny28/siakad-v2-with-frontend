@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Task;
-use App\Models\Student;
-use App\Models\ClassRoom;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Models\ClassRoom;
+use App\Models\Student;
+use App\Models\Task;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class TaskController extends Controller
@@ -25,8 +25,12 @@ class TaskController extends Controller
 
         $taskCount = Task::where('teacher_id', $teacher_id)->count();
         $studentCount = Student::count();
-
-        return view('teacher.task.index', ['tasks' => $tasks, 'taskCount' => $taskCount, 'studentCount' => $studentCount]);
+        
+        return view('teacher.task.index', [
+            'tasks' => $tasks,
+            'taskCount' => $taskCount,
+            'studentCount' => $studentCount,
+        ]);
     }
 
     /**
@@ -37,7 +41,7 @@ class TaskController extends Controller
         $teacher_id = Auth::user()->id; //getting teacher id
         $class_rooms = $this->getClassRoom($teacher_id);
         return view('teacher.task.create', [
-            'class_rooms' =>  $class_rooms,
+            'class_rooms' => $class_rooms,
             'categories' => $this->categories,
         ]);
     }
@@ -60,7 +64,7 @@ class TaskController extends Controller
         $teacher_id = Auth::user()->id; //getting teacher id
         $class_rooms = $this->getClassRoom($teacher_id);
         return view('teacher.task.edit', [
-            'class_rooms' =>  $class_rooms,
+            'class_rooms' => $class_rooms,
             'categories' => $this->categories,
             'task' => $task,
         ]);
@@ -89,7 +93,7 @@ class TaskController extends Controller
         return redirect()->route('task.index');
     }
 
-    function getClassRoom($teacher_id)
+    public function getClassRoom($teacher_id)
     {
         $teacher_class_room = DB::table('teacher_class_room')->where('teacher_id', $teacher_id)->pluck('class_room_id'); // get the class room id that this teacher teach
         $class_rooms = ClassRoom::whereIn('id', $teacher_class_room)->get();

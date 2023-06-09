@@ -65,8 +65,9 @@
                                     </form>
                                 </div>
                                 <div class="btn btn-success mt-2">
-                                    <a href="task/create">Buat Tugas Baru</a>
+                                    <a href="task/create">Buat Tugas</a>
                                 </div>
+
                             </div>
                         </div>
                         <div class="card-body">
@@ -78,7 +79,7 @@
                                             <th>nama tugas</th>
                                             <th>kelas</th>
                                             <th>kategori</th>
-                                            <th>aksi</th>
+                                            <th class="w-15">aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody class="align-middle">
@@ -90,8 +91,11 @@
                                                 <td>@php
                                                     echo str_replace('_', ' ', $task->category);
                                                 @endphp </td>
-                                                <td><a class="btn btn-success"href="/task/{{ $task->id }}/edit"><i
-                                                            class="bx bx-edit"></i></a>
+                                                <td class="d-flex">
+                                                    <button class="btn btn-success px-1">
+                                                        <a class="text-white" href="/task/{{ $task->id }}/edit"><i
+                                                                class="bx bx-edit"></i></a>
+                                                    </button>
                                                     <form action="/task/{{ $task->id }}" method="post">
                                                         @csrf
                                                         @method('delete')
@@ -99,7 +103,6 @@
                                                                 class="bx bxs-trash-alt"></i></button>
                                                     </form>
                                                 </td>
-
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -119,4 +122,7 @@
     </div>
 
     @include('partials.footer')
+    <!-- Modal -->
+
+    {{-- modal end --}}
 @endsection

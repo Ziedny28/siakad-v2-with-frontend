@@ -19,7 +19,7 @@ class SubjectController extends Controller
     {
         return view('admin.subject.index', [
             'teachers' => Teacher::with('subject')->get(),
-            'subjects' => Subject::paginate(10),
+            'subjects' => Subject::paginate(5),
             'students' => Student::all(),
         ]);
     }
