@@ -23,21 +23,16 @@ class AuthController extends Controller
 
         //jika berhasil login sebagai teacher maka dapat mengakses route yang dapat diakses oleh teacher
         if (Auth::guard('teacher')->attempt($credentials)) {
-            $request->session()->regenerate();
             Alert::success('Login Success', 'Welcome Teacher');
             return redirect('/dashboard-teacher');
         }
-
         //jika berhasil login sebagai admin maka dapat mengakses route yang dapat diakses oleh admin
-        if (Auth::guard('admin')->attempt($credentials)) {
-            $request->session()->regenerate();
+        elseif (Auth::guard('admin')->attempt($credentials)) {
             Alert::success('Login Success', 'Welcome Admin');
             return redirect('/dashboard-admin');
         }
-
         //jika berhasil login sebagai student maka dapat mengakses route yang dapat diakses oleh student
-        if (Auth::guard('student')->attempt($credentials)) {
-            $request->session()->regenerate();
+        elseif (Auth::guard('student')->attempt($credentials)) {
             Alert::success('Login Success', 'Welcome Student');
             return redirect('/dashboard-student');
         }
@@ -50,12 +45,18 @@ class AuthController extends Controller
     }
 
     //proses logout
-    public function logout(Request $request)
+    public function logout()
     {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect()->route('/login');
+        if (Auth::guard('teacher')->check()) {
+            Auth::guard('teacher')->logout();
+            return redirect('/login');
+        } elseif (Auth::guard('admin')->check()) {
+            Auth::guard('admin')->logout();
+            return redirect('/login');
+        } elseif (Auth::guard('student')->check()) {
+            Auth::guard('student')->logout();
+            return redirect('/login');
+        }
     }
 
     private $credentialRules = [

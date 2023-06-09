@@ -87,7 +87,9 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $task->name }}</td>
                                                 <td>{{ $task->class_room->name }}</td>
-                                                <td>{{ $task->category }}</td>
+                                                <td>@php
+                                                    echo str_replace('_', ' ', $task->category);
+                                                @endphp </td>
                                                 <td><a class="btn btn-success"href="/task/{{ $task->id }}/edit"><i
                                                             class="bx bx-edit"></i></a>
                                                     <form action="/task/{{ $task->id }}" method="post">
