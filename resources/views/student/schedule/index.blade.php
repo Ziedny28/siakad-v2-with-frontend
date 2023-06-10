@@ -11,13 +11,22 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>Jadwal Siswa</h4>
-                            <p></p>
+                            <p>Kelas {{ $class_room->name }}</p>
                             <div class="card-menu">
                             </div>
                         </div>
                         <div class="card-body">
                             <div>
-                                <img src='{{ asset('assets/images/jadwal-siswa.jpg') }}' class="img-fluid" alt="">
+
+                                @if ($class_room->schedule != null)
+                                    masuk if
+                                    <img src="{{ asset('storage/' . $class_room->schedule) }}" alt=""
+                                        class="img-fluid">
+                                @else
+                                    masuk else
+                                    <img src='{{ asset('assets/images/jadwal-siswa.jpg') }}' class="img-fluid"
+                                        alt="">
+                                @endif
                             </div>
                         </div>
                     </div>

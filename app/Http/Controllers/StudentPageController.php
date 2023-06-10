@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\Score;
+use App\Models\ClassRoom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Query\Builder;
@@ -36,5 +37,11 @@ class StudentPageController extends Controller
         $taskCount = Task::where('class_room_id', Auth::user()->class_room_id)->count();
 
         return view('student.score.index', ['scores' => $score, 'taskCount' => $taskCount, 'scoreAvg' => $scoreAvg]);
+    }
+
+    function studentSchedule()
+    {
+        $class_room = ClassRoom::findOrFail(Auth::user()->class_room_id);
+        return view('student.schedule.index', ['class_room' => $class_room]);
     }
 }

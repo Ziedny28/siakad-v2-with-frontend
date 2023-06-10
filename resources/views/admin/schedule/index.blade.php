@@ -80,8 +80,8 @@
                                                         Lihat Jadwal
                                                     </button></td>
                                                 <td class="flex-col">
-                                                    <a href="/uploadClassRoomImage" class="btn btn-success"><i
-                                                            class='bx bx-edit'></i></a>
+                                                    <a href="/schedule/{{ $classRoom->id }}/schedule_edit"
+                                                        class="btn btn-success"><i class='bx bx-edit'></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -45,6 +45,8 @@ Route::middleware(['auth:admin'])->group(function () {
     route::resource('/teachers', TeacherController::class);
     route::get('/teachers-search', [TeacherController::class, 'search'])->name('teachers.search');
     route::resource('/schedule', ClassRoomController::class);
+    route::get('/schedule/{classRoom}/schedule_edit', [ClassRoomController::class, 'scheduleEdit']);
+    route::post('/schedule_upload', [ClassRoomController::class, 'scheduleUpload']);
 
     route::resource('/students', StudentController::class);
     route::get('/student-search', [StudentController::class, 'search'])->name('student.search');
@@ -104,9 +106,9 @@ Route::middleware(['auth:student'])->group(function () {
     Route::controller(StudentPageController::class)->group(function () {
         Route::get('/student-task', 'studentTask');
         Route::get('/student-score', 'studentScore');
+        Route::get('/student-schedule', 'studentSchedule');
     });
 
-    route::view('/student-schedule', 'student.schedule.index');
     route::view('/student-profile', 'student.my-profile');
 });
 
