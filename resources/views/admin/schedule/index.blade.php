@@ -70,9 +70,9 @@
                                         </tr>
                                     </thead>
                                     <tbody class="align-middle">
-                                        @foreach ($classRooms as $classRoom)
+                                        @foreach ($classRooms as $index => $classRoom)
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $classRooms->firstItem() + $index }}</td>
                                                 <td>{{ $classRoom->name }}</td>
                                                 <td>{{ $classRoom->teacher->name }}</td>
                                                 <td><button type="button" class="btn btn-warning" data-bs-toggle="modal"
@@ -88,7 +88,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            {{-- {{ $classRooms->links() }} --}}
+                            {{ $classRooms->links() }}
                         </div>
                     </div>
                 </div>
@@ -102,11 +102,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Jadwal Kelas {{ $classRoom->name }}</h5>
+
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="card-body">
                         <div>
-                            <img class="img-fluid" src='{{ asset('assets/images/jadwal-siswa.jpg') }}' alt="">
+                            <img class="img-fluid" src='{{ asset('storage/' . $classRoom->schedule) }}'
+                                alt="{{ $classRoom->name }}">
                         </div>
                     </div>
 

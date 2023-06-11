@@ -18,7 +18,7 @@ class ClassRoomController extends Controller
      */
     public function index()
     {
-        $classRooms = ClassRoom::with('teacher')->get();
+        $classRooms = ClassRoom::with('teacher')->paginate(10);
         return view('admin.schedule.index', ['teacherCount' => Teacher::count(), 'studentCount' => Student::count(), 'classRooms' => $classRooms, 'students' => Student::all()]);
     }
 

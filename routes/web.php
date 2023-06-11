@@ -120,4 +120,4 @@ Route::get('/home', function () {
 })->middleware('auth');
 
 // logout
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
