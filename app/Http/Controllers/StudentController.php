@@ -19,7 +19,7 @@ class StudentController extends Controller
     /**
      * menampilkan halaman yang akan menampilkan seluruh siswa
      */
-     public function index()
+    public function index()
     {
         return view('admin.student.index', [
             'students' => Student::all()->with('class_room')->sortBy('name'),
@@ -106,14 +106,15 @@ class StudentController extends Controller
         return back();
     }
 
-    // function search(Request $request)
-    // {
-    //     $query = $request->input('query');
-    //     $students = Student::search($query)->paginate(10);
-    //     return view('admin.student.index', [
-    //         'students' => $students,
-    //         'teacherCount' => Teacher::count(), //counting all teachers
-    //         'studentCount' => Student::count(),
-    //     ]);
-    // }
+    function search(Request $request)
+    {
+        $query = $request->input('query');
+        $students = Student::search($query)->paginate(10);
+        return view('admin.student.index', [
+            'students' => $students,
+            'major' => $request->major,
+            'teacherCount' => Teacher::count(), //counting all teachers
+            'studentCount' => Student::count(),
+        ]);
+    }
 }

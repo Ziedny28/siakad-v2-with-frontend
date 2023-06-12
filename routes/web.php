@@ -2,6 +2,7 @@
 
 use App\Models\Task;
 use App\Models\Score;
+use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Query\Builder;
@@ -15,6 +16,7 @@ use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AjaxRequestController;
 use App\Http\Controllers\StudentPageController;
+use App\Http\Controllers\TeacherPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,19 +44,25 @@ these routes accessible for admin
 */
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('/dashboard-admin', [DashboardController::class, 'admin']);
-    route::resource('/teachers', TeacherController::class);
     route::get('/teachers-search', [TeacherController::class, 'search'])->name('teachers.search');
+
+    route::resource('/teachers', TeacherController::class);
     route::resource('/schedule', ClassRoomController::class);
-    route::get('/schedule/{classRoom}/schedule_edit', [ClassRoomController::class, 'scheduleEdit']);
-    route::post('/schedule_upload', [ClassRoomController::class, 'scheduleUpload']);
-
     route::resource('/students', StudentController::class);
-    route::get('/student-search', [StudentController::class, 'search'])->name('student.search');
-    route::get('/students/major/{major}', [StudentController::class, 'studentByMajor']); // get classroom by jurusan
-
     route::resource('/subjects', SubjectController::class);
+
     Route::view('undefined-fitur', 'admin.blank');
     route::view('/admin-profile', 'admin.my-profile');
+
+    Route::controller(StudentController::class)->group(function () {
+        route::get('/schedule/{classRoom}/schedule_edit', 'scheduleEdit');
+        route::post('/schedule_upload', 'scheduleUpload');
+    });
+
+    Route::controller(StudentController::class)->group(function () {
+        route::get('/student-search', 'search')->name('student.search');
+        route::get('/students/major/{major}', 'studentByMajor'); // get classroom by jurusan
+    });
 
     // import
     route::post('/teacher-import', [TeacherController::class, 'import'])->name('teacher.import');
@@ -66,22 +74,15 @@ these routes accessible for guest
 */
 Route::middleware(['auth:teacher'])->group(function () {
     Route::get('/dashboard-teacher', [DashboardController::class, 'teacher']);
+    Route::get('/score-search', [ScoreController::class, 'search'])->name('score.search');
+    route::get('/teacher-profile', [TeacherPageController::class, 'teacherProfile']);
 
     Route::resource('/score', ScoreController::class);
-    Route::get('/score-search', [ScoreController::class, 'search'])->name('score.search');
-
-    //we can delete this route after testing
-    // Route::controller(ScoreController::class)->group(function () {
-    // Route::get('/score/class_room/{id}', 'classRoomScore');
-    // Route::get('/score/{id}/create-one', 'createOne');
-    // Route::get('/score-choose-edit', 'chooseEdit');
-    // Route::get('/score-choose-one/{id}', 'editOne');
-    // });
-
     Route::resource('task', TaskController::class);
+
     Route::view('undefined-fitur', 'teacher.blank');
     route::view('/teacher-schedule', 'teacher.schedule.index');
-    route::view('/teacher-profile', 'teacher.my-profile');
+
 
     // route for ajax requests with select
     Route::controller(ScoreController::class)->group(function () {
@@ -107,9 +108,10 @@ Route::middleware(['auth:student'])->group(function () {
         Route::get('/student-task', 'studentTask');
         Route::get('/student-score', 'studentScore');
         Route::get('/student-schedule', 'studentSchedule');
+        Route::get('/student-profile', 'studentProfile');
+        Route::get('/change-password', 'changePassword');
+        Route::post('/save-change-password', 'saveChangePassword');
     });
-
-    route::view('/student-profile', 'student.my-profile');
 });
 
 /*

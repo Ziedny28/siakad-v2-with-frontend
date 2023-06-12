@@ -17,19 +17,19 @@
                             <h4>Biodata</h4>
                             <div class="card-body">
                                 <h6>Nomor Induk Guru</h6>
-                                <p>123457</p>
+                                <p>{{ $teacher->ni }}</p>
                                 <hr>
                                 <h6>Nama</h6>
-                                <p>Admin Sutomo</p>
+                                <p>{{ $teacher->name }}</p>
                                 <hr>
                                 <h6>Alamat</h6>
-                                <p>Jl Merpati 1 nomor mawar</p>
+                                <p>{{ $teacher->address }}</p>
                                 <hr>
                                 <h6>Tempat Tanggal Lahir</h6>
-                                <p>Malang, 30 Februari 2180</p>
+                                <p>{{ $teacher->pob }}</p>
                                 <hr>
                                 <h6>Email</h6>
-                                <p>emailexample@gmail.com</p>
+                                <p>{{ $teacher->email }}</p>
                                 <hr>
                             </div>
                         </div>

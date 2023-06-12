@@ -18,9 +18,10 @@ return new class extends Migration
             $table->string('address');
             $table->string('pob');
             $table->string('password');
+            $table->string('schedule');
             $table->string('email')->unique();
 
-            $table->foreignId('subject_id')->constrained('subjects')->restrictOnDelete();//mengajar
+            $table->foreignId('subject_id')->constrained('subjects')->restrictOnDelete(); //mengajar
         });
     }
 
