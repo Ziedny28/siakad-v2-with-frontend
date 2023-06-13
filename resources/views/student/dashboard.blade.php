@@ -9,6 +9,7 @@
             <div class="content-header">
                 <h1>Dashboard Siswa</h1>
                 <h4>Selamat Datang, {{ $student->name }}</h4>
+                <p></p>
             </div>
             <div class="row">
                 <div class="col-md-12">

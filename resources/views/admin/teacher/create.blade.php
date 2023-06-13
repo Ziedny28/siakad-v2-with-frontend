@@ -133,10 +133,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer text-right">
-                                <a class="btn btn-secondary" href="/teachers" role="button">Cancel</a>
-                                <button class="btn btn-success" type="submit">Submit</button>
-                            </div>
                         </form>
                     </div>
                 </div>
