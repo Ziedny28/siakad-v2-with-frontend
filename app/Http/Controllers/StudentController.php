@@ -22,7 +22,10 @@ class StudentController extends Controller
     public function index()
     {
         return view('admin.student.index', [
-            'students' => Student::all()->with('class_room')->sortBy('name'),
+            'students' => Student::with('class_room')->orderBy('name')->paginate(5),
+            'teacherCount' => Teacher::count(), //counting all teachers
+            'studentCount' => Student::count(),
+            'major' => 'All',
         ]);
     }
 

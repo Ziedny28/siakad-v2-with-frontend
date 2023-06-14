@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('class_rooms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('grade', ['10','11', '12']);
+            $table->enum('grade', ['10', '11', '12']);
             $table->string('schedule');
-            $table->foreignId('teacher_id')->constrained('teachers')->restrictOnDelete();//walikelas
+            $table->foreignId('teacher_id')->constrained('teachers')->cascadeOnDelete(); //walikelas
         });
     }
 

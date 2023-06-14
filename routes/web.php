@@ -54,7 +54,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::view('undefined-fitur', 'admin.blank');
     route::view('/admin-profile', 'admin.my-profile');
 
-    Route::controller(StudentController::class)->group(function () {
+    Route::controller(ClassRoomController::class)->group(function () {
         route::get('/schedule/{classRoom}/schedule_edit', 'scheduleEdit');
         route::post('/schedule_upload', 'scheduleUpload');
     });
