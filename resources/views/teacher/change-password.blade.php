@@ -1,12 +1,13 @@
 @extends('layouts.main')
 @section('content')
     @include('partials.admin-topbar')
-    @include('partials.student-sidebar')
+    @include('partials.teacher-sidebar')
+
     <!--Content Start-->
     <div class="content-start transition">
         <div class="container-fluid dashboard">
             <div class="content-header">
-                <h1>{{ $student->name }}</h1>
+                <h1>{{ $teacher->name }}</h1>
                 <p>(change password)</p>
             </div>
             <div class="row">
@@ -14,7 +15,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>Ubah Password</h4>
-                            <form action="/student-save-change-password" method="post">
+                            <form action="/teacher-save-change-password" method="post">
                                 <div class="card-body">
                                     @csrf
                                     <div class="col-md-6">
@@ -35,10 +36,10 @@
                                                 id="newPassConfirm" required>
                                         </div>
                                     </div>
-                                    <input type="hidden" name="ni" value="{{ $student->ni }}">
+                                    <input type="hidden" name="ni" value="{{ $teacher->ni }}">
                                 </div>
                                 <div class="card-footer text-right">
-                                    <a class="btn btn-secondary" href="\student-profile" role="button">Cancel</a>
+                                    <a class="btn btn-secondary" href="\teacher-profile" role="button">Cancel</a>
                                     <button class="btn btn-success" type="submit">Submit</button>
                                 </div>
                             </form>

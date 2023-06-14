@@ -85,6 +85,7 @@ class TeacherController extends Controller
 
         // gantikan data lama dengan data baru
         DB::table('teacher_class_room')->where('teacher_id', $teacher->id)->delete();
+
         foreach ($class_room['inputs'] as $class_room_id) {
             DB::table('teacher_class_room')->insert([
                 'class_room_id' => $class_room_id['class_room_id'],
@@ -94,6 +95,12 @@ class TeacherController extends Controller
 
         $teacherRequest = $this->getTeacherData($request);
         $data = $teacherRequest;
+
+        if ($request->file('schedule')) {
+            $schedule = $request->file('schedule')->store('teacher/schedule');
+            $data['schedule'] = $schedule;
+        }
+
         $teacher->fill($data);
         $teacher->save();
         Alert::success('Success', 'Berhasil Mengubah Guru');

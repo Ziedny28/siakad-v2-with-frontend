@@ -70,19 +70,23 @@ Route::middleware(['auth:admin'])->group(function () {
 });
 
 /*
-these routes accessible for guest
+these routes accessible for teacher
 */
 Route::middleware(['auth:teacher'])->group(function () {
     Route::get('/dashboard-teacher', [DashboardController::class, 'teacher']);
     Route::get('/score-search', [ScoreController::class, 'search'])->name('score.search');
-    route::get('/teacher-profile', [TeacherPageController::class, 'teacherProfile']);
 
     Route::resource('/score', ScoreController::class);
     Route::resource('task', TaskController::class);
 
     Route::view('undefined-fitur', 'teacher.blank');
-    route::view('/teacher-schedule', 'teacher.schedule.index');
 
+    Route::controller(TeacherPageController::class)->group(function () {
+        Route::get('/teacher-change-password', 'changePassword');
+        Route::post('/teacher-save-change-password', 'saveChangePassword');
+        route::get('/teacher-profile', 'teacherProfile');
+        route::get('/teacher-schedule', 'teacherSchedule');
+    });
 
     // route for ajax requests with select
     Route::controller(ScoreController::class)->group(function () {
@@ -91,11 +95,12 @@ Route::middleware(['auth:teacher'])->group(function () {
         Route::get('getStudents', 'getStudents')->name('getStudents');
     });
 
+
     // new ajax request with select 2
-    Route::controller(AjaxRequestController::class)->group(function () {
-        Route::get('selectClassRoom', 'classRoom')->name('classRoom.ajaxrequest');
-        Route::get('selectTask/{id}', 'task')->name('task.ajaxrequest');
-    });
+    // Route::controller(AjaxRequestController::class)->group(function () {
+    //     Route::get('selectClassRoom', 'classRoom')->name('classRoom.ajaxrequest');
+    //     Route::get('selectTask/{id}', 'task')->name('task.ajaxrequest');
+    // });
 });
 
 /*
@@ -109,8 +114,8 @@ Route::middleware(['auth:student'])->group(function () {
         Route::get('/student-score', 'studentScore');
         Route::get('/student-schedule', 'studentSchedule');
         Route::get('/student-profile', 'studentProfile');
-        Route::get('/change-password', 'changePassword');
-        Route::post('/save-change-password', 'saveChangePassword');
+        Route::get('/student-change-password', 'changePassword');
+        Route::post('/student-save-change-password', 'saveChangePassword');
     });
 });
 

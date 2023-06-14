@@ -48,6 +48,17 @@
                         Jadwal Guru
                     </a>
                 </li>
+
+                <!-- Divider-->
+                <li class="divider" data-text="STARTER">SETTINGS</li>
+
+                <li>
+                    <a href="/teacher-change-password"
+                        class="{{ request()->is('teacher-change-password') ? 'active' : '' }}">
+                        <i class=''></i>
+                        Change Password
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

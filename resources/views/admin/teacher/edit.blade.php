@@ -13,7 +13,7 @@
 
                 <div class="col-md-12">
                     <div class="card">
-                        <form action="/teachers/{{ $teacher->id }}" method="post">
+                        <form action="/teachers/{{ $teacher->id }}" method="post" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
                             <div class="card-header">
@@ -108,6 +108,12 @@
                                         @enderror
                                     </div>
 
+
+                                    <div class="mb-3">
+                                        <label for="schedule" class="form-label">Jadwal</label>
+                                        <input class="form-control" type="file" id="schedule" name="schedule">
+                                    </div>
+
                                     {{-- input kelas --}}
                                     <div class="form-group" id="class_access">
                                         <label for="">Akses kelas</label>
@@ -116,7 +122,8 @@
                                             <div class="row">
 
                                                 <div class="col-2">
-                                                    <a class="btn btn-success" id="addColl" onclick="addColumn()"><i class="bx bx-plus"></i> Tambahkan akses kelas </a>
+                                                    <a class="btn btn-success" id="addColl" onclick="addColumn()"><i
+                                                            class="bx bx-plus"></i> Tambahkan akses kelas </a>
                                                 </div>
                                             </div>
                                             @error('inputs[0][class_room_id]')
@@ -148,7 +155,8 @@
                                                     </div>
                                                     <div class="col-2">
                                                         <a class="btn btn-danger removeColl"
-                                                            onclick="removeColl({{ $i }})"><i class="bx bxs-trash-alt"></i></a>
+                                                            onclick="removeColl({{ $i }})"><i
+                                                                class="bx bxs-trash-alt"></i></a>
                                                     </div>
                                                 </div>
                                                 @error('inputs[{{ $i }}][class_room_id]')

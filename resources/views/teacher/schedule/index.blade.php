@@ -12,13 +12,14 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>Jadwal Guru</h4>
+                            <h5>{{ $teacher->name }}</h5>
                             <p></p>
                             <div class="card-menu">
                             </div>
                         </div>
                         <div class="card-body">
                             <div>
-                                <img src='{{asset('assets/images/jadwal-guru.jpg')}}' class="img-fluid" alt="">
+                                <img src='{{ asset('storage/' . $teacher->schedule) }}' class="img-fluid" alt="">
                             </div>
                         </div>
                     </div>

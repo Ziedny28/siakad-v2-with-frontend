@@ -66,13 +66,13 @@ class StudentPageController extends Controller
         //if student's old pass is not same with the one that just inputted
         if (!Auth::guard('student')->attempt($credentials)) {
             Alert::error('Gagal', 'Password lama salah');
-            return redirect('/change-password');
+            return redirect('/student-change-password');
         }
 
         // if new pass and new pass confirm is not same
         if ($request->newPass != $request->newPassConfirm) {
             Alert::error('Gagal', 'Password tidak sama');
-            return redirect('/change-password');
+            return redirect('/student-change-password');
         }
 
         $student = Student::findOrFail(auth()->user()->id);
