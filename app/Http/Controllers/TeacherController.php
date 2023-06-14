@@ -11,6 +11,7 @@ use App\Imports\TeacherImport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Requests\UpdateTeacherRequest;
@@ -100,6 +101,9 @@ class TeacherController extends Controller
 
         // check if there's a schedule file
         if ($request->file('schedule')) {
+            if ($request->oldScheduleImage) {
+                Storage::delete($request->oldScheduleImage);
+            }
             $schedule = $request->file('schedule')->store('teacher/schedule');
             $data['schedule'] = $schedule;
         }

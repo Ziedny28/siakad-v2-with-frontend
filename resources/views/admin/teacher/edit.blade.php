@@ -110,8 +110,19 @@
 
 
                                     <div class="mb-3">
-                                        <label for="schedule" class="form-label">Jadwal</label>
-                                        <input class="form-control" type="file" id="schedule" name="schedule">
+                                        <label class="form-label">Schedule Image</label>
+                                        <input type="hidden" name="oldScheduleImage" value="{{ $teacher->schedule }}">
+
+                                        @if ($teacher->schedule)
+                                            <img src="{{ asset('storage/' . $teacher->schedule) }}"
+                                                class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                                        @else
+                                            <img class="img-preview img-fluid mb-3 col-sm-5">
+                                        @endif
+
+                                        <img class="img-preview img-fluid mb-3 col-sm-5">
+                                        <input type="file" name="schedule" id="image" class="form-control"
+                                            onchange="previewImage()">
                                     </div>
 
                                     {{-- input kelas --}}
@@ -227,6 +238,20 @@
             let col_item = $(`#class_room_${index}`);
             console.log(col_item);
             $(col_item).remove();
+        }
+
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
         }
     </script>
     @include('partials.footer')
