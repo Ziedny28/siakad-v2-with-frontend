@@ -8,39 +8,38 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
-
-    //menampilkan halaman login
+    //show login page
     public function login()
     {
         return view('login.login');
     }
 
-    //proses login
+    //login process
     public function processLogin(Request $request)
     {
-        //mengambil data yang diperlukan dan melakukan validasi
+        //geting necessary data and validate it
         $credentials = $request->validate($this->credentialRules);
 
-        //jika berhasil login sebagai teacher maka dapat mengakses route yang dapat diakses oleh teacher
+        //if success login as teacher ,user can access route that accessable by teacher and redirected to dashboard-teacher
         if (Auth::guard('teacher')->attempt($credentials)) {
             $request->session()->regenerate();
             Alert::success('Login Success', 'Welcome Teacher');
             return redirect('/dashboard-teacher');
         }
-        //jika berhasil login sebagai admin maka dapat mengakses route yang dapat diakses oleh admin
+
+        //if success login as teacher ,user can access route that accessable by admin and redirected to dashboard-admin
         elseif (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
             Alert::success('Login Success', 'Welcome Admin');
             return redirect('/dashboard-admin');
         }
-        //jika berhasil login sebagai student maka dapat mengakses route yang dapat diakses oleh student
+        //if success login as teacher ,user can access route that accessable by student and redirected to dashboard-student
         elseif (Auth::guard('student')->attempt($credentials)) {
             $request->session()->regenerate();
             Alert::success('Login Success', 'Welcome Student');
             return redirect('/dashboard-student');
         }
-
-        //jika gagal login maka akan dikembalikan ke halaman login dan tidak mendapat hak akses apapun
+        //if failed login user will be redirect to login page and can't access any route
         Alert::error('Login Failed', 'NI or Password is wrong');
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
@@ -50,7 +49,7 @@ class AuthController extends Controller
     //proses logout
     public function logout()
     {
-
+        //logout from all guard
         if (Auth::guard('teacher')->check()) {
             Auth::guard('teacher')->logout();
         } elseif (Auth::guard('admin')->check()) {

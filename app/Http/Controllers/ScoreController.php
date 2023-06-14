@@ -17,7 +17,7 @@ use App\Http\Requests\UpdateScoreRequest;
 class ScoreController extends Controller
 {
     /*
-      menampilkan halaman nilai yang telah dibuat oleh guru ini.
+      show the scores that created by this teacher
      */
     public function index()
     {
@@ -45,67 +45,35 @@ class ScoreController extends Controller
     }
 
     /**
-     * menampilkan halaman untuk memasukkan data nilai baru
+     * show create score page
      */
     public function create()
     {
         $teacher_id = Auth::user()->id; // get the teacher id
         $tasks = Task::with('class_room')->where('teacher_id', $teacher_id)->get(); // get the tasks of this teacher with class room
 
-        //class diajar oleh guru ini
+        //classroom accessable by this teacher
         $class_rooms = $this->getClassRooms();
 
         return view('teacher.score.create', ['tasks' => $tasks, 'class_rooms' => $class_rooms]);
     }
 
-
-    /*
-    delete this part after testing
-    */
-    // create the one score
-    // public function createOne($id)
-    // {
-    //     $task = Task::with('class_room')->find($id); // get the task with class room
-    //     $students = Student::where('class_room_id', $task->class_room_id)->get(); // get the students of this class room
-
-    //     return view('teacher.score.create-one', [
-    //         'task' => $task,
-    //         'students' => $students,
-    //     ]);
-    // }
-
     /**
-     * Store a newly created resource in storage.
-     */
-    // old
-
-    // public function store(StoreScoreRequest $request)
-    // {
-    //     dd($request);
-
-    //     Score::create($request->validated());
-    //     return redirect()->route('score.index')->with('success', 'Task created successfully');
-    // }
-
-    /*
-    */
-
-    /**
-     *  memasukkan data nilai baru
+     *  insert score to database
      */
     public function store(Request $request)
     {
-        // melakukan validasi dan mengambil data
+        // doing validation
         $validated = $request->validate([
             'inputs.*.score' => 'required|numeric|min:0|max:100',
             'class_room_id' => 'required|exists:class_rooms,id',
             'task_id' => 'required',
         ]);
 
-        // mendapatkan semua murid yang ada di kelas yang telah dipilih
+        //get all students in the selected class room
         $students = Student::where('class_room_id', $validated['class_room_id'])->get();
 
-        // memasukkan nilai untuk semua siswa
+        //insert score for all students in the selected class room
         $i = 0;
         foreach ($students as $student) {
             $score = new Score();
@@ -116,13 +84,13 @@ class ScoreController extends Controller
             $i++;
         }
 
-        // jika sukses maka akan diarahkan ke halaman nilai
+        //if success then redirect to score page
         Alert::success('Success', 'Score updated successfully');
         return redirect()->route('score.index');
     }
 
     /**
-     * menampilkan halaman untuk melakukan edit nilai
+     * show page to edit score
      */
     public function edit(Score $score)
     {
@@ -130,29 +98,8 @@ class ScoreController extends Controller
         return view('teacher.score.edit', ['score' => $score, 'students' => $students]);
     }
 
-    // // delete this part after testing
-    // // change to choosetask
-    // public function chooseEdit()
-    // {
-    //     $teacher_id = Auth::user()->id;
-    //     $tasks = Task::where('teacher_id', $teacher_id)->with('class_room')->get();
-    //     return view('teacher.score.choose-edit', ['tasks' => $tasks]);
-    // }
-
-    // // change to choosescore
-    // public function editOne($id)
-    // {
-    //     $task = Task::with('class_room')->find($id);
-
-    //     $scores = Score::where('task_id', $task->id)->with('student')->get();
-    //     return view('teacher.score.edit-one', [
-    //         'task' => $task,
-    //         'scores' => $scores,
-    //     ]);
-    // }
-
     /**
-     * Update the specified resource in storage.
+     * show page for updating score
      */
     public function update(UpdateScoreRequest $request, Score $score)
     {
@@ -164,7 +111,7 @@ class ScoreController extends Controller
     }
 
     /**
-     * menampilkan halaman untuk melihat nilai berdasarkan kelas
+     * show page to see score by class room
      */
     public function classRoomScore($classRoomId)
     {
@@ -187,7 +134,7 @@ class ScoreController extends Controller
         return view('teacher.score.index', ['class_rooms' => $class_rooms, 'scores' => $scores]);
     }
 
-    // fungsi untuk ajax request
+    // functions for ajax requests
     public function getClassRooms()
     {
         //mendapatkan kelas apa saja yang diajar oleh guru ini

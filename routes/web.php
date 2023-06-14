@@ -95,7 +95,6 @@ Route::middleware(['auth:teacher'])->group(function () {
         Route::get('getStudents', 'getStudents')->name('getStudents');
     });
 
-
     // new ajax request with select 2
     // Route::controller(AjaxRequestController::class)->group(function () {
     //     Route::get('selectClassRoom', 'classRoom')->name('classRoom.ajaxrequest');
@@ -104,7 +103,7 @@ Route::middleware(['auth:teacher'])->group(function () {
 });
 
 /*
-these routes accessible for student
+routes accessible for student
 */
 Route::middleware(['auth:student'])->group(function () {
     Route::get('/dashboard-student', [DashboardController::class, 'student']);
@@ -120,7 +119,7 @@ Route::middleware(['auth:student'])->group(function () {
 });
 
 /*
-these routes accessible for all
+routes accessible for all authenticated user
 */
 Route::get('/home', function () {
     return 'page for all';

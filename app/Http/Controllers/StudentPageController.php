@@ -14,7 +14,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class StudentPageController extends Controller
 {
-    // menampilkan halaman tugas murid ini
+    // show the student dashboard page
     public function studentTask()
     {
         $task = Task::with('teacher.subject')->where('class_room_id', Auth::user()->class_room_id)
@@ -27,7 +27,7 @@ class StudentPageController extends Controller
         return view('student.task.index', ['tasks' => $task, 'taskCount' => $taskCount, 'scoreAvg' => $scoreAvg]);
     }
 
-    // menampilkan halaman nilai murid ini
+    // show the student score page
     public function studentScore()
     {
         $student_id = Auth::user()->id; //getting student id
@@ -41,17 +41,20 @@ class StudentPageController extends Controller
         return view('student.score.index', ['scores' => $score, 'taskCount' => $taskCount, 'scoreAvg' => $scoreAvg]);
     }
 
+    // show the student schedule page
     public function studentSchedule()
     {
         $class_room = ClassRoom::findOrFail(Auth::user()->class_room_id);
         return view('student.schedule.index', ['class_room' => $class_room]);
     }
 
+    // show the student profile page
     public function studentProfile()
     {
         return view('student.my-profile', ['student' => Auth::user()]);
     }
 
+    // show the student change password page
     public function changePassword()
     {
         $student = Student::findOrFail(auth()->user()->id);
@@ -60,6 +63,7 @@ class StudentPageController extends Controller
         ]);
     }
 
+    // save the changed password of the student
     public function saveChangePassword(Request $request)
     {
         $credentials = $request->validate($this->credentialRules);

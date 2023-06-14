@@ -34,7 +34,17 @@
                                             3. pastikan file berukuran 800x800 pixel
                                         </li>
                                         <li class="text-black">
-                                            <input type="file" name="image" id="file" class="form-control">
+                                            <label class="form-label">Schedule Image</label>
+                                            <input type="hidden" name="oldScheduleImage"
+                                                value="{{ $classRoom->schedule }}">
+                                            @if ($classRoom->schedule)
+                                                <img src="{{ asset('storage/' . $classRoom->schedule) }}"
+                                                    class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                                            @else
+                                                <img class="img-preview img-fluid mb-3 col-sm-5">
+                                            @endif
+                                            <input type="file" name="image" id="image" class="form-control"
+                                                onchange="previewImage()">
                                         </li>
                                     </ul>
                                 </div>
@@ -50,5 +60,20 @@
             </div>
         </div>
     </div>
+    <script>
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+    </script>
     @include('partials.footer')
 @endsection

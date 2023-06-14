@@ -13,10 +13,10 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class TaskController extends Controller
 {
-    // kategori yang tersedia
+    // available categories
     private $categories = ['task', 'dialy_test', 'mid_test', 'final_test'];
     /**
-     * menampilkan halaman tugas
+     * show the tasks that created by this teacher
      */
     public function index()
     {
@@ -25,7 +25,7 @@ class TaskController extends Controller
 
         $taskCount = Task::where('teacher_id', $teacher_id)->count();
         $studentCount = Student::count();
-        
+
         return view('teacher.task.index', [
             'tasks' => $tasks,
             'taskCount' => $taskCount,
@@ -34,7 +34,7 @@ class TaskController extends Controller
     }
 
     /**
-     * menampilkan halaman untuk membuat tugas
+     * show page to create task
      */
     public function create()
     {
@@ -47,7 +47,7 @@ class TaskController extends Controller
     }
 
     /**
-     * menyimpan data tugas
+     * save task data
      */
     public function store(StoreTaskRequest $request)
     {
@@ -57,7 +57,7 @@ class TaskController extends Controller
     }
 
     /**
-     * menampilkan halaman edit tugas
+     * show page to edit task
      */
     public function edit(Task $task)
     {
@@ -71,7 +71,7 @@ class TaskController extends Controller
     }
 
     /**
-     * menyimpan hasil edit
+     * saving edited task
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
@@ -83,7 +83,7 @@ class TaskController extends Controller
     }
 
     /**
-     * menghapus tugas
+     * \delete task
      */
     public function destroy(Task $task)
     {
@@ -93,6 +93,9 @@ class TaskController extends Controller
         return redirect()->route('task.index');
     }
 
+    /**
+     * get class room that this teacher teach
+     */
     public function getClassRoom($teacher_id)
     {
         $teacher_class_room = DB::table('teacher_class_room')->where('teacher_id', $teacher_id)->pluck('class_room_id'); // get the class room id that this teacher teach

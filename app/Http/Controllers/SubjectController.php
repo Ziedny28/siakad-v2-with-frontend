@@ -13,7 +13,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 class SubjectController extends Controller
 {
     /**
-     * menampilkan semua mata pelajaran
+     * showing all subjects
      */
     public function index()
     {
@@ -25,7 +25,7 @@ class SubjectController extends Controller
     }
 
     /**
-     * menampilkan halaman membuat mata pelajaran baru
+     * showing page to create new subject
      */
     public function create()
     {
@@ -33,7 +33,7 @@ class SubjectController extends Controller
     }
 
     /**
-     * menyimpan mata pelajaran yang baru dibuat
+     * saving new subject
      */
     public function store(StoreSubjectRequest $request)
     {
@@ -44,7 +44,7 @@ class SubjectController extends Controller
     }
 
     /**
-     * menampilkan halaman untuk melakukan edit mata pelajaran
+     * showing page to edit subject
      */
     public function edit(Subject $subject)
     {
@@ -52,7 +52,7 @@ class SubjectController extends Controller
     }
 
     /**
-     * menyimpan hasil edit
+     * saving edited subject
      */
     public function update(UpdateSubjectRequest $request, Subject $subject)
     {
@@ -64,7 +64,7 @@ class SubjectController extends Controller
     }
 
     /**
-     * menghapus mata pelajaran yang dipilih
+     * delete selected subject
      */
     public function destroy(Subject $subject)
     {

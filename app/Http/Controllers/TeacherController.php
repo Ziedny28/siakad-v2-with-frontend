@@ -18,19 +18,19 @@ use App\Http\Requests\UpdateTeacherRequest;
 class TeacherController extends Controller
 {
     /**
-     * menampilkan halaman untuk melihat semua guru
+     * showing page to see all teachers
      */
     public function index()
     {
         return view('admin.teacher.index', [
             'teachers' => Teacher::with('subject')->paginate(5),
-            'teacherCount' => Teacher::count(), //menghitung semua guru
-            'studentCount' => Student::count(),
+            'teacherCount' => Teacher::count(), //count all teachers
+            'studentCount' => Student::count(), //count all students
         ]);
     }
 
     /**
-     * menampilkan halmaan untuk membuat guru baru
+     * show page to create new teacher
      */
     public function create()
     {
@@ -40,25 +40,25 @@ class TeacherController extends Controller
     }
 
     /**
-     * menyimpan guru baru ke database
+     * store new teacher to database
      */
     public function store(StoreTeacherRequest $request)
     {
         $teacher = $request->validated();
-        $teacher['password'] = Hash::make($request->password); //melakukan hash pada password
+        $teacher['password'] = Hash::make($request->password); //hashing password
         Teacher::create($teacher);
         Alert::success('Success', 'Berhasil Membuat Guru');
         return redirect()->route('teachers.index');
     }
 
     /**
-     * menampilkan halaman edit guru
+     * show page to edit teacher
      */
     public function edit(Teacher $teacher)
     {
         $teacher = Teacher::with('subject')->findOrFail($teacher->id);
 
-        // getting classroom data where there's the teacher isnt assigned to it, soo we can only input the classroom where this teacher isn't assigned to
+        // getting classroom data where there's the teacher isnt assigned to it, so we can only input the classroom where this teacher isn't assigned to
         $excluded_class_rooms = DB::table('teacher_class_room')->where('teacher_id', $teacher->id)->pluck('class_room_id')->toArray();
         $class_rooms = ClassRoom::whereNotIn('id', $excluded_class_rooms)->get();
 
@@ -75,7 +75,7 @@ class TeacherController extends Controller
     }
 
     /**
-     * menyimpan data hasil edit
+     * save updated teacher to database
      */
     public function update(Request $request, Teacher $teacher)
     {
@@ -83,9 +83,10 @@ class TeacherController extends Controller
             "inputs.*.class_room_id" => 'required'
         ]);
 
-        // gantikan data lama dengan data baru
+        // change the teacher access by change teacher_class_room table data
         DB::table('teacher_class_room')->where('teacher_id', $teacher->id)->delete();
 
+        // insert new teacher_access data to teacher_class_room table
         foreach ($class_room['inputs'] as $class_room_id) {
             DB::table('teacher_class_room')->insert([
                 'class_room_id' => $class_room_id['class_room_id'],
@@ -93,20 +94,26 @@ class TeacherController extends Controller
             ]);
         }
 
+        // get teacher data from function
         $teacherRequest = $this->getTeacherData($request);
         $data = $teacherRequest;
 
+        // check if there's a schedule file
         if ($request->file('schedule')) {
             $schedule = $request->file('schedule')->store('teacher/schedule');
             $data['schedule'] = $schedule;
         }
 
+        //save updated teacher data
         $teacher->fill($data);
         $teacher->save();
         Alert::success('Success', 'Berhasil Mengubah Guru');
         return redirect()->route('teachers.index');
     }
 
+    /**
+     * get necessaries teacher data from request
+     */
     public function getTeacherData(Request $teacherRequest)
     {
         $teacherRules = new UpdateTeacherRequest;
@@ -115,7 +122,7 @@ class TeacherController extends Controller
     }
 
     /**
-     * menghapus data guru
+     * delete teacher data from database
      */
     public function destroy(Teacher $teacher)
     {
@@ -125,7 +132,7 @@ class TeacherController extends Controller
     }
 
     /**
-     * proses import data guru dengan menggunakan laravel excel
+     * import teacher data from excel with laravel excel
      */
 
 
@@ -137,7 +144,7 @@ class TeacherController extends Controller
     }
 
     /**
-     * menampilkan halaman hasil pencarian
+     * search teacher data from database
      */
 
     public function search(Request $request)

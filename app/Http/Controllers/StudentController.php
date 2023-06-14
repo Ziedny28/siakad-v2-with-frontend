@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 class StudentController extends Controller
 {
     /**
-     * menampilkan halaman yang akan menampilkan seluruh siswa
+     * showing page to see all students with pagination each 5 students
      */
     public function index()
     {
@@ -30,7 +30,7 @@ class StudentController extends Controller
     }
 
     /**
-     * menampilkan halaman untuk membuat siswa baru
+     * showing page to create new student
      */
     public function create()
     {
@@ -40,7 +40,7 @@ class StudentController extends Controller
     }
 
     /**
-     * menyimpan data siswa
+     * save student data
      */
     public function store(StoreStudentRequest $request)
     {
@@ -53,7 +53,7 @@ class StudentController extends Controller
 
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing student
      */
     public function edit(Student $student)
     {
@@ -65,7 +65,7 @@ class StudentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the student in database
      */
     public function update(UpdateStudentRequest $request, Student $student)
     {
@@ -77,7 +77,7 @@ class StudentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove student from database
      */
     public function destroy(Student $student)
     {

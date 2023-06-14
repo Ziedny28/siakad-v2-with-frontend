@@ -10,18 +10,21 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class TeacherPageController extends Controller
 {
+    //show teacher profile page
     function teacherProfile()
     {
         $teacher_id = Auth::user()->id;
         return view('teacher.my-profile', ['teacher' => Teacher::findOrFail($teacher_id)]);
     }
 
+    //show change password page
     function changePassword()
     {
         $teacher_id = Auth::user()->id;
         return view('teacher.change-password', ['teacher' => Teacher::findOrFail($teacher_id)]);
     }
 
+    //save changed password
     function saveChangePassword(Request $request)
     {
         $credentials = $request->validate($this->credentialRules);
@@ -50,6 +53,7 @@ class TeacherPageController extends Controller
         'password' => ['required', 'string', 'max:255'],
     ];
 
+    //show teacher schedule page
     function teacherSchedule()
     {
         $teacher = Teacher::findOrFail(Auth::user()->id);

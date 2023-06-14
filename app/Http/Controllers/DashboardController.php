@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use App\Models\Score;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\ClassRoom;
-use App\Models\Task;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     /*
-    jika berhasil login sebagai student, pertama akan diarahkan ke dashboard student
+    if success login as student, first will be redirected to student dashboard
+    this function will get data of this student, score, tasks data of this student
     */
     public function student()
     {
@@ -30,7 +32,8 @@ class DashboardController extends Controller
     }
 
     /*
-    jika berhasil login sebagai teacher, pertama akan diarahkan ke dashboard teacher
+    if success login as teacher, first will be redirected to teacher dashboard
+
     */
     public function teacher()
     {
@@ -40,11 +43,9 @@ class DashboardController extends Controller
         $tasks = Task::with('class_room')->where('teacher_id', $teacher_id)->get(); //getting tasks data of this teacher
 
         /*
-        get the class rooms that this teacher teach
-        panggil relasi class_rooms pada model Teacher untuk mendapatkan class room yang diajar oleh teacher ini
+        get the class rooms that this teacher teach in teacher_class_room table
         */
-        $class_rooms = Teacher::findOrFail($teacher_id);
-        $class_rooms = $class_rooms->class_rooms;
+        $class_rooms = $this->getClassRoom($teacher_id);
 
         //getting scores data of this teacher
         $scores = Score::with('task.teacher.subject')
@@ -62,8 +63,16 @@ class DashboardController extends Controller
         ]);
     }
 
+    //getting ClassRoom data that this teacher teach
+    public function getClassRoom($teacher_id)
+    {
+        $teacher_class_room = DB::table('teacher_class_room')->where('teacher_id', $teacher_id)->pluck('class_room_id'); // get the class room id that this teacher teach
+        $class_rooms = ClassRoom::whereIn('id', $teacher_class_room)->get();
+        return $class_rooms;
+    }
+
     /*
-    jika berhasil login sebagai admin, pertama akan diarahkan ke dashboard admin
+    if success login as admin, first will be redirected to admin dashboard
     */
     public function admin()
     {
