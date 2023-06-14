@@ -643,6 +643,8 @@ a {
 
 .card .card-header {
     border: none;
+    /* rounded border */
+    border-radius: 0.35rem;
 }
 
 .card .card-header .card-menu {
@@ -682,6 +684,7 @@ a {
     padding: 1.4rem 1.7rem;
     background-color: #ffffff;
     margin-bottom: 30px;
+    border-radius: 0.35rem;
 }
 
 .card .card-heading {
@@ -3425,7 +3428,7 @@ button .btn-hidden{
     outline: none;
     padding: 0;
     margin: 0;
-    
+
 }
 
 .bg-white {

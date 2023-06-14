@@ -47,7 +47,8 @@ class StudentController extends Controller
         $student = $request->validated();
         $student['password'] = Hash::make($request->password);
         Student::create($student);
-        return redirect()->route('students.index')->with('success', 'Student created successfully');
+        Alert::success('Success', 'Student created successfully');
+        return redirect()->route('students.index');
     }
 
 
