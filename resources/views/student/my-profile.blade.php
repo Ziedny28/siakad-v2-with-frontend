@@ -32,7 +32,7 @@
                                 <p>{{ $student->email }}</p>
                                 <hr>
                                 <h6>Password</h6>
-                                <a class="btn btn-light border-dark px-3 mx-0" href="/change-password">Ubah Password</a>
+                                <a class="btn btn-light border-dark px-3 mx-0" href="/student-change-password">Ubah Password</a>
                                 <hr>
                             </div>
                         </div>

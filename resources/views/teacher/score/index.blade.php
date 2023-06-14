@@ -14,7 +14,7 @@
     <div class="content-start transition">
         <div class="container-fluid dashboard">
             <div class="content-header">
-                <h1>Manajemen Data Tugas</h1>
+                <h1>Manajemen Data Penilaian</h1>
                 <p></p>
             </div>
 

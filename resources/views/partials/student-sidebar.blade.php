@@ -46,12 +46,6 @@
                 </li>
 
                 <!-- Divider-->
-                <li class="divider" data-text="STARTER">SETTINGS</li>
-                <a href="/student-change-password"
-                    class="{{ request()->is('student-change-password') ? 'active' : '' }}">
-                    <i class="fa-solid fa-lock"></i>
-                    Change Password
-                </a>
             </ul>
         </div>
     </div>
