@@ -5,7 +5,6 @@ use App\Models\Score;
 use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Database\Query\Builder;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ScoreController;
@@ -14,7 +13,6 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\AjaxRequestController;
 use App\Http\Controllers\StudentPageController;
 use App\Http\Controllers\TeacherPageController;
 

@@ -67,6 +67,7 @@ class TaskController extends Controller
             'class_rooms' => $class_rooms,
             'categories' => $this->categories,
             'task' => $task,
+            'teacher_id' => $teacher_id,
         ]);
     }
 

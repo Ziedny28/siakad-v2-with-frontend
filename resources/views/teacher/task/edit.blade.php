@@ -74,6 +74,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <input type="hidden" name="teacher_id" value="{{ $teacher_id }}">
                             <div class="card-footer text-right">
                                 <a class="btn btn-secondary" href="\task" role="button">Cancel</a>
                                 <button class="btn btn-success" type="submit">Submit</button>
