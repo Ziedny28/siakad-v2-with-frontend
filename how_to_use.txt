@@ -1,0 +1,10 @@
+use these command for set up this project:
+-composer upadate
+-npm install
+-cp .env.example .env
+-php artisan key:generate
+-php artisan migrate:fresh --seed
+-php artisan storage:link
+-php artisan ser
+
+note:this project free for personal use, for commercial usage please reach out developer

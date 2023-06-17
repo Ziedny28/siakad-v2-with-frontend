@@ -36,7 +36,7 @@ class ClassRoomController extends Controller
      */
     public function scheduleUpload(Request $request)
     {
-        $validated = $request->validate(['image' => 'file', 'class_room_id' => 'required']);
+        $validated = $request->validate(['image' => 'file|', 'class_room_id' => 'required']);
 
         if ($request->file('image')) {
             if ($request->oldScheduleImage) {
