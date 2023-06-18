@@ -3,6 +3,7 @@
 use App\Models\Task;
 use App\Models\Score;
 use App\Models\Student;
+use App\Models\Teacher;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -125,3 +126,13 @@ Route::get('/home', function () {
 
 // logout
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// testing route
+Route::get('/test-custom-paginate', function () {
+    return view('admin.student.index-paginate-test', [
+        'students' => Student::with('class_room')->orderBy('name')->paginate(5),
+        'teacherCount' => Teacher::count(), //counting all teachers
+        'studentCount' => Student::count(),
+        'major' => 'All',
+    ]);
+});
