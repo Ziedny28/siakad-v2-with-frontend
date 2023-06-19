@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\AdminPageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -49,6 +49,7 @@ Route::middleware(['auth:admin'])->group(function () {
 
     Route::view('undefined-fitur', 'admin.blank');
     route::view('/admin-profile', 'admin.my-profile');
+    route::get('/admin-profile', [AdminPageController::class, 'adminProfile']);
 
     Route::controller(ClassRoomController::class)->group(function () {
         route::get('/schedule/{classRoom}/schedule_edit', 'scheduleEdit');
