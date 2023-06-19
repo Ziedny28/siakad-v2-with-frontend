@@ -14,7 +14,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 class TaskController extends Controller
 {
     // available categories
-    private $categories = ['task', 'dialy_test', 'mid_test', 'final_test'];
+    private $categories = ['task', 'daily_test', 'mid_test', 'final_test'];
     /**
      * show the tasks that created by this teacher
      */

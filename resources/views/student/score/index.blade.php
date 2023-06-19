@@ -78,7 +78,7 @@
 
                                     <div class="paginator">
                                         {{-- paginator --}}
-                                        {{ $scores->links() }}
+                                        {{ $scores->links('partials.paginate') }}
                                     </div>
                                 </div>
                             </div>
