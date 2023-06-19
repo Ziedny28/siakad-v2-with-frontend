@@ -1,13 +1,13 @@
 {{-- paginator start --}}
 @if ($paginator->hasPages())
     <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
+        <ul class="pagination pagination-success justify-content-center">
             @if ($paginator->onFirstPage())
                 <li class="page-item disabled">
                     <a class="page-link" href="#" tabindex="-1">Previous</a>
                 </li>
             @else
-                <li class="page-item text-success"><a class="page-link text-success"
+                <li class="page-item text-white"><a class="page-link text-success"
                         href="{{ $paginator->previousPageUrl() }}">
                         Previous</a>
                 </li>
@@ -22,7 +22,7 @@
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
                             <li class="page-item active">
-                                <a class="page-link text-success">{{ $page }}</a>
+                                <a class="page-link text-white">{{ $page }}</a>
                             </li>
                         @else
                             <li class="page-item">
