@@ -68,8 +68,17 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        DB::table('subjects')->where('id', $subject->id)->delete();
+        try {
+            DB::table('subjects')->where('id', $subject->id)->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            if ($e->getCode() == "23000") {
+                Alert::error('Error', 'Data Ini terpakai pada data lain');
+                return redirect()->route('subjects.index');
+            }
+        }
+
+
         Alert::success('Success', 'Berhasil Menghapus Mata Pelajaran');
-        return redirect()->route('subjects.index')->with('success', 'Subject removed successfully');
+        return redirect()->route('subjects.index');
     }
 }

@@ -130,7 +130,14 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
-        $teacher->delete();
+        try {
+            $teacher->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            if ($e->getCode() == "23000") {
+                Alert::error('Error', 'Data Ini terpakai pada data lain');
+                return redirect()->route('subjects.index');
+            }
+        }
         Alert::success('Success', 'Berhasil Menghapus Guru');
         return redirect()->route('teachers.index');
     }

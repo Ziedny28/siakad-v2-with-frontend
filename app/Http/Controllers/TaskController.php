@@ -88,8 +88,16 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        $task = Task::findOrFail($task->id);
-        $task->delete();
+        try {
+            $task = Task::findOrFail($task->id);
+            $task->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            if ($e->getCode() == "23000") {
+                Alert::error('Error', 'Data Ini terpakai pada data lain');
+                return redirect()->route('subjects.index');
+            }
+        }
+
         Alert::success('Success', 'Berhasil Menghapus Tugas');
         return redirect()->route('task.index');
     }

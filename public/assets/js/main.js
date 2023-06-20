@@ -9,7 +9,7 @@ $('.show-alert-delete-box').click(function (event) {
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: '#28a745',
-        cancelButtonColor: '#d33',
+        cancelButtonColor: '#6c757d',
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {

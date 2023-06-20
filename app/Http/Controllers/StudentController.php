@@ -81,8 +81,16 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        $student = Student::findOrFail($student->id);
-        $student->delete();
+        try {
+            $student = Student::findOrFail($student->id);
+            $student->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            if ($e->getCode() == "23000") {
+                Alert::error('Error', 'Data Ini terpakai pada data lain');
+                return redirect()->route('subjects.index');
+            }
+        }
+
         Alert::success('Success', 'Student deleted successfully');
         return redirect()->route('students.index');
     }
