@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('teacher_id')->constrained('teachers')->cascadeOnDelete();
-            $table->foreignId('class_room_id')->constrained('class_rooms')->cascadeOnDelete();
+            $table->foreignId('teacher_id')->constrained('teachers')->restrictOnDelete();
+            $table->foreignId('class_room_id')->constrained('class_rooms')->restrictOnDelete();
             $table->enum('category', ['task', 'daily_test', 'mid_test', 'final_test']);
         });
     }

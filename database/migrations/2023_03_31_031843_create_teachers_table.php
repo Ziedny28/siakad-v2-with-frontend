@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('schedule');
             $table->string('email')->unique();
 
-            $table->foreignId('subject_id')->constrained('subjects')->cascadeOnDelete(); //mengajar
+            $table->foreignId('subject_id')->constrained('subjects')->restrictOnDelete(); //mengajar
         });
     }
 

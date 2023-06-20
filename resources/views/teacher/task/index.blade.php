@@ -99,7 +99,8 @@
                                                     <form action="/task/{{ $task->id }}" method="post">
                                                         @csrf
                                                         @method('delete')
-                                                        <button type="submit" class="btn btn-danger"><i
+                                                        <button type="submit" class="btn btn-danger show-alert-delete-box"
+                                                            data-toggle="tooltip" title='Delete'><i
                                                                 class="bx bxs-trash-alt"></i></button>
                                                     </form>
                                                 </td>

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->enum('grade', ['10', '11', '12']);
             $table->string('schedule');
-            $table->foreignId('teacher_id')->constrained('teachers')->cascadeOnDelete(); //walikelas
+            $table->foreignId('teacher_id')->constrained('teachers')->restrictOnDelete(); //walikelas
         });
     }
 

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('pob');
             $table->string('email')->unique();
             $table->string('password');
-            $table->foreignId('class_room_id')->constrained('class_rooms')->cascadeOnDelete(); //kelas murid
+            $table->foreignId('class_room_id')->constrained('class_rooms')->restrictOnDelete(); //kelas murid
         });
     }
 

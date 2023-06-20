@@ -18,12 +18,10 @@
     {{-- select2 --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-    {{-- other styles --}}
-    <style>
-        .select2-dropdown.increasezindex {
-            z-index: 99999;
-        }
-    </style>
+    {{-- alert2 --}}
+    <link href="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
+    " rel="stylesheet">
 </head>
 
 <body>
@@ -40,6 +38,11 @@
     <script src="/assets/js/custom.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
+
+    {{-- sweetalert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
+
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 
 </html>

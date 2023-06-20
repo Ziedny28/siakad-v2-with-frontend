@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('scores', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('task_id')->constrained('tasks')->cascadeOnDelete();
-            $table->foreignId('student_id')->constrained('students')->cascadeOnDelete();
+            $table->foreignId('task_id')->constrained('tasks')->restrictOnDelete();
+            $table->foreignId('student_id')->constrained('students')->restrictOnDelete();
             $table->integer('score');
         });
     }

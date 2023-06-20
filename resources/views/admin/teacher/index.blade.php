@@ -52,7 +52,8 @@
                             <div class="card-menu">
                                 <div class="search-bar w-50">
                                     <form action="{{ route('teachers.search') }}">
-                                        <input type="text" name="search" class="form-control bg-white" placeholder="Search" />
+                                        <input type="text" name="search" class="form-control bg-white"
+                                            placeholder="Search" />
                                         <button type="submit" class="btn btn-success">
                                             <i class='bx bx-search'></i>
                                         </button>
@@ -89,12 +90,13 @@
                                                 <td class="d-flex">
                                                     <button class="btn btn-success px-1">
                                                         <a href="/teachers/{{ $teacher->id }}/edit" class="text-white"><i
-                                                            class='bx bx-edit'></i></a>
-                                                        </button>
+                                                                class='bx bx-edit'></i></a>
+                                                    </button>
                                                     <form action="/teachers/{{ $teacher->id }}" method="post">
                                                         @csrf
                                                         @method('delete')
-                                                        <button type="submit" class="btn btn-danger"><i
+                                                        <button type="submit" class="btn btn-danger show-alert-delete-box"
+                                                            data-toggle="tooltip" title='Delete'><i
                                                                 class='bx bxs-trash-alt'></i></button>
                                                     </form>
                                                 </td>
@@ -113,6 +115,5 @@
             </div>
         </div>
     </div>
-
     @include('partials.footer')
 @endsection
