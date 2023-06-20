@@ -51,9 +51,14 @@
                             <p></p>
                             <div class="card-menu">
                                 <div class="search-bar w-50">
-                                    {{-- search wihout button --}}
-                                    <input type="text" class="form-control bg-white" wire:model="search"
-                                        placeholder="Search" />
+                                    <form action="">
+                                        <input type="text" name="query" class="form-control bg-white"
+                                            placeholder="Search" />
+
+                                        <button type="submit" class="btn btn-success">
+                                            <i class='bx bx-search'></i>
+                                        </button>
+                                    </form>
                                 </div>
                                 <div class="btn btn-success mt-2">
                                     <a href="/subjects/create">Create New Mapel</a>

@@ -73,7 +73,7 @@ class SubjectController extends Controller
         } catch (\Illuminate\Database\QueryException $e) {
             if ($e->getCode() == "23000") {
                 Alert::error('Error', 'Data Ini terpakai pada data lain');
-                return redirect()->route('subjects.index');
+                return back();
             }
         }
 
