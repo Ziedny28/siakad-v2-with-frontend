@@ -8,7 +8,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-    @include('partials.admin-topbar')
+    @include('partials.teacher-topbar')
     @include('partials.teacher-sidebar')
 
     <div class="content-start transition">
@@ -54,7 +54,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Data Guru</h4>
+                            <h4>Data Nilai Siswa</h4>
                             <p></p>
                             <div class="card-menu">
                                 <div class="search-bar w-50">

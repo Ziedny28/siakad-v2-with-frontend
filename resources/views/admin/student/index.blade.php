@@ -111,7 +111,6 @@
                                     {{ $students->links() }}
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

@@ -2,7 +2,7 @@
 @extends('layouts.main')
 @section('content')
     @include('partials.teacher-sidebar')
-    @include('partials.admin-topbar')
+    @include('partials.teacher-topbar')
 
     <div class="content-start transition">
         <div class="container-fluid dashboard">

@@ -15,9 +15,9 @@
                     <img src={{ asset('assets/images/avatar/avatar-2.png') }} alt="" />
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="admin-undefined-fitur"><i class="bx bxs-user-circle size-icon-1"></i>
+                    <a class="dropdown-item" href="/teacher-undefined-fitur"><i class="bx bxs-user-circle size-icon-1"></i>
                         <span>My Profile</span></a>
-                    <a class="dropdown-item" href="admin-undefined-fitur"><i class="bx bx-cog size-icon-1"></i>
+                    <a class="dropdown-item" href="/teacher-undefined-fitur"><i class="bx bx-cog size-icon-1"></i>
                         <span>Settings</span></a>
                     <hr class="dropdown-divider"/>
                     <a class="dropdown-item" href="{{ route('logout') }}"><i class="bx bx-log-out size-icon-1"></i>

@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-    @include('partials.admin-topbar')
+    @include('partials.teacher-topbar')
     @include('partials.teacher-sidebar')
 
     <!--Content Start-->

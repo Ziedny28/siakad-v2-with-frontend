@@ -6,7 +6,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
         </div>
     @endif
-    @include('partials.admin-topbar')
+    @include('partials.teacher-topbar')
     @include('partials.teacher-sidebar')
 
     <!--Content Start-->
@@ -53,10 +53,10 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Data Guru</h4>
+                        <h4>Data Tugas Siswa</h4>
                             <p></p>
                             <div class="card-menu">
-                                <div class="search-bar">
+                                <div class="search-bar w-50">
                                     <form action="/task" method="GET">
                                         <input type="text" class="form-control" placeholder="Search" name="search" />
                                         <button type="submit" class="btn btn-success">

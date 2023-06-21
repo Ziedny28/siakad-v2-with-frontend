@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-    @include('partials.admin-topbar')
+    @include('partials.student-topbar')
     @include('partials.student-sidebar')
     <!--Content Start-->
     <div class="content-start transition">

@@ -46,8 +46,10 @@ Route::middleware(['auth:admin'])->group(function () {
     route::resource('/schedule', ClassRoomController::class);
     route::resource('/students', StudentController::class);
     route::resource('/subjects', SubjectController::class);
-
-    Route::view('undefined-fitur', 'admin.blank');
+    // route::get('/undefined-fitur', function () {
+    //     return view('admin.blank');
+    // });
+    route::view('admin-undefined-fitur', 'admin.blank');
     route::view('/admin-profile', 'admin.my-profile');
     route::get('/admin-profile', [AdminPageController::class, 'adminProfile']);
 
@@ -76,7 +78,7 @@ Route::middleware(['auth:teacher'])->group(function () {
     Route::resource('/score', ScoreController::class);
     Route::resource('task', TaskController::class);
 
-    Route::view('undefined-fitur', 'teacher.blank');
+    Route::view('teacher-undefined-fitur', 'teacher.blank');
 
     Route::controller(TeacherPageController::class)->group(function () {
         Route::get('/teacher-change-password', 'changePassword');
@@ -104,6 +106,7 @@ routes accessible for student
 */
 Route::middleware(['auth:student'])->group(function () {
     Route::get('/dashboard-student', [DashboardController::class, 'student']);
+    Route::view('student-undefined-fitur', 'teacher.blank');
 
     Route::controller(StudentPageController::class)->group(function () {
         Route::get('/student-task', 'studentTask');

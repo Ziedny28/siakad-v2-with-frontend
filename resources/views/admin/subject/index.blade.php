@@ -101,7 +101,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <div class="pagination">
+                                <div class="paginator">
                                     {{ $subjects->links() }}
                                 </div>
                             </div>
