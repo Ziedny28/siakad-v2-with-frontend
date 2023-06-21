@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Task extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
     protected $guarded = ['id'];
     public $timestamps = false;
 
@@ -24,5 +25,10 @@ class Task extends Model
     public function teacher()
     {
         return $this->belongsTo(Teacher::class);
+    }
+
+    function toSearchableArray()
+    {
+        return ['name' => $this->name];
     }
 }

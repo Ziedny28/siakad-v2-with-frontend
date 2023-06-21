@@ -21,7 +21,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Jumlah Guru</p>
-                                    <h5>{{ $teachers->count() }}</h5>
+                                    <h5>{{ $teacher_count }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -51,8 +51,8 @@
                             <p></p>
                             <div class="card-menu">
                                 <div class="search-bar w-50">
-                                    <form action="">
-                                        <input type="text" name="query" class="form-control bg-white"
+                                    <form action="/subjects" method="get">
+                                        <input type="text" name="search" class="form-control bg-white"
                                             placeholder="Search" />
 
                                         <button type="submit" class="btn btn-success">

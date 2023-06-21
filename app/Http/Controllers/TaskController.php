@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateTaskRequest;
 use App\Models\ClassRoom;
 use App\Models\Student;
 use App\Models\Task;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -18,10 +19,17 @@ class TaskController extends Controller
     /**
      * show the tasks that created by this teacher
      */
-    public function index()
+    public function index(Request $request)
     {
         $teacher_id = Auth::user()->id; //getting teacher id
-        $tasks = Task::with('class_room')->where('teacher_id', $teacher_id)->paginate(10); //getting tasks data of this teacher with class room
+
+        if ($request->input('search')) {
+            $search = $request->input('search');
+            $tasks = Task::search($search)->where('teacher_id', $teacher_id)->paginate(10);
+        } else {
+            $tasks = Task::with('class_room')->where('teacher_id', $teacher_id)->paginate(10); //getting tasks data of this teacher with class room
+        }
+
 
         $taskCount = Task::where('teacher_id', $teacher_id)->count();
         $studentCount = Student::count();

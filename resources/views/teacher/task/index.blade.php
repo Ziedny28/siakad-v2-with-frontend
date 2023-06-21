@@ -57,8 +57,8 @@
                             <p></p>
                             <div class="card-menu">
                                 <div class="search-bar">
-                                    <form action="#">
-                                        <input type="text" class="form-control" placeholder="Search" />
+                                    <form action="/task" method="GET">
+                                        <input type="text" class="form-control" placeholder="Search" name="search" />
                                         <button type="submit" class="btn btn-success">
                                             <i class="bx bx-search"></i>
                                         </button>

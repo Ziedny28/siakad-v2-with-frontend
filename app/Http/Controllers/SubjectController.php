@@ -8,6 +8,7 @@ use App\Models\Teacher;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreSubjectRequest;
 use App\Http\Requests\UpdateSubjectRequest;
+use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class SubjectController extends Controller
@@ -15,11 +16,17 @@ class SubjectController extends Controller
     /**
      * showing all subjects
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->input('search')) {
+            $search = $request->input('search');
+            $subjects = Subject::search($search)->paginate(5);
+        } else {
+            $subjects = Subject::paginate(5);
+        }
         return view('admin.subject.index', [
-            'teachers' => Teacher::with('subject')->get(),
-            'subjects' => Subject::paginate(5),
+            'teacher_count' => Teacher::count(),
+            'subjects' => $subjects,
             'students' => Student::all(),
         ]);
     }
@@ -76,7 +83,6 @@ class SubjectController extends Controller
                 return back();
             }
         }
-
 
         Alert::success('Success', 'Berhasil Menghapus Mata Pelajaran');
         return redirect()->route('subjects.index');
