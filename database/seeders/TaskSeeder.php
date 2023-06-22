@@ -24,9 +24,10 @@ class TaskSeeder extends Seeder
 
     public function insert()
     {
+        $teacherCount = 30;
         DB::table('tasks')->insert([
             'name' => $this->taskName[rand(0, 11)],
-            'teacher_id' => rand(1, 50),
+            'teacher_id' => rand(1, $teacherCount),
             'class_room_id' => rand(1, 48),
             'category' => $this->category[rand(0, 3)],
         ]);

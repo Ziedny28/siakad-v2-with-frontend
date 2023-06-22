@@ -19,19 +19,16 @@ class ScoreController extends Controller
     /*
       show the scores that created by this teacher
      */
-    public function index()
+    public function index(Request $request)
     {
         $teacher_id = Auth::user()->id; //get the teacher id
 
-        /*
-        get the scores with the task and the teacher and the subject of this teacher adn order by class room
-        using subquerry to get teacher id from task table and compare it with the teacher id of this teacher
-        order by class room id from task table
-        */
-        $scores = Score::with('task.teacher.subject')
-            ->where(Task::select('teacher_id')->whereColumn('tasks.id', 'scores.task_id'), $teacher_id)
-            ->orderBy(Task::select('class_room_id')->whereColumn('tasks.id', 'scores.task_id'))
-            ->paginate(10);
+        // search score by task name
+        if ($request->input('search') != null) {
+            $scores = $this->getScores($teacher_id, $request->input('search'));
+        } else {
+            $scores = $this->getScores($teacher_id);
+        }
         /*
         get the class rooms that this teacher teach
         panggil relasi class_rooms pada model Teacher untuk mendapatkan class room yang diajar oleh teacher ini
@@ -42,6 +39,30 @@ class ScoreController extends Controller
         $taskCount = Task::where('teacher_id', $teacher_id)->count();
 
         return view('teacher.score.index', ['scores' => $scores, 'class_rooms' => $class_rooms, 'taskCount' => $taskCount, 'studentCount' => Student::count()]);
+    }
+
+    function getScores($teacher_id, $search = null)
+    {
+        if ($search == null) {
+            /*
+        get the scores with the task and the teacher and the subject of this teacher adn order by class room
+        using subquerry to get teacher id from task table and compare it with the teacher id of this teacher
+        order by class room id from task table
+        */
+            $scores = Score::with('task.teacher.subject')
+                ->where(Task::select('teacher_id')->whereColumn('tasks.id', 'scores.task_id'), $teacher_id)
+                ->orderBy(Task::select('class_room_id')->whereColumn('tasks.id', 'scores.task_id'))
+                ->paginate(10);
+        } else {
+            $taskIds = Task::where('name', 'like', '%' . $search . '%')->pluck('id');
+            $scores = Score::with('task.teacher.subject')
+                ->where(Task::select('teacher_id')->whereColumn('tasks.id', 'scores.task_id'), $teacher_id)
+                ->whereIn('task_id', $taskIds)
+                ->orderBy(Task::select('class_room_id')->whereColumn('tasks.id', 'scores.task_id'))
+                ->paginate(10);
+        }
+
+        return $scores;
     }
 
     /**
@@ -165,9 +186,5 @@ class ScoreController extends Controller
         if (count($students) > 0) {
             return response()->json($students);
         }
-    }
-
-    function search(Request $request)
-    {
     }
 }

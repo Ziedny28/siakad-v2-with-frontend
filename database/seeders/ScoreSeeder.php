@@ -15,9 +15,10 @@ class ScoreSeeder extends Seeder
     {
         //making 2000 scores
         $scoreCount = 2000;
+        $studentCount = 500;
         for ($i = 0; $i < $scoreCount; $i++) {
             DB::table('scores')->insert([
-                'student_id' => rand(1, 1000),
+                'student_id' => rand(1, $studentCount),
                 'task_id' => rand(1, 300),
                 'score' => rand(0, 100),
             ]);

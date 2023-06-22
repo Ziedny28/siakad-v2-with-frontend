@@ -20,8 +20,9 @@ class StudyActivitySeeder extends Seeder
 
     public function insert()
     {
+        $teacherCount = 30;
         DB::table('study_activities')->insert([
-            'teacher_id' => rand(1, 50),
+            'teacher_id' => rand(1, $teacherCount),
             'class_room_id' => rand(1, 48),
         ]);
     }

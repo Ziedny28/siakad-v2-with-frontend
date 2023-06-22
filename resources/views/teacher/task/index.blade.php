@@ -53,11 +53,11 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                        <h4>Data Tugas Siswa</h4>
+                            <h4>Data Tugas Siswa</h4>
                             <p></p>
                             <div class="card-menu">
                                 <div class="search-bar w-50">
-                                    <form action="/task" method="GET">
+                                    <form action="{{ route('task.index') }}" method="GET">
                                         <input type="text" class="form-control" placeholder="Search" name="search" />
                                         <button type="submit" class="btn btn-success">
                                             <i class="bx bx-search"></i>

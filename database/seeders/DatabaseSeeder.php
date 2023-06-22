@@ -23,12 +23,12 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password')
         ]);
 
-        \App\Models\Admin::factory(10)->create();
+        \App\Models\Admin::factory(3)->create();
 
         $this->call([SubjectSeeder::class,]);
-        \App\Models\Teacher::factory(50)->create();
+        \App\Models\Teacher::factory(30)->create();
         $this->call([ClassroomSeeder::class,]);
-        \App\Models\Student::factory(1000)->create();
+        \App\Models\Student::factory(500)->create();
         $this->call([StudyActivitySeeder::class,]);
         $this->call([TeacherClassRoomSeeder::class,]);
         $this->call([TaskSeeder::class,]);

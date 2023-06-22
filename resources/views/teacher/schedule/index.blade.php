@@ -19,7 +19,12 @@
                         </div>
                         <div class="card-body">
                             <div>
-                                <img src='{{ asset('storage/' . $teacher->schedule) }}' class="img-fluid" alt="">
+                                @if ($teacher->schedule != null)
+                                    <img src='{{ asset('storage/' . $teacher->schedule) }}' class="img-fluid" alt="">
+                                @else
+                                    <img src='{{ asset('assets/images/jadwal-guru.jpg') }}' class="img-fluid"
+                                        alt="">
+                                @endif
                             </div>
                         </div>
                     </div>

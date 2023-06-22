@@ -23,13 +23,13 @@ class ClassRoomSeeder extends Seeder
 
     public function insert($i, $j)
     {
-
+        $teacherCount = 30;
         for ($k = 0; $k < 4; $k++) {
             DB::table('class_rooms')->insert([
                 'name' => $i . " " . $this->majors[$k] . " " . $j,
                 'grade' => "$i",
                 'schedule' => '',
-                'teacher_id' => rand(1, 50)
+                'teacher_id' => rand(1, $teacherCount)
             ]);
         }
     }

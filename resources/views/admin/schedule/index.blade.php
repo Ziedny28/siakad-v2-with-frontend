@@ -107,8 +107,13 @@
                     </div>
                     <div class="card-body">
                         <div>
-                            <img class="img-fluid" src='{{ asset('storage/' . $classRoom->schedule) }}'
-                                alt="{{ $classRoom->name }}">
+                            @if ($classRoom->schedule != null)
+                                <img class="img-fluid" src='{{ asset('storage/' . $classRoom->schedule) }}'
+                                    alt="{{ $classRoom->name }}">
+                            @else
+                                <img class="img-fluid" src='{{ asset('assets/images/jadwal-siswa.jpg') }}'
+                                    alt="{{ $classRoom->name }}">
+                            @endif
                         </div>
                     </div>
 

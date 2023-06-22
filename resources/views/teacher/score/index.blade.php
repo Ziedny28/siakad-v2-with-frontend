@@ -58,13 +58,16 @@
                             <p></p>
                             <div class="card-menu">
                                 <div class="search-bar w-50">
-                                    <form action="{{ route('score.search') }}">
-                                        <select class="form-select" name="query">
+                                    <form action="{{ route('score.index') }}">
+                                        {{-- <select class="form-select" name="query">
                                             <option>Semua</option>
                                             @foreach ($class_rooms as $class_room)
                                                 <option value="{{ $class_room->id }}">{{ $class_room->name }}</option>
                                             @endforeach
-                                        </select>
+                                        </select> --}}
+
+                                        <input type="text" name="search" class="form-control bg-white"
+                                            placeholder="Search" />
                                         <button type="submit" class="btn btn-success">
                                             <i class="bx bx-search"></i>
                                         </button>
