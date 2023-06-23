@@ -52,6 +52,7 @@ class ScoreController extends Controller
             $scores = Score::with('task.teacher.subject')
                 ->where(Task::select('teacher_id')->whereColumn('tasks.id', 'scores.task_id'), $teacher_id)
                 ->orderBy(Task::select('class_room_id')->whereColumn('tasks.id', 'scores.task_id'))
+                // ->orderBy("id", "desc")
                 ->paginate(10);
         } else {
             $taskIds = Task::where('name', 'like', '%' . $search . '%')->pluck('id');
