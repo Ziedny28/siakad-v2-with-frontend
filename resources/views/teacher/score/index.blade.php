@@ -93,9 +93,9 @@
                                         </tr>
                                     </thead>
                                     <tbody class="align-middle">
-                                        @foreach ($scores as $score)
+                                        @foreach ($scores as $index => $score)
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $scores->firstItem() + $index }}</td>
                                                 <td>{{ $score->student->name }}</td>
                                                 <td>{{ $score->student->class_room->name }}</td>
                                                 <td>{{ $score->task->name }}</td>
